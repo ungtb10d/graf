@@ -10,7 +10,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style;
+package org.ungtb10d.graf.style;
 
 /**
  * Horizontal alignment

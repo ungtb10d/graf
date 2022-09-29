@@ -9,20 +9,20 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.elements;
+package org.ungtb10d.graf.elements;
 
 import java.util.Collection;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.ITableCell;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.ITableCell;
 
 /**
  * Implementation of ITableCell
  * 
  */
-public class GraphCell extends GraphElement implements ITableCell {
+public class grafCell extends grafElement implements ITableCell {
 
-	public static class SeparatorCell extends GraphCell {
+	public static class SeparatorCell extends grafCell {
 		public SeparatorCell() {
 			super("", SeparatorCell.class.getName());
 		}
@@ -35,14 +35,14 @@ public class GraphCell extends GraphElement implements ITableCell {
 
 	private String value;
 
-	private GraphTable table;
+	private grafTable table;
 
-	// private GraphCell(String value, int rowspan, int colspan, String styleClass, String id) {
+	// private grafCell(String value, int rowspan, int colspan, String styleClass, String id) {
 	// super(styleClass, id);
 	// this.value = value;
 	// }
 	//
-	// private GraphCell(String value, int rowspan, int colspan, Collection<String> styleClass, String id) {
+	// private grafCell(String value, int rowspan, int colspan, Collection<String> styleClass, String id) {
 	// super(styleClass, id);
 	// this.value = value;
 	// }
@@ -52,25 +52,25 @@ public class GraphCell extends GraphElement implements ITableCell {
 	 * 
 	 * @param styleClass
 	 */
-	public GraphCell(String value, String styleClass) {
+	public grafCell(String value, String styleClass) {
 		this(value, styleClass, null);
 	}
 
-	public GraphCell(String value, Collection<String> styleClasses) {
+	public grafCell(String value, Collection<String> styleClasses) {
 		this(value, styleClasses, null);
 	}
 
-	public GraphCell(String value, String styleClass, String id) {
+	public grafCell(String value, String styleClass, String id) {
 		super(styleClass, id);
 		this.value = value;
 	}
 
-	public GraphCell(String value, Collection<String> styleClasses, String id) {
+	public grafCell(String value, Collection<String> styleClasses, String id) {
 		super(styleClasses, id);
 		this.value = value;
 	}
 
-	public void setTableContent(GraphTable gt) {
+	public void setTableContent(grafTable gt) {
 		this.table = gt;
 		gt.setParentElement(this);
 		String id = gt.getId();
@@ -80,7 +80,7 @@ public class GraphCell extends GraphElement implements ITableCell {
 	}
 
 	@Override
-	public GraphTable getTableContents() {
+	public grafTable getTableContents() {
 		return this.table;
 	}
 

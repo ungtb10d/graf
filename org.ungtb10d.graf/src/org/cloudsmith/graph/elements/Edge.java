@@ -9,24 +9,24 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.elements;
+package org.ungtb10d.graf.elements;
 
 import java.util.Collection;
 import java.util.Collections;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.IEdge;
-import org.ungtb10d.graph.IVertex;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.IEdge;
+import org.ungtb10d.graf.IVertex;
 
 /**
- * Edges can go between any two vertices including those nested in subgraphs (as well as subgraphs).
+ * Edges can go between any two vertices including those nested in subgrafs (as well as subgrafs).
  * Edges are typically created without an identity as in most cases, there is little need to
- * refer to them individually. When added to the default Graph implementation an id
+ * refer to them individually. When added to the default graf implementation an id
  * is automatically assigned.
  * 
  * An explicit id can be set in the constructors, or in a separate call to setId.
  */
-public class Edge extends LabeledGraphElement implements IEdge {
+public class Edge extends LabeledgrafElement implements IEdge {
 	private final IVertex to;
 
 	private final IVertex from;
@@ -72,7 +72,7 @@ public class Edge extends LabeledGraphElement implements IEdge {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.GraphElement#getElementType()
+	 * @see org.ungtb10d.graf.impl.grafElement#getElementType()
 	 */
 	@Override
 	public ElementType getElementType() {
@@ -82,7 +82,7 @@ public class Edge extends LabeledGraphElement implements IEdge {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.GraphElement#getFrom()
+	 * @see org.ungtb10d.graf.impl.grafElement#getFrom()
 	 */
 	@Override
 	public IVertex getFrom() {
@@ -92,7 +92,7 @@ public class Edge extends LabeledGraphElement implements IEdge {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.GraphElement#getTo()
+	 * @see org.ungtb10d.graf.impl.grafElement#getTo()
 	 */
 	@Override
 	public IVertex getTo() {

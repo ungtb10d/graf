@@ -9,32 +9,32 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.tests;
+package org.ungtb10d.graf.tests;
 
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 
-import org.ungtb10d.graph.ICancel;
-import org.ungtb10d.graph.IGraph;
-import org.ungtb10d.graph.IGraphProvider;
-import org.ungtb10d.graph.dot.DotRenderer;
-import org.ungtb10d.graph.graphcss.GraphCSS;
-import org.ungtb10d.graph.style.themes.IStyleTheme;
-import org.ungtb10d.graph.testgraphs.SimpleGraph1;
-import org.ungtb10d.graph.testgraphs.TestGraph;
+import org.ungtb10d.graf.ICancel;
+import org.ungtb10d.graf.Igraf;
+import org.ungtb10d.graf.IgrafProvider;
+import org.ungtb10d.graf.dot.DotRenderer;
+import org.ungtb10d.graf.grafcss.grafCSS;
+import org.ungtb10d.graf.style.themes.IStyleTheme;
+import org.ungtb10d.graf.testgrafs.Simplegraf1;
+import org.ungtb10d.graf.testgrafs.Testgraf;
 import org.junit.Test;
 
 /**
  * 
  *
  */
-public class TestMockGraph extends AbstractGraphTests {
+public class TestMockgraf extends AbstractgrafTests {
 
 	/**
-	 * Output produced by a very simple graph with no styling.
+	 * Output produced by a very simple graf with no styling.
 	 */
-	public static final String testSimpleGraph1_dotOutput_text = "digraph root {\n" + //
+	public static final String testSimplegraf1_dotOutput_text = "digraf root {\n" + //
 			"\"root-v1\" [\n" + //
 			"label=\"a\"];\n" + //
 			"\"root-v2\" [\n" + //
@@ -43,40 +43,40 @@ public class TestMockGraph extends AbstractGraphTests {
 			"label=\"c\"];\n" + //
 			"\"root-v1\" -> \"root-v2\";\n" + //
 			"\"root-v2\" -> \"root-v3\";\n" + //
-			"label=\"a graph\";\n" + //
+			"label=\"a graf\";\n" + //
 			"}\n";
 
 	@Test
-	public void testSimpleGraph1_dotOutput() {
-		GraphCSS themeSheet = get(GraphCSS.class);
+	public void testSimplegraf1_dotOutput() {
+		grafCSS themeSheet = get(grafCSS.class);
 
-		IGraphProvider graphProvider = get(SimpleGraph1.class);
-		IGraph testGraph = graphProvider.computeGraph();
-		themeSheet.addAll(graphProvider.getRules());
+		IgrafProvider grafProvider = get(Simplegraf1.class);
+		Igraf testgraf = grafProvider.computegraf();
+		themeSheet.addAll(grafProvider.getRules());
 
 		DotRenderer dotRenderer = get(DotRenderer.class);
 		ByteArrayOutputStream tmp = new ByteArrayOutputStream();
 
-		// Render without the default styles. Use styles from SimpleGraph1
-		dotRenderer.write(ICancel.NullIndicator, tmp, testGraph, get(GraphCSS.class), themeSheet);
-		assertEquals("Expected result differs", testSimpleGraph1_dotOutput_text, tmp.toString());
+		// Render without the default styles. Use styles from Simplegraf1
+		dotRenderer.write(ICancel.NullIndicator, tmp, testgraf, get(grafCSS.class), themeSheet);
+		assertEquals("Expected result differs", testSimplegraf1_dotOutput_text, tmp.toString());
 	}
 
 	@Test
 	public void testSmokeTest() {
-		// IGraphviz graphviz = get(IGraphviz.class);
+		// Igrafviz grafviz = get(Igrafviz.class);
 
 		IStyleTheme theme = get(IStyleTheme.class);
-		GraphCSS themeSheet = get(GraphCSS.class);
+		grafCSS themeSheet = get(grafCSS.class);
 		themeSheet.addAll(theme.getInstanceRules());
 
-		IGraphProvider graphProvider = get(TestGraph.class);
-		IGraph testGraph = graphProvider.computeGraph();
-		themeSheet.addAll(graphProvider.getRules());
+		IgrafProvider grafProvider = get(Testgraf.class);
+		Igraf testgraf = grafProvider.computegraf();
+		themeSheet.addAll(grafProvider.getRules());
 
 		DotRenderer dotRenderer = get(DotRenderer.class);
-		dotRenderer.write(ICancel.NullIndicator, System.err, testGraph, theme.getDefaultRules(), themeSheet);
-		// String dotText = graphviz.getDotText(testGraph, theme.getDefaultRules(), themeSheet);
+		dotRenderer.write(ICancel.NullIndicator, System.err, testgraf, theme.getDefaultRules(), themeSheet);
+		// String dotText = grafviz.getDotText(testgraf, theme.getDefaultRules(), themeSheet);
 		// System.err.println(dotText);
 	}
 }

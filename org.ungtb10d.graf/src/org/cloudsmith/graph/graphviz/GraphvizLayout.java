@@ -9,13 +9,13 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphviz;
+package org.ungtb10d.graf.grafviz;
 
 /**
- * Layout algorithms supported by the {@link Graphviz} runner
- * If you have a directed graph - you probably want {@link #dot} For undirected graphs you probably want {@link #neato}.
+ * Layout algorithms supported by the {@link grafviz} runner
+ * If you have a directed graf - you probably want {@link #dot} For undirected grafs you probably want {@link #neato}.
  * 
  */
-public enum GraphvizLayout {
+public enum grafvizLayout {
 	dot, neato, circo, fdp, twopi, ;
 }

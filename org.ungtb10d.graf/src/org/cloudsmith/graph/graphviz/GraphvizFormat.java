@@ -9,22 +9,22 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphviz;
+package org.ungtb10d.graf.grafviz;
 
-public enum GraphvizFormat {
+public enum grafvizFormat {
 	/**
 	 * Image in PNG format. Renderer must have been selected.
 	 */
 	png,
 	/**
 	 * Image in JPG format. Renderer must have been selected.
-	 * (Result is often disappointing for typical graphs).
+	 * (Result is often disappointing for typical grafs).
 	 */
 	jpg,
 	/**
 	 * The best quality output vs. size, but requires a good viewer/browser.
 	 * Also used to produce SVGZ (compressed SVG), as it is better to just use a Zip compressed
-	 * stream to get the output from graphviz (SVGZ is just that).
+	 * stream to get the output from grafviz (SVGZ is just that).
 	 * 
 	 * Use SVG(Z) when using a viewer like ZGRViewer.
 	 */

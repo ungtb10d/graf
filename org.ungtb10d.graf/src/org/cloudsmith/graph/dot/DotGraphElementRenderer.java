@@ -9,52 +9,52 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.dot;
+package org.ungtb10d.graf.dot;
 
 import java.io.PrintStream;
 import java.util.Collection;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.ICancel;
-import org.ungtb10d.graph.IClusterGraph;
-import org.ungtb10d.graph.IEdge;
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.ILabeledGraphElement;
-import org.ungtb10d.graph.graphcss.GraphCSS;
-import org.ungtb10d.graph.graphcss.StyleSet;
-import org.ungtb10d.graph.style.Alignment;
-import org.ungtb10d.graph.style.Arrow;
-import org.ungtb10d.graph.style.EdgeDirection;
-import org.ungtb10d.graph.style.EdgeRouting;
-import org.ungtb10d.graph.style.IStyle;
-import org.ungtb10d.graph.style.IStyleVisitor;
-import org.ungtb10d.graph.style.LineBrush;
-import org.ungtb10d.graph.style.NodeShape;
-import org.ungtb10d.graph.style.RankDirection;
-import org.ungtb10d.graph.style.ShapeBrush;
-import org.ungtb10d.graph.style.StyleType;
-import org.ungtb10d.graph.style.StyleVisitor;
-import org.ungtb10d.graph.style.VerticalAlignment;
-import org.ungtb10d.graph.style.labels.ILabelTemplate;
-import org.ungtb10d.graph.utils.Counter;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.ICancel;
+import org.ungtb10d.graf.IClustergraf;
+import org.ungtb10d.graf.IEdge;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.ILabeledgrafElement;
+import org.ungtb10d.graf.grafcss.grafCSS;
+import org.ungtb10d.graf.grafcss.StyleSet;
+import org.ungtb10d.graf.style.Alignment;
+import org.ungtb10d.graf.style.Arrow;
+import org.ungtb10d.graf.style.EdgeDirection;
+import org.ungtb10d.graf.style.EdgeRouting;
+import org.ungtb10d.graf.style.IStyle;
+import org.ungtb10d.graf.style.IStyleVisitor;
+import org.ungtb10d.graf.style.LineBrush;
+import org.ungtb10d.graf.style.NodeShape;
+import org.ungtb10d.graf.style.RankDirection;
+import org.ungtb10d.graf.style.ShapeBrush;
+import org.ungtb10d.graf.style.StyleType;
+import org.ungtb10d.graf.style.StyleVisitor;
+import org.ungtb10d.graf.style.VerticalAlignment;
+import org.ungtb10d.graf.style.labels.ILabelTemplate;
+import org.ungtb10d.graf.utils.Counter;
 
 import com.google.common.collect.Iterators;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 /**
- * Renders IGraphElements in Graphviz dot notation.
+ * Renders IgrafElements in grafviz dot notation.
  * 
  */
 @Singleton
-public class DotGraphElementRenderer {
+public class DotgrafElementRenderer {
 
 	private final DotLabelRenderer labelRenderer;
 
 	private final String emptyString;
 
 	@Inject
-	public DotGraphElementRenderer(DotLabelRenderer labelRenderer, @DotRenderer.EmptyString String emptyString) {
+	public DotgrafElementRenderer(DotLabelRenderer labelRenderer, @DotRenderer.EmptyString String emptyString) {
 		this.labelRenderer = labelRenderer;
 		this.emptyString = emptyString;
 	}
@@ -81,8 +81,8 @@ public class DotGraphElementRenderer {
 	 * @param gcss
 	 *            - css for nested label elements
 	 */
-	private int printStyles(final ICancel cancel, final PrintStream out, final IGraphElement element,
-			final boolean statementList, final Collection<IStyle<?>> s, final GraphCSS gcss) {
+	private int printStyles(final ICancel cancel, final PrintStream out, final IgrafElement element,
+			final boolean statementList, final Collection<IStyle<?>> s, final grafCSS gcss) {
 		// if no styles, output nothing
 		if(s == null || s.size() < 1)
 			return 0;
@@ -176,7 +176,7 @@ public class DotGraphElementRenderer {
 				}
 
 				@Override
-				public void fromCluster(IClusterGraph value) {
+				public void fromCluster(IClustergraf value) {
 					if(!(element instanceof IEdge))
 						throw new IllegalArgumentException("fromCluster can only be applied to an edge");
 					IEdge edge = (IEdge) element;
@@ -219,7 +219,7 @@ public class DotGraphElementRenderer {
 						if(tmp != null) {
 							// print the label, and if nothing printed, adjust the comma count
 							if(!labelRenderer.print(
-								out, (ILabeledGraphElement) element, tmp, o.isSeparatorNeeded(), sepChar, gcss, cancel))
+								out, (ILabeledgrafElement) element, tmp, o.isSeparatorNeeded(), sepChar, gcss, cancel))
 								o.decrement(); // nothing printed
 						}
 						else
@@ -250,7 +250,7 @@ public class DotGraphElementRenderer {
 
 				@Override
 				public void rankDirection(RankDirection x) {
-					// only applies to graph, and only if it is the root
+					// only applies to graf, and only if it is the root
 					//
 					if(element.getParentElement() == null)
 						out.printf("%srankdir=\"%s\"", o.separator(), x);
@@ -260,7 +260,7 @@ public class DotGraphElementRenderer {
 
 				@Override
 				public void rankSeparation(double x) {
-					// only applies to graph, and only if it is the root
+					// only applies to graf, and only if it is the root
 					//
 					if(element.getParentElement() == null)
 						out.printf("%sranksep=\"%s\"", o.separator(), x);
@@ -280,15 +280,15 @@ public class DotGraphElementRenderer {
 
 				@Override
 				public void shape(NodeShape x) {
-					if(elementType == ElementType.graph) {
-						System.err.println("Weird - shape call for Graph");
+					if(elementType == ElementType.graf) {
+						System.err.println("Weird - shape call for graf");
 					}
 					out.printf("%sshape=\"%s\"", o.separator(), x);
 				}
 
 				@Override
 				public void shapeBrush(ShapeBrush brush) {
-					// only graphs of cluster type can have style set
+					// only grafs of cluster type can have style set
 					if(elementType == ElementType.cluster) {
 						o.decrement();
 					}
@@ -318,7 +318,7 @@ public class DotGraphElementRenderer {
 				}
 
 				@Override
-				public void toCluster(IClusterGraph value) {
+				public void toCluster(IClustergraf value) {
 					if(!(element instanceof IEdge))
 						throw new IllegalArgumentException("toCluster can only be applied to an edge");
 					IEdge edge = (IEdge) element;
@@ -383,25 +383,25 @@ public class DotGraphElementRenderer {
 		return o.value();
 	}
 
-	private int printStyles(ICancel cancel, PrintStream out, IGraphElement element, Collection<IStyle<?>> s,
-			GraphCSS gcss) {
+	private int printStyles(ICancel cancel, PrintStream out, IgrafElement element, Collection<IStyle<?>> s,
+			grafCSS gcss) {
 		return printStyles(cancel, out, element, false, s, gcss);
 	}
 
-	public int printStyles(ICancel cancel, PrintStream out, IGraphElement element, GraphCSS gcss) {
+	public int printStyles(ICancel cancel, PrintStream out, IgrafElement element, grafCSS gcss) {
 		return printStyles(cancel, out, element, gcss.collectStyles(element, cancel).getStyles(), gcss);
 	}
 
-	public int printStyles(ICancel cancel, PrintStream out, IGraphElement element, StyleSet styleMap, GraphCSS gcss) {
+	public int printStyles(ICancel cancel, PrintStream out, IgrafElement element, StyleSet styleMap, grafCSS gcss) {
 		return printStyles(cancel, out, element, styleMap.getStyles(), gcss);
 	}
 
-	public int printStyleStatements(ICancel cancel, PrintStream out, IGraphElement element, Collection<IStyle<?>> s,
-			GraphCSS gcss) {
+	public int printStyleStatements(ICancel cancel, PrintStream out, IgrafElement element, Collection<IStyle<?>> s,
+			grafCSS gcss) {
 		return printStyles(cancel, out, element, true, s, gcss);
 	}
 
-	public int printStyleStatements(ICancel cancel, PrintStream out, IGraphElement element, GraphCSS gcss) {
+	public int printStyleStatements(ICancel cancel, PrintStream out, IgrafElement element, grafCSS gcss) {
 		return printStyles(cancel, out, element, true, gcss.collectStyles(element, cancel).getStyles(), gcss);
 	}
 }

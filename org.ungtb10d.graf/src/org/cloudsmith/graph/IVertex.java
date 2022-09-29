@@ -9,12 +9,12 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
 /**
- * An interface for a Vertex (i.e. Node/Bubble) in a graph.
+ * An interface for a Vertex (i.e. Node/Bubble) in a graf.
  * 
  */
-public interface IVertex extends IGraphElement, ILabeledGraphElement {
+public interface IVertex extends IgrafElement, ILabeledgrafElement {
 
 }

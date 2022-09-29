@@ -9,13 +9,13 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
 /**
  * Interface for a Table Cell.
  * 
  */
-public interface ITableCell extends IGraphElement {
+public interface ITableCell extends IgrafElement {
 	public ITable getTableContents();
 
 	public String getValue();

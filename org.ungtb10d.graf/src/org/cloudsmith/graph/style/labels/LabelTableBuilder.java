@@ -9,14 +9,14 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style.labels;
+package org.ungtb10d.graf.style.labels;
 
 import java.util.Collection;
 import java.util.Set;
 
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.graphcss.IFunctionFactory;
-import org.ungtb10d.graph.style.IStyleFactory;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.grafcss.IFunctionFactory;
+import org.ungtb10d.graf.style.IStyleFactory;
 
 import com.google.common.base.Function;
 
@@ -56,12 +56,12 @@ public abstract class LabelTableBuilder implements IFunctionFactory {
 	 */
 	public abstract LabelTable build();
 
-	final protected LabelCell cell(Function<IGraphElement, Set<String>> styleClass,
-			Function<IGraphElement, ILabelTemplate> f) {
+	final protected LabelCell cell(Function<IgrafElement, Set<String>> styleClass,
+			Function<IgrafElement, ILabelTemplate> f) {
 		return styleFactory.labelCell(styleClass, f, null);
 	}
 
-	final protected LabelCell cell(String styleClass, Function<IGraphElement, ILabelTemplate> f) {
+	final protected LabelCell cell(String styleClass, Function<IgrafElement, ILabelTemplate> f) {
 		return styleFactory.labelCell(styleClass, f, null);
 	}
 
@@ -72,20 +72,20 @@ public abstract class LabelTableBuilder implements IFunctionFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.graphcss.IFunctionFactory#emptyLabel()
+	 * @see org.ungtb10d.graf.grafcss.IFunctionFactory#emptyLabel()
 	 */
 	@Override
-	public Function<IGraphElement, Boolean> emptyLabel() {
+	public Function<IgrafElement, Boolean> emptyLabel() {
 		return functions.emptyLabel();
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.graphcss.IFunctionFactory#emptyLabelData(java.lang.Object)
+	 * @see org.ungtb10d.graf.grafcss.IFunctionFactory#emptyLabelData(java.lang.Object)
 	 */
 	@Override
-	public Function<IGraphElement, Boolean> emptyLabelData(Object key) {
+	public Function<IgrafElement, Boolean> emptyLabelData(Object key) {
 		return functions.emptyLabelData(key);
 
 	}
@@ -93,10 +93,10 @@ public abstract class LabelTableBuilder implements IFunctionFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.graphcss.IFunctionFactory#idClassReplacer()
+	 * @see org.ungtb10d.graf.grafcss.IFunctionFactory#idClassReplacer()
 	 */
 	@Override
-	public Function<IGraphElement, String> idClassReplacer() {
+	public Function<IgrafElement, String> idClassReplacer() {
 		// TODO Auto-generated method stub
 		return functions.idClassReplacer();
 	}
@@ -104,10 +104,10 @@ public abstract class LabelTableBuilder implements IFunctionFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.graphcss.IFunctionFactory#label()
+	 * @see org.ungtb10d.graf.grafcss.IFunctionFactory#label()
 	 */
 	@Override
-	public Function<IGraphElement, ILabelTemplate> label() {
+	public Function<IgrafElement, ILabelTemplate> label() {
 		return functions.label();
 
 	}
@@ -115,74 +115,74 @@ public abstract class LabelTableBuilder implements IFunctionFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.graphcss.IFunctionFactory#labelData(java.lang.Object)
+	 * @see org.ungtb10d.graf.grafcss.IFunctionFactory#labelData(java.lang.Object)
 	 */
 	@Override
-	public Function<IGraphElement, String> labelData(Object key) {
+	public Function<IgrafElement, String> labelData(Object key) {
 		return functions.labelData(key);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.graphcss.IFunctionFactory#labelTemplate(com.google.common.base.Function)
+	 * @see org.ungtb10d.graf.grafcss.IFunctionFactory#labelTemplate(com.google.common.base.Function)
 	 */
 	@Override
-	public Function<IGraphElement, ILabelTemplate> labelTemplate(Function<IGraphElement, String> stringFunc) {
+	public Function<IgrafElement, ILabelTemplate> labelTemplate(Function<IgrafElement, String> stringFunc) {
 		return functions.labelTemplate(stringFunc);
 	}
 
 	@Override
-	public Function<IGraphElement, ILabelTemplate> literalLabelTemplate(LabelTable t) {
+	public Function<IgrafElement, ILabelTemplate> literalLabelTemplate(LabelTable t) {
 		return functions.literalLabelTemplate(t);
 	}
 
 	@Override
-	public Function<IGraphElement, ILabelTemplate> literalLabelTemplate(String s) {
+	public Function<IgrafElement, ILabelTemplate> literalLabelTemplate(String s) {
 		return functions.literalLabelTemplate(s);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.graphcss.IFunctionFactory#literalString(java.lang.String)
+	 * @see org.ungtb10d.graf.grafcss.IFunctionFactory#literalString(java.lang.String)
 	 */
 	@Override
-	public Function<IGraphElement, String> literalString(String s) {
+	public Function<IgrafElement, String> literalString(String s) {
 		return functions.literalString(s);
 	}
 
 	@Override
-	public Function<IGraphElement, Set<String>> literalStringSet(Collection<String> s) {
+	public Function<IgrafElement, Set<String>> literalStringSet(Collection<String> s) {
 		return functions.literalStringSet(s);
 	}
 
 	@Override
-	public Function<IGraphElement, Set<String>> literalStringSet(String s) {
+	public Function<IgrafElement, Set<String>> literalStringSet(String s) {
 		return functions.literalStringSet(s);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.graphcss.IFunctionFactory#notEmptyLabel()
+	 * @see org.ungtb10d.graf.grafcss.IFunctionFactory#notEmptyLabel()
 	 */
 	@Override
-	public Function<IGraphElement, Boolean> notEmptyLabel() {
+	public Function<IgrafElement, Boolean> notEmptyLabel() {
 		return functions.notEmptyLabel();
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.graphcss.IFunctionFactory#notEmptyLabelData(java.lang.Object)
+	 * @see org.ungtb10d.graf.grafcss.IFunctionFactory#notEmptyLabelData(java.lang.Object)
 	 */
 	@Override
-	public Function<IGraphElement, Boolean> notEmptyLabelData(Object key) {
+	public Function<IgrafElement, Boolean> notEmptyLabelData(Object key) {
 		return functions.notEmptyLabelData(key);
 	}
 
-	final protected LabelRow row(Function<IGraphElement, Set<String>> styleClass, LabelCell... cells) {
+	final protected LabelRow row(Function<IgrafElement, Set<String>> styleClass, LabelCell... cells) {
 		return new LabelRow(styleClass, cells);
 	}
 
@@ -190,7 +190,7 @@ public abstract class LabelTableBuilder implements IFunctionFactory {
 		return new LabelRow(styleClass, cells);
 	}
 
-	final protected LabelTable table(Function<IGraphElement, Set<String>> styleClass, LabelRow... rows) {
+	final protected LabelTable table(Function<IgrafElement, Set<String>> styleClass, LabelRow... rows) {
 		return new LabelTable(styleClass, rows);
 	}
 

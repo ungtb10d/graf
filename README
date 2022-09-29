@@ -1,9 +1,9 @@
-The graph package is a java/osgi layout package using graphviz as a rendering engine.
-The package contains an abstraction of Graph, Vertex and Edge and has a Graph Cascading Style Sheet (GCSS)
-implementation that makes it easy to separate graph structure from styling information.
+The graf package is a java/osgi layout package using grafviz as a rendering engine.
+The package contains an abstraction of graf, Vertex and Edge and has a graf Cascading Style Sheet (GCSS)
+implementation that makes it easy to separate graf structure from styling information.
 
-The package requires graphviz to be installed on the host where the package is running in order to
-produce PNG, JPG, SVG, (and more formats) output, but can be used to produce .dot output without graphviz
+The package requires grafviz to be installed on the host where the package is running in order to
+produce PNG, JPG, SVG, (and more formats) output, but can be used to produce .dot output without grafviz
 binary being present. 
 
 Configuration is done using google guice.

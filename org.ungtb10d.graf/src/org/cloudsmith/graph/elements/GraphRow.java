@@ -9,22 +9,22 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.elements;
+package org.ungtb10d.graf.elements;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.ITableCell;
-import org.ungtb10d.graph.ITableRow;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.ITableCell;
+import org.ungtb10d.graf.ITableRow;
 
 /**
- * Implementation of a GraphRow.
+ * Implementation of a grafRow.
  * 
  */
-public class GraphRow extends GraphElement implements ITableRow {
-	public static class SeparatorRow extends GraphRow {
+public class grafRow extends grafElement implements ITableRow {
+	public static class SeparatorRow extends grafRow {
 		public SeparatorRow() {
 			super(SeparatorRow.class.getName());
 		}
@@ -44,7 +44,7 @@ public class GraphRow extends GraphElement implements ITableRow {
 	 * 
 	 * @param styleClass
 	 */
-	public GraphRow(String styleClass) {
+	public grafRow(String styleClass) {
 		super(styleClass, null);
 		cells = new ArrayList<ITableCell>(1);
 	}
@@ -56,12 +56,12 @@ public class GraphRow extends GraphElement implements ITableRow {
 	 * 
 	 * @param styleClass
 	 */
-	public GraphRow(Set<String> styleClass) {
+	public grafRow(Set<String> styleClass) {
 		super(styleClass, null);
 		cells = new ArrayList<ITableCell>(1);
 	}
 
-	public void addCell(GraphCell cell) {
+	public void addCell(grafCell cell) {
 		cells.add(cell);
 		String id = cell.getId();
 		if(id == null || id.length() < 1)

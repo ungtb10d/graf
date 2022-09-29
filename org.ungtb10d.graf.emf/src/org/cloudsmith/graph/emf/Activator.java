@@ -1,4 +1,4 @@
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

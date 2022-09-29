@@ -9,41 +9,41 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
 /**
- * The interface for a graph that is either the root graph or a subgraph.
+ * The interface for a graf that is either the root graf or a subgraf.
  * 
  */
-public interface IGraph extends IGraphElement {
+public interface Igraf extends IgrafElement {
 	/**
-	 * Returns a list of all edges in the graph.
+	 * Returns a list of all edges in the graf.
 	 * 
 	 * @return empty list if there are no edges.
 	 */
 	public Iterable<IEdge> getEdges();
 
 	/**
-	 * Returns a list of all subgraphs in the graph.
+	 * Returns a list of all subgrafs in the graf.
 	 * 
 	 * @return
 	 */
-	public Iterable<ISubGraph> getSubgraphs();
+	public Iterable<ISubgraf> getSubgrafs();
 
 	/**
-	 * Returns a list of all vertices in the graph.
+	 * Returns a list of all vertices in the graf.
 	 * 
 	 * @return empty list if there are no edges.
 	 */
 	public Iterable<IVertex> getVertices();
 
 	// /**
-	// * Subgraphs that should be handled as separate "clustered" graphs (in a separate
-	// * space) should return true on this method. The root graph should not be clustered.
-	// * The content of unclustered graphs are seen as additions to the parent graph, and the
-	// * content is laid out intermixed with all other content in the parent graph.
+	// * Subgrafs that should be handled as separate "clustered" grafs (in a separate
+	// * space) should return true on this method. The root graf should not be clustered.
+	// * The content of unclustered grafs are seen as additions to the parent graf, and the
+	// * content is laid out intermixed with all other content in the parent graf.
 	// *
-	// * @return true if this graph is a subgraph
+	// * @return true if this graf is a subgraf
 	// */
 	// public boolean isCluster();
 }

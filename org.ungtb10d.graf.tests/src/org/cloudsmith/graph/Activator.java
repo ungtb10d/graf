@@ -1,4 +1,4 @@
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

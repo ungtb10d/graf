@@ -9,16 +9,16 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphcss;
+package org.ungtb10d.graf.grafcss;
 
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.style.IStyle;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.style.IStyle;
 
 /**
- * A graph style rule contains a selector {@link Select.Selector} (which can be compound), and
+ * A graf style rule contains a selector {@link Select.Selector} (which can be compound), and
  * a {@link StyleSet}.
  * 
- * A graph style rule is typically added to a {@link GraphCSS}.
+ * A graf style rule is typically added to a {@link grafCSS}.
  * A rule can only be added to one GCSS (at a time).
  * 
  * Note that the easiest is to use {@link Select.Selector#withStyles(IStyle...)} and related methods
@@ -44,7 +44,7 @@ public final class Rule implements Cloneable {
 	/**
 	 * The GCSS this Rule is contained in.
 	 */
-	private GraphCSS graphCSS;
+	private grafCSS grafCSS;
 
 	/**
 	 * Create a Rule with an empty style set.
@@ -104,7 +104,7 @@ public final class Rule implements Cloneable {
 	 * @param element
 	 * @return
 	 */
-	public StyleSet collectStylesIfMatch(StyleSet result, IGraphElement element) {
+	public StyleSet collectStylesIfMatch(StyleSet result, IgrafElement element) {
 		if(selector.matches(element))
 			result.add(styleSet);
 		return result;
@@ -121,15 +121,15 @@ public final class Rule implements Cloneable {
 		return selector.equalMatch(rule.selector);
 	}
 
-	public GraphCSS getGraphCSS() {
-		return graphCSS;
+	public grafCSS getgrafCSS() {
+		return grafCSS;
 	}
 
 	public int getSpecificity() {
 		return selector.getSpecificity();
 	}
 
-	public boolean matches(IGraphElement element) {
+	public boolean matches(IgrafElement element) {
 		return selector.matches(element);
 	}
 
@@ -139,7 +139,7 @@ public final class Rule implements Cloneable {
 	 * 
 	 * @param ruleSet
 	 */
-	public void setGraphCSS(GraphCSS ruleSet) {
-		graphCSS = ruleSet;
+	public void setgrafCSS(grafCSS ruleSet) {
+		grafCSS = ruleSet;
 	}
 }

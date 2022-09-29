@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.utils;
+package org.ungtb10d.graf.utils;
 
 import java.io.OutputStream;
 
@@ -23,7 +23,7 @@ public class TransparentOutputStreamFilterFactory implements IOutputStreamFilter
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.utils.IOutputStreamFilterProvider#configureFilterFor(java.io.OutputStream)
+	 * @see org.ungtb10d.graf.utils.IOutputStreamFilterProvider#configureFilterFor(java.io.OutputStream)
 	 */
 	@Override
 	public OutputStream configureFilterFor(OutputStream out) {

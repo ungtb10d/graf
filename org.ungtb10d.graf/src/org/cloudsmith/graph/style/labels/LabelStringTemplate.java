@@ -9,28 +9,28 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style.labels;
+package org.ungtb10d.graf.style.labels;
 
-import org.ungtb10d.graph.IGraphElement;
+import org.ungtb10d.graf.IgrafElement;
 
 import com.google.common.base.Function;
 
 public class LabelStringTemplate implements ILabelTemplate {
-	private Function<IGraphElement, String> templateString;
+	private Function<IgrafElement, String> templateString;
 
-	public LabelStringTemplate(Function<IGraphElement, String> templateString) {
+	public LabelStringTemplate(Function<IgrafElement, String> templateString) {
 		this.templateString = templateString;
 	}
 
 	public LabelStringTemplate(final String value) {
-		this.templateString = new Function<IGraphElement, String>() {
-			public String apply(IGraphElement ge) {
+		this.templateString = new Function<IgrafElement, String>() {
+			public String apply(IgrafElement ge) {
 				return value;
 			}
 		};
 	}
 
-	public String getTemplateString(IGraphElement ge) {
+	public String getTemplateString(IgrafElement ge) {
 		return templateString.apply(ge);
 	}
 }

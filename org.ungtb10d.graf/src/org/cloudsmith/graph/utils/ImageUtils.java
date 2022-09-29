@@ -9,10 +9,10 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.utils;
+package org.ungtb10d.graf.utils;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.grafics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -69,9 +69,9 @@ public class ImageUtils {
 				? BufferedImage.TYPE_INT_ARGB
 				: BufferedImage.TYPE_INT_RGB;
 		BufferedImage bImg = new BufferedImage(width, height, bufferType);
-		Graphics2D g2d = null;
+		grafics2D g2d = null;
 		try {
-			g2d = bImg.createGraphics();
+			g2d = bImg.creategrafics();
 			g2d.setBackground(Color.WHITE);
 			g2d.clearRect(0, 0, width, height);
 
@@ -122,9 +122,9 @@ public class ImageUtils {
 		int w = bg.getIconWidth();
 		BufferedImage bImg = new BufferedImage(w, h, bufferType);
 
-		Graphics2D g2d = null;
+		grafics2D g2d = null;
 		try {
-			g2d = bImg.createGraphics();
+			g2d = bImg.creategrafics();
 			g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 			g2d.drawImage(bg.getImage(), 0, 0, w, h, null);
 
@@ -180,9 +180,9 @@ public class ImageUtils {
 		ImageIcon icon = new ImageIcon(imageData);
 		BufferedImage bImg = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
 
-		Graphics2D g2d = null;
+		grafics2D g2d = null;
 		try {
-			g2d = bImg.createGraphics();
+			g2d = bImg.creategrafics();
 			g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 			g2d.drawImage(icon.getImage(), 0, 0, icon.getIconWidth(), icon.getIconHeight(), null);
 		}
@@ -203,9 +203,9 @@ public class ImageUtils {
 				: BufferedImage.TYPE_INT_RGB;
 		BufferedImage bImg = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), bufferType);
 
-		Graphics2D g2d = null;
+		grafics2D g2d = null;
 		try {
-			g2d = bImg.createGraphics();
+			g2d = bImg.creategrafics();
 			g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 			g2d.drawImage(icon.getImage(), 0, 0, icon.getIconWidth(), icon.getIconHeight(), null);
 			g2d.setColor(new Color(rgbColor));
@@ -375,9 +375,9 @@ public class ImageUtils {
 					: BufferedImage.TYPE_INT_RGB;
 			BufferedImage bImg = new BufferedImage(width, height, bufferType);
 
-			Graphics2D g2d = null;
+			grafics2D g2d = null;
 			try {
-				g2d = bImg.createGraphics();
+				g2d = bImg.creategrafics();
 				g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 				g2d.drawImage(icon.getImage(), 0, 0, width, height, null);
 			}
@@ -494,9 +494,9 @@ public class ImageUtils {
 				: BufferedImage.TYPE_INT_RGB;
 		BufferedImage bImg = new BufferedImage(w1, h1 + h2 + h3, bufferType);
 
-		Graphics2D g2d = null;
+		grafics2D g2d = null;
 		try {
-			g2d = bImg.createGraphics();
+			g2d = bImg.creategrafics();
 			g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 			g2d.setBackground(Color.WHITE);
 			g2d.clearRect(0, 0, w1, h1 + h2 + h3);

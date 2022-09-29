@@ -9,45 +9,45 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.elements;
+package org.ungtb10d.graf.elements;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.IClusterGraph;
-import org.ungtb10d.graph.IRootGraph;
-import org.ungtb10d.graph.ISubGraph;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.IClustergraf;
+import org.ungtb10d.graf.IRootgraf;
+import org.ungtb10d.graf.ISubgraf;
 
 /**
- * A concrete implementation of ISubGraph. A SubGraph acts as a container with no visual bounds or appearance of
+ * A concrete implementation of ISubgraf. A Subgraf acts as a container with no visual bounds or appearance of
  * its own. It is useful for setting defaults, and for style rules that act on the style class/id of a container.
  * 
  */
-public class SubGraph extends Graph implements ISubGraph {
+public class Subgraf extends graf implements ISubgraf {
 
-	protected SubGraph(Graph g) {
+	protected Subgraf(graf g) {
 		super(g);
 	}
 
-	public SubGraph(String styleClass) {
+	public Subgraf(String styleClass) {
 		super(styleClass);
 	}
 
-	public SubGraph(String styleClass, String id) {
+	public Subgraf(String styleClass, String id) {
 		super(styleClass, id);
 	}
 
 	@Override
-	public IClusterGraph asClusterGraph(String label) {
-		return new ClusterGraph(label, this);
+	public IClustergraf asClustergraf(String label) {
+		return new Clustergraf(label, this);
 	}
 
 	@Override
-	public IRootGraph asRootGraph(String label) {
-		return new RootGraph(label, this);
+	public IRootgraf asRootgraf(String label) {
+		return new Rootgraf(label, this);
 	}
 
 	@Override
 	public ElementType getElementType() {
-		return ElementType.subgraph;
+		return ElementType.subgraf;
 	}
 
 }

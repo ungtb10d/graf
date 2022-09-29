@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.tests;
+package org.ungtb10d.graf.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -17,9 +17,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 
-import org.ungtb10d.graph.graphviz.SVGFixerOutputStream;
-import org.ungtb10d.graph.utils.RuleFilteredOutputStream;
-import org.ungtb10d.graph.utils.RuleFilteredOutputStream.ReplaceRule;
+import org.ungtb10d.graf.grafviz.SVGFixerOutputStream;
+import org.ungtb10d.graf.utils.RuleFilteredOutputStream;
+import org.ungtb10d.graf.utils.RuleFilteredOutputStream.ReplaceRule;
 import org.junit.Test;
 
 /**

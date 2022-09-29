@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.dot;
+package org.ungtb10d.graf.dot;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -19,27 +19,27 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.ungtb10d.graph.ICancel;
-import org.ungtb10d.graph.IClusterGraph;
-import org.ungtb10d.graph.IEdge;
-import org.ungtb10d.graph.IGraph;
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.IRootGraph;
-import org.ungtb10d.graph.IVertex;
-import org.ungtb10d.graph.elements.Edge;
-import org.ungtb10d.graph.elements.RootGraph;
-import org.ungtb10d.graph.elements.Vertex;
-import org.ungtb10d.graph.graphcss.GraphCSS;
-import org.ungtb10d.graph.graphcss.StyleSet;
-import org.ungtb10d.graph.style.StyleFactory;
-import org.ungtb10d.graph.style.StyleType;
+import org.ungtb10d.graf.ICancel;
+import org.ungtb10d.graf.IClustergraf;
+import org.ungtb10d.graf.IEdge;
+import org.ungtb10d.graf.Igraf;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.IRootgraf;
+import org.ungtb10d.graf.IVertex;
+import org.ungtb10d.graf.elements.Edge;
+import org.ungtb10d.graf.elements.Rootgraf;
+import org.ungtb10d.graf.elements.Vertex;
+import org.ungtb10d.graf.grafcss.grafCSS;
+import org.ungtb10d.graf.grafcss.StyleSet;
+import org.ungtb10d.graf.style.StyleFactory;
+import org.ungtb10d.graf.style.StyleType;
 
 import com.google.common.collect.Iterators;
 import com.google.inject.BindingAnnotation;
 import com.google.inject.Inject;
 
 /**
- * Produces dot output from a Graph instance.
+ * Produces dot output from a graf instance.
  */
 public class DotRenderer {
 
@@ -54,53 +54,53 @@ public class DotRenderer {
 
 	private PrintStream out;
 
-	private GraphCSS theGCSS;
+	private grafCSS theGCSS;
 
 	StyleFactory.LabelFormat defaultNodeLabelFormat;
 
 	StyleFactory.LabelFormat defaultEdgeLabelFormat;
 
-	StyleFactory.LabelFormat defaultGraphLabelFormat;
+	StyleFactory.LabelFormat defaultgrafLabelFormat;
 
-	private StyleSet defaultGraphStyles;
+	private StyleSet defaultgrafStyles;
 
 	private StyleSet defaultNodeStyles;
 
 	private StyleSet defaultEdgeStyles;
 
-	private IRootGraph graphPrototype;
+	private IRootgraf grafPrototype;
 
 	private Vertex vertexPrototype;
 
 	private Edge edgePrototype;
 
-	private DotGraphElementRenderer elementRenderer;
+	private DotgrafElementRenderer elementRenderer;
 
-	private GraphCSS defaultGCSS;
+	private grafCSS defaultGCSS;
 
 	@Inject
-	public DotRenderer(DotGraphElementRenderer elementRenderer) {
+	public DotRenderer(DotgrafElementRenderer elementRenderer) {
 		this.elementRenderer = elementRenderer;
 	}
 
-	private String formatReference(IGraphElement element) {
-		IGraphElement[] parents = Iterators.toArray(element.getContext(), IGraphElement.class);
+	private String formatReference(IgrafElement element) {
+		IgrafElement[] parents = Iterators.toArray(element.getContext(), IgrafElement.class);
 		int plength = (parents == null)
 				? 0
 				: parents.length;
 		StringBuffer buf = new StringBuffer(10 + 5 * plength);
 
-		// the vertex can be an instance of IGraph in which case it should be handled as
-		// a subgraph, and the name is different if the subgraph is a cluster
-		if(element instanceof IGraph) {
-			// all references to subgraphs must start with the keyword subgraph
-			buf.append("subgraph ");
+		// the vertex can be an instance of Igraf in which case it should be handled as
+		// a subgraf, and the name is different if the subgraf is a cluster
+		if(element instanceof Igraf) {
+			// all references to subgrafs must start with the keyword subgraf
+			buf.append("subgraf ");
 		}
 		// enclose the constructed names in quotes
 		buf.append("\"");
 
-		if(element instanceof IClusterGraph) {
-			// if the graph is a cluster it's name must be prefixed with 'cluster'
+		if(element instanceof IClustergraf) {
+			// if the graf is a cluster it's name must be prefixed with 'cluster'
 			// ad a '_' to make it easier to read.
 			buf.append("cluster_");
 		}
@@ -128,12 +128,12 @@ public class DotRenderer {
 			out.print(tmp.toString());
 	}
 
-	private void printDefaultGraphStyling(ICancel cancel) {
+	private void printDefaultgrafStyling(ICancel cancel) {
 		ByteArrayOutputStream tmp = new ByteArrayOutputStream();
 		PrintStream tmpOut = new PrintStream(tmp);
 
-		tmpOut.print("graph ");
-		int numStyles = elementRenderer.printStyles(cancel, tmpOut, graphPrototype, defaultGraphStyles, defaultGCSS);
+		tmpOut.print("graf ");
+		int numStyles = elementRenderer.printStyles(cancel, tmpOut, grafPrototype, defaultgrafStyles, defaultGCSS);
 		tmpOut.print(";\n");
 
 		if(numStyles > 0)
@@ -173,51 +173,51 @@ public class DotRenderer {
 	}
 
 	/**
-	 * Prints a subgraph on the form:
-	 * subgraph "reference" { graph body }
+	 * Prints a subgraf on the form:
+	 * subgraf "reference" { graf body }
 	 * Where reference is the full "[cluster_]id-id...-id"
 	 * 
-	 * @param graph
+	 * @param graf
 	 */
-	private void printGraph(IGraph graph, ICancel cancel) {
-		out.printf("%s {\n", formatReference(graph));
-		printGraphBody(graph, cancel);
+	private void printgraf(Igraf graf, ICancel cancel) {
+		out.printf("%s {\n", formatReference(graf));
+		printgrafBody(graf, cancel);
 		out.print("}\n");
 	}
 
-	private void printGraphBody(IGraph graph, ICancel cancel) {
+	private void printgrafBody(Igraf graf, ICancel cancel) {
 
-		// print the root graph's attributes
+		// print the root graf's attributes
 
-		// graphs have their styles set as statements instead of as a list after the body.
+		// grafs have their styles set as statements instead of as a list after the body.
 		// i.e.
-		// graph { a; b; a->b; color="blue"; }
+		// graf { a; b; a->b; color="blue"; }
 		// and not
-		// graph { a; b; a->b; }[color="blue"];
+		// graf { a; b; a->b; }[color="blue"];
 		//
 
 		// Print all the vertices
-		for(IVertex v : graph.getVertices()) {
+		for(IVertex v : graf.getVertices()) {
 			cancel.assertContinue();
 			printVertex(v, cancel);
 		}
 		// and all the edges
-		for(IEdge e : graph.getEdges()) {
+		for(IEdge e : graf.getEdges()) {
 			cancel.assertContinue();
 			printEdge(e, cancel);
 		}
 
-		// Print all the subgraphs first so they do not inherit settings intended for the root
-		// graph. All inherited styles should have been set as defaults per element type.
-		for(IGraph g : graph.getSubgraphs()) {
+		// Print all the subgrafs first so they do not inherit settings intended for the root
+		// graf. All inherited styles should have been set as defaults per element type.
+		for(Igraf g : graf.getSubgrafs()) {
 			cancel.assertContinue();
-			printGraph(g, cancel);
+			printgraf(g, cancel);
 		}
 
 		ByteArrayOutputStream tmp = new ByteArrayOutputStream();
 		PrintStream tmpOut = new PrintStream(tmp);
 
-		int numStyles = elementRenderer.printStyleStatements(cancel, tmpOut, graph, theGCSS);
+		int numStyles = elementRenderer.printStyleStatements(cancel, tmpOut, graf, theGCSS);
 		if(numStyles > 0) {
 			out.print(tmp.toString());
 			out.print("\n");
@@ -252,31 +252,31 @@ public class DotRenderer {
 	 * @throws IllegalArgumentException
 	 *             for invalid input
 	 */
-	private void processGCSS(ICancel cancel, GraphCSS defaultGCSS, GraphCSS... styleRules) {
+	private void processGCSS(ICancel cancel, grafCSS defaultGCSS, grafCSS... styleRules) {
 		if(defaultGCSS == null)
 			throw new IllegalArgumentException("default style rules is null");
 
-		theGCSS = new GraphCSS();
-		for(GraphCSS gcss : styleRules)
+		theGCSS = new grafCSS();
+		for(grafCSS gcss : styleRules)
 			theGCSS.addAll(gcss);
 
 		this.defaultGCSS = defaultGCSS;
-		graphPrototype = new RootGraph("", "", "prototype");
+		grafPrototype = new Rootgraf("", "", "prototype");
 		vertexPrototype = new Vertex("", "", "prototype");
 		edgePrototype = new Edge(vertexPrototype, vertexPrototype, "prototype");
 
-		defaultGraphStyles = defaultGCSS.collectStyles(graphPrototype, cancel);
+		defaultgrafStyles = defaultGCSS.collectStyles(grafPrototype, cancel);
 		defaultNodeStyles = defaultGCSS.collectStyles(vertexPrototype, cancel);
 		defaultEdgeStyles = defaultGCSS.collectStyles(edgePrototype, cancel);
 
 		// assert that label formats are available - look up label formats in the instance rules.
 		//
-		if(theGCSS.collectStyles(graphPrototype, cancel).getStyleValue(StyleType.labelFormat, graphPrototype) == null)
-			throw new IllegalArgumentException("Default graph label format is null");
+		if(theGCSS.collectStyles(grafPrototype, cancel).getStyleValue(StyleType.labelFormat, grafPrototype) == null)
+			throw new IllegalArgumentException("Default graf label format is null");
 		if(theGCSS.collectStyles(vertexPrototype, cancel).getStyleValue(StyleType.labelFormat, vertexPrototype) == null)
-			throw new IllegalArgumentException("Default graph label format is null");
+			throw new IllegalArgumentException("Default graf label format is null");
 		if(theGCSS.collectStyles(edgePrototype, cancel).getStyleValue(StyleType.labelFormat, edgePrototype) == null)
-			throw new IllegalArgumentException("Default graph label format is null");
+			throw new IllegalArgumentException("Default graf label format is null");
 
 	}
 
@@ -285,20 +285,20 @@ public class DotRenderer {
 	 * static rules per element. No reference to style class, instance id, or use of EL is allowed in
 	 * this style set. The styleCheets is one or more instance style sheets in increasing order of
 	 * importance. Note that as a minimum the style must contain label format styles for the three
-	 * element types Vertex, Graph, and Edge. Failing to supply these will result in an IllegalArgumentException.
+	 * element types Vertex, graf, and Edge. Failing to supply these will result in an IllegalArgumentException.
 	 * 
 	 * @param cancel
 	 *            A cancel indicator that hould periodically be checked for cancellation.
 	 * @param stream
 	 *            where the dot output should be written
-	 * @param graph
-	 *            the graph to render
+	 * @param graf
+	 *            the graf to render
 	 * @param defaultCSS
 	 *            the default (static CSS)
 	 * @param styleSheets
 	 *            - use case specific stylesheets.
 	 */
-	public void write(ICancel cancel, OutputStream stream, IGraph graph, GraphCSS defaultCSS, GraphCSS... styleSheets) {
+	public void write(ICancel cancel, OutputStream stream, Igraf graf, grafCSS defaultCSS, grafCSS... styleSheets) {
 		if(stream == null)
 			throw new IllegalArgumentException("stream is null");
 		if(!(stream instanceof PrintStream))
@@ -308,18 +308,18 @@ public class DotRenderer {
 
 		processGCSS(cancel, defaultCSS, styleSheets);
 
-		// a directed graph (this is the root graph).
-		out.printf("digraph %s {\n", graph.getId());
+		// a directed graf (this is the root graf).
+		out.printf("digraf %s {\n", graf.getId());
 
-		// print the default styling for graph, node and edge
-		printDefaultGraphStyling(cancel);
+		// print the default styling for graf, node and edge
+		printDefaultgrafStyling(cancel);
 		printDefaultNodeStyling(cancel);
 		printDefaultEdgeStyling(cancel);
 
-		// print the graph
-		printGraphBody(graph, cancel);
+		// print the graf
+		printgrafBody(graf, cancel);
 
-		// printGraph(graph);
+		// printgraf(graf);
 
 		// close
 		out.printf("}\n");

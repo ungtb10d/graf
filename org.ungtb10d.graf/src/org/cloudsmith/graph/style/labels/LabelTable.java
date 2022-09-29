@@ -9,12 +9,12 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style.labels;
+package org.ungtb10d.graf.style.labels;
 
 import java.util.Collections;
 import java.util.Set;
 
-import org.ungtb10d.graph.IGraphElement;
+import org.ungtb10d.graf.IgrafElement;
 
 import com.google.common.base.Function;
 
@@ -25,17 +25,17 @@ import com.google.common.base.Function;
 public class LabelTable implements ILabelTemplate {
 	private LabelRow[] rows;
 
-	private Function<IGraphElement, Set<String>> styleClass;
+	private Function<IgrafElement, Set<String>> styleClass;
 
-	public LabelTable(final Function<IGraphElement, Set<String>> styleClass, LabelRow... rows) {
+	public LabelTable(final Function<IgrafElement, Set<String>> styleClass, LabelRow... rows) {
 		this.rows = rows;
 		this.styleClass = styleClass;
 	}
 
 	public LabelTable(final String styleClass, LabelRow... rows) {
 		this.rows = rows;
-		this.styleClass = new Function<IGraphElement, Set<String>>() {
-			public Set<String> apply(IGraphElement ge) {
+		this.styleClass = new Function<IgrafElement, Set<String>>() {
+			public Set<String> apply(IgrafElement ge) {
 				return Collections.singleton(styleClass);
 			}
 		};
@@ -45,7 +45,7 @@ public class LabelTable implements ILabelTemplate {
 		return rows;
 	}
 
-	public Set<String> getStyleClasses(IGraphElement ge) {
+	public Set<String> getStyleClasses(IgrafElement ge) {
 		return styleClass.apply(ge);
 	}
 }

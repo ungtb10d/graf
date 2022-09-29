@@ -9,25 +9,25 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.ungtb10d.graph.IGraphProvider;
-import org.ungtb10d.graph.IRootGraph;
-import org.ungtb10d.graph.elements.RootGraph;
-import org.ungtb10d.graph.graphcss.Rule;
+import org.ungtb10d.graf.IgrafProvider;
+import org.ungtb10d.graf.IRootgraf;
+import org.ungtb10d.graf.elements.Rootgraf;
+import org.ungtb10d.graf.grafcss.Rule;
 import org.eclipse.emf.ecore.EObject;
 
 import com.google.inject.Inject;
 
 /**
- * Provides an instance graph for a model.
+ * Provides an instance graf for a model.
  * 
  */
-public abstract class AbstractEGraphProvider implements IGraphProvider {
+public abstract class AbstractEgrafProvider implements IgrafProvider {
 
 	@Inject
 	private IELabelStyleProvider labelStyleProvider;
@@ -37,56 +37,56 @@ public abstract class AbstractEGraphProvider implements IGraphProvider {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.IGraphProvider#computeGraph()
+	 * @see org.ungtb10d.graf.IgrafProvider#computegraf()
 	 */
 	@Override
-	public IRootGraph computeGraph() {
-		throw new UnsupportedOperationException("An EGraphProvider must have a model to transform.");
+	public IRootgraf computegraf() {
+		throw new UnsupportedOperationException("An EgrafProvider must have a model to transform.");
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.IGraphProvider#computeGraph(java.lang.Object)
+	 * @see org.ungtb10d.graf.IgrafProvider#computegraf(java.lang.Object)
 	 */
 	@Override
-	public IRootGraph computeGraph(Object model) {
-		return computeGraph(model, "an EMF instance graph", "root");
+	public IRootgraf computegraf(Object model) {
+		return computegraf(model, "an EMF instance graf", "root");
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.emf.IEGraphProvider#computeGraph(org.eclipse.emf.ecore.EObject, java.lang.String, java.lang.String)
+	 * @see org.ungtb10d.graf.emf.IEgrafProvider#computegraf(org.eclipse.emf.ecore.EObject, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public IRootGraph computeGraph(Object modelObj, String label, String id) {
+	public IRootgraf computegraf(Object modelObj, String label, String id) {
 		if(!(modelObj instanceof EObject))
-			throw new IllegalArgumentException("EGraphProvider can only compute a graph for an EObject");
+			throw new IllegalArgumentException("EgrafProvider can only compute a graf for an EObject");
 		EObject model = (EObject) modelObj;
-		// Create the main graph
-		RootGraph g = new RootGraph(label, "RootGraph", id);
+		// Create the main graf
+		Rootgraf g = new Rootgraf(label, "Rootgraf", id);
 
 		// Compute the label style for all classes in the model
 		rules = Collections.unmodifiableCollection(labelStyleProvider.configureLabelStyles(model));
 
 		// Add a root vertex for the model itself.
 		EVertex v = new EVertex(model);
-		GraphElementAdapterFactory.eINSTANCE.adapt(model).setAssociatedInfo(g, v);
+		grafElementAdapterFactory.eINSTANCE.adapt(model).setAssociatedInfo(g, v);
 		g.addVertex(v);
-		computeGraph(g, v, model);
+		computegraf(g, v, model);
 		return g;
 	}
 
 	/**
-	 * Compute the content of graph g, for the given vertex v representing the given model.
+	 * Compute the content of graf g, for the given vertex v representing the given model.
 	 * 
 	 * @param g
 	 * @param v
 	 * @param model
 	 */
 
-	abstract protected void computeGraph(RootGraph g, EVertex v, EObject model);
+	abstract protected void computegraf(Rootgraf g, EVertex v, EObject model);
 
 	@Override
 	public Iterable<Rule> getRules() {

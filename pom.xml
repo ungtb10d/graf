@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.ungtb10d.graph</groupId>
+	<groupId>org.ungtb10d.graf</groupId>
 	<artifactId>parent</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>Graph Site Project</name>
+	<name>graf Site Project</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,8 +25,8 @@
 
 	<scm>
 		<connection>scm:git:git://github.com/ungtb10d/grahp.git</connection>
-		<url>https://github.com/ungtb10d/graph</url>
-		<developerConnection>scm:git:git@github.com:ungtb10d/graph.git</developerConnection>
+		<url>https://github.com/ungtb10d/graf</url>
+		<developerConnection>scm:git:git@github.com:ungtb10d/graf.git</developerConnection>
 	</scm>
 
 	<distributionManagement>
@@ -74,7 +74,7 @@
 
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/ungtb10d/graph/issues</url>
+		<url>https://github.com/ungtb10d/graf/issues</url>
 	</issueManagement>
 
 	<licenses>
@@ -137,6 +137,6 @@
 	</build>
 
 	<modules>
-		<module>org.ungtb10d.graph</module>
+		<module>org.ungtb10d.graf</module>
 	</modules>
 </project>

@@ -9,16 +9,16 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphviz;
+package org.ungtb10d.graf.grafviz;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.ungtb10d.graph.utils.Base64;
-import org.ungtb10d.graph.utils.RuleFilteredOutputStream;
+import org.ungtb10d.graf.utils.Base64;
+import org.ungtb10d.graf.utils.RuleFilteredOutputStream;
 
 /**
- * An SVG stream that fixes broken and bad output from graphviz.
+ * An SVG stream that fixes broken and bad output from grafviz.
  * <ul>
  * <li>Replaces {@link #EMPTY_STRING_BUG} with ""</li>
  * <li>Replaces content between &lt;title&gt; and &lt;/title&gt; with a single space.</li>
@@ -72,7 +72,7 @@ public class SVGFixerOutputStream extends RuleFilteredOutputStream {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.ungtb10d.graph.utils.RuleFilteredOutputStream.PatternRule#performAction()
+		 * @see org.ungtb10d.graf.utils.RuleFilteredOutputStream.PatternRule#performAction()
 		 */
 		@Override
 		protected void performAction() throws IOException {
@@ -167,7 +167,7 @@ public class SVGFixerOutputStream extends RuleFilteredOutputStream {
 		// Replace the string "\L" with ""
 		replaceEmptyLabelTooltip = new ReplaceRule("\"\\L\"".getBytes(), "\"\"".getBytes());
 
-		// These sequences are escaped by graphviz when they do not have to be (causing problems in
+		// These sequences are escaped by grafviz when they do not have to be (causing problems in
 		// javascript output).
 		replaceHTMLDash = new ReplaceRule("&#45;".getBytes(), "-".getBytes());
 		replaceHTMLQuote = new ReplaceRule("&#39;".getBytes(), "'".getBytes());

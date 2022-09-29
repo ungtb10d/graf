@@ -9,14 +9,14 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.tests;
+package org.ungtb10d.graf.tests;
 
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 
-import org.ungtb10d.graph.graphviz.SVGFixerOutputStream;
-import org.ungtb10d.graph.utils.Base64;
+import org.ungtb10d.graf.grafviz.SVGFixerOutputStream;
+import org.ungtb10d.graf.utils.Base64;
 import org.junit.Test;
 
 /**

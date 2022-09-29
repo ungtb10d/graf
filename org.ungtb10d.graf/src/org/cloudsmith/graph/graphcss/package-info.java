@@ -10,8 +10,8 @@
  * 
  */
 /**
- * This package contains a GraphCSS processor that is used when rendering {@link org.ungtb10d.graph.IGraph} graphs.
+ * This package contains a grafCSS processor that is used when rendering {@link org.ungtb10d.graf.Igraf} grafs.
  * 
  * The classes in the package may be injected with Google Guice, but may also be instantiated manually.
  */
-package org.ungtb10d.graph.graphcss;
+package org.ungtb10d.graf.grafcss;

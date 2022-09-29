@@ -9,23 +9,23 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
-import org.ungtb10d.graph.DefaultGraphModule;
-import org.ungtb10d.graph.IGraphProvider;
+import org.ungtb10d.graf.DefaultgrafModule;
+import org.ungtb10d.graf.IgrafProvider;
 
 /**
- * A Default guice module for producing graphs for EMF models. Derived classes can override individual
+ * A Default guice module for producing grafs for EMF models. Derived classes can override individual
  * bind methods, but should not override {@link #configure()}.
  * 
  */
-public class DefaultEGraphModule extends DefaultGraphModule {
+public class DefaultEgrafModule extends DefaultgrafModule {
 
 	/**
-	 * Binds a EMF model to Graph producer. This implementation binds {@link AbstractEGraphProvider}.
+	 * Binds a EMF model to graf producer. This implementation binds {@link AbstractEgrafProvider}.
 	 */
-	protected void bindIEGraphProvider() {
-		bind(IGraphProvider.class).to(ChainedListEGraphProvider.class);
+	protected void bindIEgrafProvider() {
+		bind(IgrafProvider.class).to(ChainedListEgrafProvider.class);
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class DefaultEGraphModule extends DefaultGraphModule {
 	@Override
 	protected void configure() {
 		super.configure();
-		bindIEGraphProvider();
+		bindIEgrafProvider();
 		bindIELabelStyleProvider();
 	}
 

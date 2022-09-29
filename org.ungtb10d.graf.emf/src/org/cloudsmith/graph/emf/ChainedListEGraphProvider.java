@@ -9,30 +9,30 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
 import java.util.List;
 
-import org.ungtb10d.graph.elements.Edge;
-import org.ungtb10d.graph.elements.RootGraph;
+import org.ungtb10d.graf.elements.Edge;
+import org.ungtb10d.graf.elements.Rootgraf;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
 /**
- * Creates a graph with lists being represented as chained nodes.
+ * Creates a graf with lists being represented as chained nodes.
  * 
  */
-public class ChainedListEGraphProvider extends AbstractEGraphProvider {
+public class ChainedListEgrafProvider extends AbstractEgrafProvider {
 
 	/**
-	 * Compute the content of graph g, for the given vertex v representing the given model.
+	 * Compute the content of graf g, for the given vertex v representing the given model.
 	 * 
 	 * @param g
 	 * @param v
 	 * @param model
 	 */
 	@Override
-	protected void computeGraph(RootGraph g, EVertex v, EObject model) {
+	protected void computegraf(Rootgraf g, EVertex v, EObject model) {
 		// Process everything the root references (contained, and referenced)
 		// Generated Edges have the capability to treat containment and reference differently.
 		for(EReference reference : model.eClass().getEAllReferences()) {
@@ -42,7 +42,7 @@ public class ChainedListEGraphProvider extends AbstractEGraphProvider {
 				EVertex previousVertex = v;
 				for(EObject referenced : allReferenced) {
 					EVertex v2 = new EVertex(referenced);
-					GraphElementAdapterFactory.eINSTANCE.adapt(referenced).setAssociatedInfo(g, v2);
+					grafElementAdapterFactory.eINSTANCE.adapt(referenced).setAssociatedInfo(g, v2);
 					g.addVertex(v2);
 
 					// set the index key so that it can be displayed in the resulting
@@ -68,18 +68,18 @@ public class ChainedListEGraphProvider extends AbstractEGraphProvider {
 					}
 					counter++;
 					previousVertex = v2;
-					computeGraph(g, v2, referenced);
+					computegraf(g, v2, referenced);
 				}
 			}
 			else {
 				// reference is not a list
 				EObject referenced = EObject.class.cast(model.eGet(reference));
 				EVertex v2 = new EVertex(referenced);
-				GraphElementAdapterFactory.eINSTANCE.adapt(referenced).setAssociatedInfo(g, v2);
+				grafElementAdapterFactory.eINSTANCE.adapt(referenced).setAssociatedInfo(g, v2);
 				g.addVertex(v2);
 				EEdge edge = new EEdge(reference, v, v2);
 				g.addEdge(edge);
-				computeGraph(g, v2, referenced);
+				computegraf(g, v2, referenced);
 			}
 		}
 	}

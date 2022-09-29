@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
 import java.util.List;
 
@@ -17,6 +17,6 @@ import java.util.List;
  * 
  *
  */
-public interface ITable extends IGraphElement {
+public interface ITable extends IgrafElement {
 	List<ITableRow> getRows();
 }

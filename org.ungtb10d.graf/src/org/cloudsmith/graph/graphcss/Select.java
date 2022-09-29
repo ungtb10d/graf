@@ -9,17 +9,17 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphcss;
+package org.ungtb10d.graf.grafcss;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.IEdge;
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.style.IStyle;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.IEdge;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.style.IStyle;
 
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
@@ -51,7 +51,7 @@ public class Select {
 		}
 
 		@Override
-		public boolean matches(IGraphElement element) {
+		public boolean matches(IgrafElement element) {
 			return !this.selector.matches(element);
 		}
 
@@ -97,7 +97,7 @@ public class Select {
 		}
 
 		@Override
-		public boolean matches(IGraphElement element) {
+		public boolean matches(IgrafElement element) {
 			for(int i = 0; i < selectors.length; i++)
 				if(!selectors[i].matches(element))
 					return false;
@@ -139,12 +139,12 @@ public class Select {
 		}
 
 		@Override
-		public boolean matches(IGraphElement element) {
+		public boolean matches(IgrafElement element) {
 			if(!(element instanceof IEdge))
 				return false;
 			IEdge edge = (IEdge) element;
-			IGraphElement source = edge.getFrom();
-			IGraphElement target = edge.getTo();
+			IgrafElement source = edge.getFrom();
+			IgrafElement target = edge.getTo();
 			// prototype edges may have no source and target
 			// they can't possibly be "between" two selected things
 			if(source == null || target == null)
@@ -206,8 +206,8 @@ public class Select {
 		 * context vector has nearest container first
 		 */
 		@Override
-		public boolean matches(IGraphElement element) {
-			IGraphElement[] context = Iterators.toArray(element.getContext(), IGraphElement.class);
+		public boolean matches(IgrafElement element) {
+			IgrafElement[] context = Iterators.toArray(element.getContext(), IgrafElement.class);
 			int startIdx = 0;
 			int matchCount = 0;
 			for(int si = 0; si < selectors.length; si++) {
@@ -321,7 +321,7 @@ public class Select {
 		}
 
 		@Override
-		public boolean matches(IGraphElement element) {
+		public boolean matches(IgrafElement element) {
 			if(!matchElement.contains(element.getElementType()))
 				return false;
 
@@ -346,9 +346,9 @@ public class Select {
 	 * 
 	 */
 	public static class Instance extends Selector {
-		private final IGraphElement element;
+		private final IgrafElement element;
 
-		public Instance(IGraphElement element) {
+		public Instance(IgrafElement element) {
 			this.element = element;
 		}
 
@@ -365,7 +365,7 @@ public class Select {
 		}
 
 		@Override
-		public boolean matches(IGraphElement element) {
+		public boolean matches(IgrafElement element) {
 			return this.element == element;
 		}
 	}
@@ -387,7 +387,7 @@ public class Select {
 		}
 
 		@Override
-		public boolean matches(IGraphElement element) {
+		public boolean matches(IgrafElement element) {
 			return false;
 		}
 
@@ -413,7 +413,7 @@ public class Select {
 		}
 
 		@Override
-		public boolean matches(IGraphElement element) {
+		public boolean matches(IgrafElement element) {
 			return parentSelector.matches(element.getParentElement());
 		}
 	}
@@ -435,7 +435,7 @@ public class Select {
 		 */
 		public abstract int getSpecificity();
 
-		public abstract boolean matches(IGraphElement element);
+		public abstract boolean matches(IgrafElement element);
 
 		public Rule withStyle(IStyle<? extends Object> styles) {
 			return new Rule(this, StyleSet.withStyles(styles));
@@ -550,27 +550,27 @@ public class Select {
 		return new Select.Element(Collections.singleton(styleClass), id);
 	}
 
-	public static Select.Element graph() {
-		return new Select.Element(ElementType.graph);
+	public static Select.Element graf() {
+		return new Select.Element(ElementType.graf);
 	}
 
-	public static Select.Element graph(Collection<String> styleClasses) {
-		return new Select.Element(ElementType.graph, styleClasses, null);
+	public static Select.Element graf(Collection<String> styleClasses) {
+		return new Select.Element(ElementType.graf, styleClasses, null);
 	}
 
-	public static Select.Element graph(Collection<String> styleClasses, String id) {
-		return new Select.Element(ElementType.graph, styleClasses, id);
+	public static Select.Element graf(Collection<String> styleClasses, String id) {
+		return new Select.Element(ElementType.graf, styleClasses, id);
 	}
 
-	public static Select.Element graph(String styleClass) {
-		return new Select.Element(ElementType.graph, Collections.singleton(styleClass), null);
+	public static Select.Element graf(String styleClass) {
+		return new Select.Element(ElementType.graf, Collections.singleton(styleClass), null);
 	}
 
-	public static Select.Element graph(String styleClass, String id) {
-		return new Select.Element(ElementType.graph, Collections.singleton(styleClass), id);
+	public static Select.Element graf(String styleClass, String id) {
+		return new Select.Element(ElementType.graf, Collections.singleton(styleClass), id);
 	}
 
-	public static Select.Instance instance(IGraphElement x) {
+	public static Select.Instance instance(IgrafElement x) {
 		return new Select.Instance(x);
 	}
 

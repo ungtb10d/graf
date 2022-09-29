@@ -1,5 +1,5 @@
-package org.ungtb10d.graph.utils;
+package org.ungtb10d.graf.utils;
 
-public interface IGraphStyleRuleSetProvider {
+public interface IgrafStyleRuleSetProvider {
 
 }

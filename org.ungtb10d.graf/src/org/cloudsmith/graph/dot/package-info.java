@@ -10,9 +10,9 @@
  * 
  */
 /**
- * This package contains classes that translates an {@link org.ungtb10d.graph.IGraph} into Graphviz dot 
+ * This package contains classes that translates an {@link org.ungtb10d.graf.Igraf} into grafviz dot 
  * notation under control
- * of a {@link org.ungtb10d.graph.graphcss.GraphCSS}. The classes in this package can be injected with 
+ * of a {@link org.ungtb10d.graf.grafcss.grafCSS}. The classes in this package can be injected with 
  * Google Guice, but can also be instantiated manually.
  */
-package org.ungtb10d.graph.dot;
+package org.ungtb10d.graf.dot;

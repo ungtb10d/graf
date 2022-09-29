@@ -9,46 +9,46 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.elements;
+package org.ungtb10d.graf.elements;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.IEdge;
-import org.ungtb10d.graph.IGraph;
-import org.ungtb10d.graph.ISubGraph;
-import org.ungtb10d.graph.IVertex;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.IEdge;
+import org.ungtb10d.graf.Igraf;
+import org.ungtb10d.graf.ISubgraf;
+import org.ungtb10d.graf.IVertex;
 
 import com.google.common.collect.Iterables;
 
 /**
- * A graph is a container of other graph elements (which include other graphs as subgraphs, vertexes and edges).
- * This implementation of {@link IGraph} works with instances of other graph elements in the same package
+ * A graf is a container of other graf elements (which include other grafs as subgrafs, vertexes and edges).
+ * This implementation of {@link Igraf} works with instances of other graf elements in the same package
  * as it manages their containment and identity (if not set).
  * 
  */
-public class Graph extends GraphElement implements IGraph {
+public class graf extends grafElement implements Igraf {
 	private ArrayList<IEdge> edges;
 
-	private ArrayList<ISubGraph> subgraphs;
+	private ArrayList<ISubgraf> subgrafs;
 
 	private ArrayList<IVertex> vertices;
 
-	protected Graph(Collection<String> styleClasses) {
+	protected graf(Collection<String> styleClasses) {
 		this(styleClasses, null);
 	}
 
-	protected Graph(Collection<String> styleClasses, String id) {
+	protected graf(Collection<String> styleClasses, String id) {
 		super(styleClasses, id);
 
 		edges = new ArrayList<IEdge>();
 		vertices = new ArrayList<IVertex>();
-		subgraphs = new ArrayList<ISubGraph>();
+		subgrafs = new ArrayList<ISubgraf>();
 	}
 
-	protected Graph(IGraph that) {
+	protected graf(Igraf that) {
 		super(that);
 		edges = new ArrayList<IEdge>();
 		Iterables.addAll(edges, that.getEdges());
@@ -56,15 +56,15 @@ public class Graph extends GraphElement implements IGraph {
 		vertices = new ArrayList<IVertex>();
 		Iterables.addAll(vertices, that.getVertices());
 
-		subgraphs = new ArrayList<ISubGraph>();
-		Iterables.addAll(subgraphs, that.getSubgraphs());
+		subgrafs = new ArrayList<ISubgraf>();
+		Iterables.addAll(subgrafs, that.getSubgrafs());
 	}
 
-	protected Graph(String styleClass) {
+	protected graf(String styleClass) {
 		this(Collections.singleton(styleClass), null);
 	}
 
-	protected Graph(String styleClass, String id) {
+	protected graf(String styleClass, String id) {
 		this(Collections.singleton(styleClass), id);
 	}
 
@@ -81,18 +81,18 @@ public class Graph extends GraphElement implements IGraph {
 	}
 
 	/**
-	 * Adds a subgraph - the given graph must implement ISubGraph. Note that the method is private
-	 * as it is required that the graph implements {@link GraphElement}.
+	 * Adds a subgraf - the given graf must implement ISubgraf. Note that the method is private
+	 * as it is required that the graf implements {@link grafElement}.
 	 * 
-	 * @param graph
+	 * @param graf
 	 */
-	private void _addSubgraph(Graph graph) {
-		if(!(graph instanceof ISubGraph))
-			throw new IllegalArgumentException("Can only add subgraphs to a graph");
-		subgraphs.add((ISubGraph) graph);
-		if(graph.getId() == null)
-			graph.setId("g" + subgraphs.size());
-		graph.setParentElement(this);
+	private void _addSubgraf(graf graf) {
+		if(!(graf instanceof ISubgraf))
+			throw new IllegalArgumentException("Can only add subgrafs to a graf");
+		subgrafs.add((ISubgraf) graf);
+		if(graf.getId() == null)
+			graf.setId("g" + subgrafs.size());
+		graf.setParentElement(this);
 	}
 
 	private void _addVertex(Vertex vertex) {
@@ -114,21 +114,21 @@ public class Graph extends GraphElement implements IGraph {
 	}
 
 	/**
-	 * Not part of the API - how subgraphs are created and added is up to the implementation.
+	 * Not part of the API - how subgrafs are created and added is up to the implementation.
 	 * 
-	 * @param graph
+	 * @param graf
 	 */
-	public void addSubgraph(ClusterGraph graph) {
-		_addSubgraph(graph);
+	public void addSubgraf(Clustergraf graf) {
+		_addSubgraf(graf);
 	}
 
 	/**
-	 * Not part of the API - how subgraphs are created and added is up to the implementation.
+	 * Not part of the API - how subgrafs are created and added is up to the implementation.
 	 * 
-	 * @param graph
+	 * @param graf
 	 */
-	public void addSubgraph(SubGraph graph) {
-		_addSubgraph(graph);
+	public void addSubgraf(Subgraf graf) {
+		_addSubgraf(graf);
 	}
 
 	/**
@@ -150,16 +150,16 @@ public class Graph extends GraphElement implements IGraph {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.elements.Vertex#getElementType()
+	 * @see org.ungtb10d.graf.elements.Vertex#getElementType()
 	 */
 	@Override
 	public ElementType getElementType() {
-		return ElementType.graph;
+		return ElementType.graf;
 	}
 
 	@Override
-	public Iterable<ISubGraph> getSubgraphs() {
-		return subgraphs;
+	public Iterable<ISubgraf> getSubgrafs() {
+		return subgrafs;
 	}
 
 	@Override

@@ -12,4 +12,4 @@
 /**
  * This package contains an implementation of label templates.
  */
-package org.ungtb10d.graph.style.labels;
+package org.ungtb10d.graf.style.labels;

@@ -7,32 +7,32 @@
  * Contributors:
  * - ungtb10d Inc - initial API and implementation.
  */
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
 import java.util.WeakHashMap;
 
-import org.ungtb10d.graph.IGraphElement;
+import org.ungtb10d.graf.IgrafElement;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 
 /**
- * The GraphElementAdapter associates an instance of IGraphElement with a (weak) key.
- * The intended use is to associate a Vertex or Edge with an EObject keyed by some context (like a graph, but it is
- * not limited to any graph related class).
- * The adapter allows association of one graph element per key.
+ * The grafElementAdapter associates an instance of IgrafElement with a (weak) key.
+ * The intended use is to associate a Vertex or Edge with an EObject keyed by some context (like a graf, but it is
+ * not limited to any graf related class).
+ * The adapter allows association of one graf element per key.
  */
-public class GraphElementAdapter extends AdapterImpl {
-	WeakHashMap<Object, IGraphElement> associatedInfo = new WeakHashMap<Object, IGraphElement>();
+public class grafElementAdapter extends AdapterImpl {
+	WeakHashMap<Object, IgrafElement> associatedInfo = new WeakHashMap<Object, IgrafElement>();
 
-	public IGraphElement getGraphElement(Object key) {
+	public IgrafElement getgrafElement(Object key) {
 		return associatedInfo.get(key);
 	}
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == GraphElementAdapter.class;
+		return type == grafElementAdapter.class;
 	}
 
-	public void setAssociatedInfo(Object key, IGraphElement info) {
+	public void setAssociatedInfo(Object key, IgrafElement info) {
 		associatedInfo.put(key, info);
 	}
 }

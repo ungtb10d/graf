@@ -6,58 +6,58 @@
  * prior written consent or license from ungtb10d Inc.
  ******************************************************************/
 
-package org.ungtb10d.graph.testgraphs;
+package org.ungtb10d.graf.testgrafs;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.IGraphProvider;
-import org.ungtb10d.graph.IRootGraph;
-import org.ungtb10d.graph.elements.ClusterGraph;
-import org.ungtb10d.graph.elements.Edge;
-import org.ungtb10d.graph.elements.RootGraph;
-import org.ungtb10d.graph.elements.Vertex;
-import org.ungtb10d.graph.graphcss.IFunctionFactory;
-import org.ungtb10d.graph.graphcss.Rule;
-import org.ungtb10d.graph.graphcss.Select;
-import org.ungtb10d.graph.graphcss.StyleSet;
-import org.ungtb10d.graph.style.IStyleFactory;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.IgrafProvider;
+import org.ungtb10d.graf.IRootgraf;
+import org.ungtb10d.graf.elements.Clustergraf;
+import org.ungtb10d.graf.elements.Edge;
+import org.ungtb10d.graf.elements.Rootgraf;
+import org.ungtb10d.graf.elements.Vertex;
+import org.ungtb10d.graf.grafcss.IFunctionFactory;
+import org.ungtb10d.graf.grafcss.Rule;
+import org.ungtb10d.graf.grafcss.Select;
+import org.ungtb10d.graf.grafcss.StyleSet;
+import org.ungtb10d.graf.style.IStyleFactory;
 
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 /**
- * A very simple graph
+ * A very simple graf
  * 
  */
-public class SimpleGraph2 implements IGraphProvider {
+public class Simplegraf2 implements IgrafProvider {
 
 	private IStyleFactory styleFactory;
 
 	private IFunctionFactory functions;
 
 	@Inject
-	public SimpleGraph2(IStyleFactory styleFactory, IFunctionFactory functions) {
+	public Simplegraf2(IStyleFactory styleFactory, IFunctionFactory functions) {
 		this.styleFactory = styleFactory;
 		this.functions = functions;
 	}
 
-	public IRootGraph computeGraph() {
-		return computeGraph(null, "a graph", "root");
+	public IRootgraf computegraf() {
+		return computegraf(null, "a graf", "root");
 	}
 
 	@Override
-	public IRootGraph computeGraph(Object modelObj) {
-		return computeGraph();
+	public IRootgraf computegraf(Object modelObj) {
+		return computegraf();
 	}
 
 	/**
-	 * @modelObj - ignored, returns same graph at all times.
+	 * @modelObj - ignored, returns same graf at all times.
 	 */
-	public IRootGraph computeGraph(Object modelObj, String title, String id) {
-		RootGraph g = new RootGraph(title, "RootGraph", id);
+	public IRootgraf computegraf(Object modelObj, String title, String id) {
+		Rootgraf g = new Rootgraf(title, "Rootgraf", id);
 		Vertex a = new Vertex("a", "v");
 		Vertex b = new Vertex("b", "v");
 		Vertex c = new Vertex("c", "v");
@@ -68,7 +68,7 @@ public class SimpleGraph2 implements IGraphProvider {
 		Edge acEdge = new Edge(a, c);
 		g.addEdge(abEdge, bcEdge, acEdge);
 
-		ClusterGraph cluster = new ClusterGraph("ClusterGraph", "theCluster");
+		Clustergraf cluster = new Clustergraf("Clustergraf", "theCluster");
 		Vertex x = new Vertex("x", "v");
 		Vertex y = new Vertex("y", "v");
 		Vertex z = new Vertex("z", "v");
@@ -78,7 +78,7 @@ public class SimpleGraph2 implements IGraphProvider {
 		Edge xzEdge = new Edge(x, z);
 		cluster.addEdge(xyEdge, yzEdge, xzEdge);
 
-		g.addSubgraph(cluster);
+		g.addSubgraf(cluster);
 		return g;
 	}
 
@@ -94,7 +94,7 @@ public class SimpleGraph2 implements IGraphProvider {
 		Collections.addAll(result, //
 			Select.element(ElementType.vertex).withStyle(simpleLabelFormat),//
 			Select.element(ElementType.edge).withStyle(simpleLabelFormat), //
-			Select.element(ElementType.graph).withStyle(simpleLabelFormat));
+			Select.element(ElementType.graf).withStyle(simpleLabelFormat));
 
 		return result;
 	}

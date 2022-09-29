@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphviz;
+package org.ungtb10d.graf.grafviz;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -20,37 +20,37 @@ import java.io.OutputStream;
 import java.util.zip.GZIPOutputStream;
 
 import org.apache.log4j.Logger;
-import org.ungtb10d.graph.ICancel;
-import org.ungtb10d.graph.IRootGraph;
-import org.ungtb10d.graph.dot.DotRenderer;
-import org.ungtb10d.graph.graphcss.GraphCSS;
-import org.ungtb10d.graph.utils.ByteArrayOutputStream2;
+import org.ungtb10d.graf.ICancel;
+import org.ungtb10d.graf.IRootgraf;
+import org.ungtb10d.graf.dot.DotRenderer;
+import org.ungtb10d.graf.grafcss.grafCSS;
+import org.ungtb10d.graf.utils.ByteArrayOutputStream2;
 
 import com.google.inject.Inject;
 
 /**
- * A Graphviz runner.
+ * A grafviz runner.
  * 
- * The Graphviz runner executes one of the graphviz executables to produce
+ * The grafviz runner executes one of the grafviz executables to produce
  * one of: a PNG, JPG, SVG, or a HTML USEMAP.
  * TODO: possibly extend output to also include PS (this is
  * just a different "-Ttype", but may require attention to handling of fonts).
  * 
- * This graphviz runner assumes that the layout algorithms are available on the
+ * This grafviz runner assumes that the layout algorithms are available on the
  * execution path of the jvm (i.e. the executables with the same name as the values of
- * the {@link GraphvizLayout}).
+ * the {@link grafvizLayout}).
  * 
  * TODO: ideally, the set of available types:renderers should be discovered at runtime from
  * the environment, and then bound in the runtime guice module.
  * 
  */
-public class Graphviz implements IGraphviz {
-	private IGraphvizConfig config;
+public class grafviz implements Igrafviz {
+	private IgrafvizConfig config;
 
 	private DotRenderer dotRenderer;
 
 	@Inject
-	public Graphviz(IGraphvizConfig config, DotRenderer dotRenderer) {
+	public grafviz(IgrafvizConfig config, DotRenderer dotRenderer) {
 		this.config = config;
 		this.dotRenderer = dotRenderer;
 	}
@@ -58,26 +58,26 @@ public class Graphviz implements IGraphviz {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.dot.IGraphviz#getDotText(org.ungtb10d.graph.IGraph, org.ungtb10d.graph.impl.style.RuleSet)
+	 * @see org.ungtb10d.graf.impl.dot.Igrafviz#getDotText(org.ungtb10d.graf.Igraf, org.ungtb10d.graf.impl.style.RuleSet)
 	 */
 	@Override
-	public String getDotText(final ICancel cancel, IRootGraph graph, GraphCSS defaultCSS, GraphCSS... gCSS) {
+	public String getDotText(final ICancel cancel, IRootgraf graf, grafCSS defaultCSS, grafCSS... gCSS) {
 		ByteArrayOutputStream bufferStream = new ByteArrayOutputStream();
-		dotRenderer.write(cancel, bufferStream, graph, defaultCSS, gCSS);
+		dotRenderer.write(cancel, bufferStream, graf, defaultCSS, gCSS);
 		return bufferStream.toString();
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.dot.IGraphviz#getUsemap(org.ungtb10d.graph.IGraph, org.ungtb10d.graph.impl.style.RuleSet,
-	 * org.ungtb10d.graph.impl.dot.Graphviz.Layout)
+	 * @see org.ungtb10d.graf.impl.dot.Igrafviz#getUsemap(org.ungtb10d.graf.Igraf, org.ungtb10d.graf.impl.style.RuleSet,
+	 * org.ungtb10d.graf.impl.dot.grafviz.Layout)
 	 */
 	@Override
-	public String getUsemap(final ICancel cancel, GraphvizLayout layout, IRootGraph graph, GraphCSS defaultStyle,
-			GraphCSS... styleSheets) {
+	public String getUsemap(final ICancel cancel, grafvizLayout layout, IRootgraf graf, grafCSS defaultStyle,
+			grafCSS... styleSheets) {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		if(writeGraphvizOutput(cancel, stream, GraphvizFormat.cmapx, null, layout, graph, defaultStyle, styleSheets) == null)
+		if(writegrafvizOutput(cancel, stream, grafvizFormat.cmapx, null, layout, graf, defaultStyle, styleSheets) == null)
 			return "";
 		return stream.toString();
 	}
@@ -85,15 +85,15 @@ public class Graphviz implements IGraphviz {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.dot.IGraphviz#getJpgImage(org.ungtb10d.graph.IGraph, org.ungtb10d.graph.impl.style.RuleSet,
-	 * org.ungtb10d.graph.impl.dot.Graphviz.Layout)
+	 * @see org.ungtb10d.graf.impl.dot.Igrafviz#getJpgImage(org.ungtb10d.graf.Igraf, org.ungtb10d.graf.impl.style.RuleSet,
+	 * org.ungtb10d.graf.impl.dot.grafviz.Layout)
 	 */
 	@Override
-	public byte[] toJPG(final ICancel cancel, GraphvizLayout layout, IRootGraph graph, GraphCSS defaultStyleSheet,
-			GraphCSS... styleSheets) {
+	public byte[] toJPG(final ICancel cancel, grafvizLayout layout, IRootgraf graf, grafCSS defaultStyleSheet,
+			grafCSS... styleSheets) {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		if(writeGraphvizOutput(
-			cancel, stream, GraphvizFormat.jpg, config.getRenderer(), layout, graph, defaultStyleSheet, styleSheets) == null)
+		if(writegrafvizOutput(
+			cancel, stream, grafvizFormat.jpg, config.getRenderer(), layout, graf, defaultStyleSheet, styleSheets) == null)
 			return null;
 		byte[] ret = stream.toByteArray();
 		return (ret == null || ret.length < 1)
@@ -104,15 +104,15 @@ public class Graphviz implements IGraphviz {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.dot.IGraphviz#getPngImage(org.ungtb10d.graph.IGraph, org.ungtb10d.graph.impl.style.RuleSet,
-	 * org.ungtb10d.graph.impl.dot.Graphviz.Layout)
+	 * @see org.ungtb10d.graf.impl.dot.Igrafviz#getPngImage(org.ungtb10d.graf.Igraf, org.ungtb10d.graf.impl.style.RuleSet,
+	 * org.ungtb10d.graf.impl.dot.grafviz.Layout)
 	 */
 	@Override
-	public byte[] toPNG(final ICancel cancel, GraphvizLayout layout, IRootGraph graph, GraphCSS defaultStyle,
-			GraphCSS... styleSheets) {
+	public byte[] toPNG(final ICancel cancel, grafvizLayout layout, IRootgraf graf, grafCSS defaultStyle,
+			grafCSS... styleSheets) {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		if(writeGraphvizOutput(
-			cancel, stream, GraphvizFormat.png, config.getRenderer(), layout, graph, defaultStyle, styleSheets) == null)
+		if(writegrafvizOutput(
+			cancel, stream, grafvizFormat.png, config.getRenderer(), layout, graf, defaultStyle, styleSheets) == null)
 			return null;
 		byte[] ret = stream.toByteArray();
 		return (ret == null || ret.length < 1)
@@ -123,32 +123,32 @@ public class Graphviz implements IGraphviz {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.dot.IGraphviz#getSvgImage(org.ungtb10d.graph.IGraph, org.ungtb10d.graph.impl.style.RuleSet,
-	 * org.ungtb10d.graph.impl.dot.Graphviz.Layout)
+	 * @see org.ungtb10d.graf.impl.dot.Igrafviz#getSvgImage(org.ungtb10d.graf.Igraf, org.ungtb10d.graf.impl.style.RuleSet,
+	 * org.ungtb10d.graf.impl.dot.grafviz.Layout)
 	 */
 	@Override
-	public String toSVG(final ICancel cancel, GraphvizLayout layout, IRootGraph graph, GraphCSS defaultStyle,
-			GraphCSS... styleSheets) {
+	public String toSVG(final ICancel cancel, grafvizLayout layout, IRootgraf graf, grafCSS defaultStyle,
+			grafCSS... styleSheets) {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		if(writeGraphvizOutput(
-			cancel, stream, GraphvizFormat.svg, config.getRenderer(), layout, graph, defaultStyle, styleSheets) == null)
+		if(writegrafvizOutput(
+			cancel, stream, grafvizFormat.svg, config.getRenderer(), layout, graf, defaultStyle, styleSheets) == null)
 			return null;
 		return stream.toString();
 	}
 
 	@Override
-	public OutputStream writeGraphvizOutput(final ICancel cancel, final OutputStream output, GraphvizFormat format,
-			GraphvizRenderer renderer, //
-			GraphvizLayout layout, //
+	public OutputStream writegrafvizOutput(final ICancel cancel, final OutputStream output, grafvizFormat format,
+			grafvizRenderer renderer, //
+			grafvizLayout layout, //
 			final InputStream dotData
 	// final byte[] dotData //
 	) {
 		Process p;
-		// graphviz -T format:renderer is something like -T png:cairo
+		// grafviz -T format:renderer is something like -T png:cairo
 		// Construct renderer string (':renderer' after the format) if renderer is specified - generally
 		// a bad idea as you need to know what renderers are available.
 		//
-		String r = (renderer == null || renderer == GraphvizRenderer.standard)
+		String r = (renderer == null || renderer == grafvizRenderer.standard)
 				? ""
 				: ":" + config.getRenderer().toString();
 		try {
@@ -156,7 +156,7 @@ public class Graphviz implements IGraphviz {
 			p = Runtime.getRuntime().exec(layout.toString() + " -T" + format.toString() + r);
 		}
 		catch(IOException e1) {
-			Logger log = Logger.getLogger(Graphviz.class);
+			Logger log = Logger.getLogger(grafviz.class);
 			log.error("Could not execute " + layout.toString() + " -T" + format.toString() + r);
 			// TODO: need to close the process streams or they may remain open
 			return null;
@@ -167,8 +167,8 @@ public class Graphviz implements IGraphviz {
 
 		// use the stream connected to the command's stdin
 		/*
-		 * A thread is needed when producing output to graphviz. If there is something
-		 * wrong graphviz will not read the input and the writer will block.
+		 * A thread is needed when producing output to grafviz. If there is something
+		 * wrong grafviz will not read the input and the writer will block.
 		 */
 		Thread writer = new Thread() {
 			@Override
@@ -180,12 +180,12 @@ public class Graphviz implements IGraphviz {
 					while((length = dotData.read(buf)) != -1)
 						out.write(buf, 0, length); // dotOutput.toByteArray());
 
-					// close the stream, or graphviz will read for ever
+					// close the stream, or grafviz will read for ever
 					out.close();
 				}
 				catch(IOException e) {
-					Logger log = Logger.getLogger(Graphviz.class);
-					log.error("error closing output stream to graphviz ", e);
+					Logger log = Logger.getLogger(grafviz.class);
+					log.error("error closing output stream to grafviz ", e);
 				}
 			}
 		};
@@ -206,8 +206,8 @@ public class Graphviz implements IGraphviz {
 							output.write(buffer, 0, read);
 						}
 						catch(Throwable e) {
-							Logger log = Logger.getLogger(Graphviz.class);
-							log.error("Exception while writing result read from graphviz", e);
+							Logger log = Logger.getLogger(grafviz.class);
+							log.error("Exception while writing result read from grafviz", e);
 						}
 						cancel.assertContinue();
 						read = in.read(buffer);
@@ -218,14 +218,14 @@ public class Graphviz implements IGraphviz {
 					done = true;
 				}
 				catch(IOException e) {
-					Logger log = Logger.getLogger(Graphviz.class);
-					log.error("error reading output from graphviz ", e);
+					Logger log = Logger.getLogger(grafviz.class);
+					log.error("error reading output from grafviz ", e);
 				}
 			}
 		}
 		;
 		ReaderThread reader = new ReaderThread();
-		// start reading the output from graphviz
+		// start reading the output from grafviz
 		reader.start();
 
 		final ByteArrayOutputStream eout = new ByteArrayOutputStream();
@@ -240,11 +240,11 @@ public class Graphviz implements IGraphviz {
 						read = err.read(buffer);
 					}
 
-					Logger log = Logger.getLogger(Graphviz.class);
+					Logger log = Logger.getLogger(grafviz.class);
 					// if there was no output this could be because EOF was reached due to normal end.
 					String tmp = eout.toString();
 					if(tmp != null && tmp.length() > 0)
-						log.error("Graphviz error: " + tmp);
+						log.error("grafviz error: " + tmp);
 				}
 				catch(IOException e) {
 					// an IO Exception here is the expected outcome
@@ -270,13 +270,13 @@ public class Graphviz implements IGraphviz {
 			// warnings could be ignored - now they also terminate the output if the warning occurs before
 			// the writer is done.
 			if(p.exitValue() != 0) {
-				throw new GraphvizException(eout.toString());
+				throw new grafvizException(eout.toString());
 			}
 
 		}
 		catch(InterruptedException e) {
-			Logger log = Logger.getLogger(Graphviz.class);
-			log.error("Graphviz reading interupted");
+			Logger log = Logger.getLogger(grafviz.class);
+			log.error("grafviz reading interupted");
 			return null;
 		}
 		finally {
@@ -310,33 +310,33 @@ public class Graphviz implements IGraphviz {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.dot.IGraphviz#getGraphvizOutput(java.io.OutputStream, org.ungtb10d.graph.impl.dot.Graphviz.Format,
-	 * org.ungtb10d.graph.impl.dot.Graphviz.Renderer, org.ungtb10d.graph.IGraph, org.ungtb10d.graph.impl.style.RuleSet,
-	 * org.ungtb10d.graph.impl.dot.Graphviz.Layout)
+	 * @see org.ungtb10d.graf.impl.dot.Igrafviz#getgrafvizOutput(java.io.OutputStream, org.ungtb10d.graf.impl.dot.grafviz.Format,
+	 * org.ungtb10d.graf.impl.dot.grafviz.Renderer, org.ungtb10d.graf.Igraf, org.ungtb10d.graf.impl.style.RuleSet,
+	 * org.ungtb10d.graf.impl.dot.grafviz.Layout)
 	 */
 	@Override
-	public OutputStream writeGraphvizOutput(ICancel cancel, OutputStream output, GraphvizFormat format,
-			GraphvizRenderer renderer, GraphvizLayout layout, IRootGraph graph, GraphCSS defaultStyleSheet,
-			GraphCSS... styleSheets) {
+	public OutputStream writegrafvizOutput(ICancel cancel, OutputStream output, grafvizFormat format,
+			grafvizRenderer renderer, grafvizLayout layout, IRootgraf graf, grafCSS defaultStyleSheet,
+			grafCSS... styleSheets) {
 		// Produce the dot output to a buffer (at one point we could not run this in a thread because JBoss Seam
 		// got confused over context - maybe possible to revisit
 		//
 		final ByteArrayOutputStream2 dotOutput = new ByteArrayOutputStream2();
-		dotRenderer.write(cancel, dotOutput, graph, defaultStyleSheet, styleSheets);
-		return writeGraphvizOutput(cancel, output, format, renderer, layout, dotOutput.toInputStream(false));
+		dotRenderer.write(cancel, dotOutput, graf, defaultStyleSheet, styleSheets);
+		return writegrafvizOutput(cancel, output, format, renderer, layout, dotOutput.toInputStream(false));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.graphviz.IGraphviz#writePNG(java.io.OutputStream, org.ungtb10d.graph.graphviz.GraphvizLayout,
-	 * org.ungtb10d.graph.IRootGraph, org.ungtb10d.graph.graphcss.GraphCSS, org.ungtb10d.graph.graphcss.GraphCSS[])
+	 * @see org.ungtb10d.graf.grafviz.Igrafviz#writePNG(java.io.OutputStream, org.ungtb10d.graf.grafviz.grafvizLayout,
+	 * org.ungtb10d.graf.IRootgraf, org.ungtb10d.graf.grafcss.grafCSS, org.ungtb10d.graf.grafcss.grafCSS[])
 	 */
 	@Override
-	public boolean writePNG(ICancel cancel, OutputStream output, GraphvizLayout layout, IRootGraph graph,
-			GraphCSS defaultStyle, GraphCSS... styleSheets) {
-		if(writeGraphvizOutput(
-			cancel, output, GraphvizFormat.png, config.getRenderer(), layout, graph, defaultStyle, styleSheets) == null)
+	public boolean writePNG(ICancel cancel, OutputStream output, grafvizLayout layout, IRootgraf graf,
+			grafCSS defaultStyle, grafCSS... styleSheets) {
+		if(writegrafvizOutput(
+			cancel, output, grafvizFormat.png, config.getRenderer(), layout, graf, defaultStyle, styleSheets) == null)
 			return false;
 		return true;
 	}
@@ -344,14 +344,14 @@ public class Graphviz implements IGraphviz {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.dot.IGraphviz#getSvgImage(java.io.OutputStream, org.ungtb10d.graph.IGraph,
-	 * org.ungtb10d.graph.impl.style.RuleSet, org.ungtb10d.graph.impl.dot.Graphviz.Layout)
+	 * @see org.ungtb10d.graf.impl.dot.Igrafviz#getSvgImage(java.io.OutputStream, org.ungtb10d.graf.Igraf,
+	 * org.ungtb10d.graf.impl.style.RuleSet, org.ungtb10d.graf.impl.dot.grafviz.Layout)
 	 */
 	@Override
-	public boolean writeSVG(ICancel cancel, OutputStream output, GraphvizLayout layout, IRootGraph graph,
-			GraphCSS defaultStyle, GraphCSS... styleSheets) {
-		if(writeGraphvizOutput(
-			cancel, output, GraphvizFormat.svg, config.getRenderer(), layout, graph, defaultStyle, styleSheets) == null)
+	public boolean writeSVG(ICancel cancel, OutputStream output, grafvizLayout layout, IRootgraf graf,
+			grafCSS defaultStyle, grafCSS... styleSheets) {
+		if(writegrafvizOutput(
+			cancel, output, grafvizFormat.svg, config.getRenderer(), layout, graf, defaultStyle, styleSheets) == null)
 			return false;
 		return true;
 	}
@@ -359,16 +359,16 @@ public class Graphviz implements IGraphviz {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.dot.IGraphviz#getSvgzImage(java.io.OutputStream, org.ungtb10d.graph.IGraph,
-	 * org.ungtb10d.graph.impl.style.RuleSet, org.ungtb10d.graph.impl.dot.Graphviz.Layout)
+	 * @see org.ungtb10d.graf.impl.dot.Igrafviz#getSvgzImage(java.io.OutputStream, org.ungtb10d.graf.Igraf,
+	 * org.ungtb10d.graf.impl.style.RuleSet, org.ungtb10d.graf.impl.dot.grafviz.Layout)
 	 */
 	@Override
-	public boolean writeSVGZ(ICancel cancel, OutputStream output, GraphvizLayout layout, IRootGraph graph,
-			GraphCSS defaultStyle, GraphCSS... styleSheets) {
+	public boolean writeSVGZ(ICancel cancel, OutputStream output, grafvizLayout layout, IRootgraf graf,
+			grafCSS defaultStyle, grafCSS... styleSheets) {
 		try {
 			GZIPOutputStream stream = new GZIPOutputStream(output);
-			if(writeGraphvizOutput(
-				cancel, stream, GraphvizFormat.svg, config.getRenderer(), layout, graph, defaultStyle, styleSheets) == null)
+			if(writegrafvizOutput(
+				cancel, stream, grafvizFormat.svg, config.getRenderer(), layout, graf, defaultStyle, styleSheets) == null)
 				return false;
 			stream.finish();
 			stream.flush();

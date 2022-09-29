@@ -9,20 +9,20 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
 import java.util.List;
 
-import org.ungtb10d.graph.elements.Edge;
-import org.ungtb10d.graph.elements.RootGraph;
-import org.ungtb10d.graph.elements.Vertex;
-import org.ungtb10d.graph.graphcss.Rule;
-import org.ungtb10d.graph.graphcss.Select;
-import org.ungtb10d.graph.style.Compass;
-import org.ungtb10d.graph.style.IStyleFactory;
-import org.ungtb10d.graph.style.LineType;
-import org.ungtb10d.graph.style.NodeShape;
-import org.ungtb10d.graph.style.labels.LabelMatrix;
+import org.ungtb10d.graf.elements.Edge;
+import org.ungtb10d.graf.elements.Rootgraf;
+import org.ungtb10d.graf.elements.Vertex;
+import org.ungtb10d.graf.grafcss.Rule;
+import org.ungtb10d.graf.grafcss.Select;
+import org.ungtb10d.graf.style.Compass;
+import org.ungtb10d.graf.style.IStyleFactory;
+import org.ungtb10d.graf.style.LineType;
+import org.ungtb10d.graf.style.NodeShape;
+import org.ungtb10d.graf.style.labels.LabelMatrix;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
@@ -31,24 +31,24 @@ import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 /**
- * Creates a graph with lists being represented as a vertical box 0..n with links to each
+ * Creates a graf with lists being represented as a vertical box 0..n with links to each
  * element.
  * 
  */
-public class HorizontalArrayListEGraphProvider extends AbstractEGraphProvider {
+public class HorizontalArrayListEgrafProvider extends AbstractEgrafProvider {
 
 	@Inject
 	IStyleFactory styles;
 
 	/**
-	 * Compute the content of graph g, for the given vertex v representing the given model.
+	 * Compute the content of graf g, for the given vertex v representing the given model.
 	 * 
 	 * @param g
 	 * @param v
 	 * @param model
 	 */
 	@Override
-	protected void computeGraph(RootGraph g, EVertex v, EObject model) {
+	protected void computegraf(Rootgraf g, EVertex v, EObject model) {
 		// Process everything the root references (contained, and referenced)
 		// Generated Edges have the capability to treat containment and reference differently.
 		for(EReference reference : model.eClass().getEAllReferences()) {
@@ -71,7 +71,7 @@ public class HorizontalArrayListEGraphProvider extends AbstractEGraphProvider {
 				int counter = 0;
 				for(EObject referenced : allReferenced) {
 					EVertex v2 = new EVertex(referenced);
-					GraphElementAdapterFactory.eINSTANCE.adapt(referenced).setAssociatedInfo(g, v2);
+					grafElementAdapterFactory.eINSTANCE.adapt(referenced).setAssociatedInfo(g, v2);
 					g.addVertex(v2);
 
 					// link the subsequent element to the previous using and index-to-index edge
@@ -85,18 +85,18 @@ public class HorizontalArrayListEGraphProvider extends AbstractEGraphProvider {
 					edge_n.setStyles(styles.tailPort("p" + Integer.toString(counter), Compass.s));
 
 					counter++;
-					computeGraph(g, v2, referenced);
+					computegraf(g, v2, referenced);
 				}
 			}
 			else {
 				// reference is not a list
 				EObject referenced = EObject.class.cast(model.eGet(reference));
 				EVertex v2 = new EVertex(referenced);
-				GraphElementAdapterFactory.eINSTANCE.adapt(referenced).setAssociatedInfo(g, v2);
+				grafElementAdapterFactory.eINSTANCE.adapt(referenced).setAssociatedInfo(g, v2);
 				g.addVertex(v2);
 				EEdge edge = new EEdge(reference, v, v2);
 				g.addEdge(edge);
-				computeGraph(g, v2, referenced);
+				computegraf(g, v2, referenced);
 			}
 		}
 	}
@@ -104,7 +104,7 @@ public class HorizontalArrayListEGraphProvider extends AbstractEGraphProvider {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.emf.AbstractEGraphProvider#getRules()
+	 * @see org.ungtb10d.graf.emf.AbstractEgrafProvider#getRules()
 	 */
 	@Override
 	public Iterable<Rule> getRules() {

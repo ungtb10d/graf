@@ -9,12 +9,12 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style.labels;
+package org.ungtb10d.graf.style.labels;
 
 import java.util.Collections;
 import java.util.Set;
 
-import org.ungtb10d.graph.IGraphElement;
+import org.ungtb10d.graf.IgrafElement;
 
 import com.google.common.base.Function;
 
@@ -24,7 +24,7 @@ import com.google.common.base.Function;
  */
 public class LabelRow {
 	public static class Separator extends LabelRow {
-		public Separator(Function<IGraphElement, Set<String>> styleClass) {
+		public Separator(Function<IgrafElement, Set<String>> styleClass) {
 			super(styleClass);
 		}
 
@@ -36,9 +36,9 @@ public class LabelRow {
 
 	LabelCell[] cells;
 
-	Function<IGraphElement, Set<String>> styleClass;
+	Function<IgrafElement, Set<String>> styleClass;
 
-	public LabelRow(final Function<IGraphElement, Set<String>> styleClass, LabelCell... cells) {
+	public LabelRow(final Function<IgrafElement, Set<String>> styleClass, LabelCell... cells) {
 		this.styleClass = styleClass;
 		this.cells = cells;
 	}
@@ -48,8 +48,8 @@ public class LabelRow {
 	}
 
 	public LabelRow(final String styleClass, LabelCell... cells) {
-		this.styleClass = new Function<IGraphElement, Set<String>>() {
-			public Set<String> apply(IGraphElement ge) {
+		this.styleClass = new Function<IgrafElement, Set<String>>() {
+			public Set<String> apply(IgrafElement ge) {
 				return Collections.singleton(styleClass);
 			}
 		};
@@ -60,7 +60,7 @@ public class LabelRow {
 		return cells;
 	}
 
-	public Set<String> getStyleClasses(IGraphElement ge) {
+	public Set<String> getStyleClasses(IgrafElement ge) {
 		return styleClass.apply(ge);
 	}
 

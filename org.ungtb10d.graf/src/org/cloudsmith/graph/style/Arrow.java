@@ -10,7 +10,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style;
+package org.ungtb10d.graf.style;
 
 /**
  * An Arrow consists of either a single ArrowType (there are 36), or is a sequence of 2-4 ArrowTypes.

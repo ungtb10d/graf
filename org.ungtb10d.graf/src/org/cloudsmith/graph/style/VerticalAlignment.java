@@ -11,7 +11,7 @@
  * 
  */
 
-package org.ungtb10d.graph.style;
+package org.ungtb10d.graf.style;
 
 public enum VerticalAlignment {
 	top, middle, bottom;

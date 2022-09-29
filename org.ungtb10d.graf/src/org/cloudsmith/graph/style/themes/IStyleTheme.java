@@ -9,12 +9,12 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style.themes;
+package org.ungtb10d.graf.style.themes;
 
 import java.util.Collection;
 
-import org.ungtb10d.graph.graphcss.GraphCSS;
-import org.ungtb10d.graph.graphcss.Rule;
+import org.ungtb10d.graf.grafcss.grafCSS;
+import org.ungtb10d.graf.grafcss.Rule;
 
 import com.google.inject.ImplementedBy;
 
@@ -41,16 +41,16 @@ public interface IStyleTheme {
 
 	/**
 	 * Returns a the static rules output as defaults.
-	 * Do not include this set in the GraphCSS that is passed as an instance css as it would lead
+	 * Do not include this set in the grafCSS that is passed as an instance css as it would lead
 	 * to output of matching style per instance.
 	 * 
 	 * @return
 	 */
-	public GraphCSS getDefaultRules();
+	public grafCSS getDefaultRules();
 
 	/**
 	 * A derived implementation may want to override these defaults.
-	 * Note that a collection of rules are returned as opposed to a GraphCSS as this is more
+	 * Note that a collection of rules are returned as opposed to a grafCSS as this is more
 	 * efficient (avoids cloning rules) since they can only be part of one set.
 	 * 
 	 * @return a collection of suitable rules for the theme

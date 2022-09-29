@@ -12,4 +12,4 @@
 /**
  * This package contains styling 'themes'.
  */
-package org.ungtb10d.graph.style.themes;
+package org.ungtb10d.graf.style.themes;

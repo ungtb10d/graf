@@ -9,19 +9,19 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphviz;
+package org.ungtb10d.graf.grafviz;
 
 /**
- * The renderer an IGraphviz should use. Graphviz can use different rendering packages. The default windows installation of
- * Graphviz supports only the gd library. The newer (and superior) "cairo" (the drawing package used by Gimp) is an add on
- * on linux systems. It is unclear if it is possible to get this library also working with Graphviz on windows.
+ * The renderer an Igrafviz should use. grafviz can use different rendering packages. The default windows installation of
+ * grafviz supports only the gd library. The newer (and superior) "cairo" (the drawing package used by Gimp) is an add on
+ * on linux systems. It is unclear if it is possible to get this library also working with grafviz on windows.
  * To check which renderers are supported run "dot -Tpng:" on a command line for a list of choices.
  * 
  * A Renderer is needed for output formats based on some sort of image (e.g.
- * {@link Graphviz#toJPG(ICancel, GraphvizLayout, IGraph, GraphCSS, GraphCSS...)},
- * and {@link Graphviz#toPNG(ICancel, GraphvizLayout, IGraph, GraphCSS, GraphCSS...)}
+ * {@link grafviz#toJPG(ICancel, grafvizLayout, Igraf, grafCSS, grafCSS...)},
+ * and {@link grafviz#toPNG(ICancel, grafvizLayout, Igraf, grafCSS, grafCSS...)}
  */
-public enum GraphvizRenderer {
+public enum grafvizRenderer {
 	/**
 	 * Use default renderer bound in the runtime module. Should <b>NOT</b> be used as the default bound
 	 * in the runtime module. This renderer should be specified when format does not require a renderer (such as

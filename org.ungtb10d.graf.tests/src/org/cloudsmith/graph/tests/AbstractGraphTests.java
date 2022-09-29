@@ -9,14 +9,14 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.tests;
+package org.ungtb10d.graf.tests;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 import org.ungtb10d.geppetto.common.os.FileUtils;
-import org.ungtb10d.graph.DefaultGraphModule;
+import org.ungtb10d.graf.DefaultgrafModule;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -30,7 +30,7 @@ import com.google.inject.Module;
 /**
  *
  */
-public class AbstractGraphTests {
+public class AbstractgrafTests {
 	public static File getTestOutputFolder(String name, boolean purge) throws IOException {
 		Location instanceLocation = Platform.getInstanceLocation();
 		URL url = instanceLocation != null
@@ -68,12 +68,12 @@ public class AbstractGraphTests {
 	}
 
 	/**
-	 * This implementation returns a DefaultGraphModule.
+	 * This implementation returns a DefaultgrafModule.
 	 * 
 	 * @return
 	 */
 	protected Module getModule() {
-		return new DefaultGraphModule();
+		return new DefaultgrafModule();
 	}
 
 	@Before

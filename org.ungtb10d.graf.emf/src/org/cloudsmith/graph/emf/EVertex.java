@@ -9,9 +9,9 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
-import org.ungtb10d.graph.elements.Vertex;
+import org.ungtb10d.graf.elements.Vertex;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 

@@ -9,18 +9,18 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.elements;
+package org.ungtb10d.graf.elements;
 
 import java.util.Collection;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.IVertex;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.IVertex;
 
 /**
  * An implementation of IVertex.
  * 
  */
-public class Vertex extends LabeledGraphElement implements IVertex {
+public class Vertex extends LabeledgrafElement implements IVertex {
 	public Vertex(String label, Collection<String> styleClasses) {
 		super(label, styleClasses, null);
 	}
@@ -40,7 +40,7 @@ public class Vertex extends LabeledGraphElement implements IVertex {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.impl.GraphElement#getElementType()
+	 * @see org.ungtb10d.graf.impl.grafElement#getElementType()
 	 */
 	@Override
 	public ElementType getElementType() {

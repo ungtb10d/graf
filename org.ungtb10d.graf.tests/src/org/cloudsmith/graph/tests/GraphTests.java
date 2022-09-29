@@ -9,27 +9,27 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.tests;
+package org.ungtb10d.graf.tests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * All Graph Tests.
+ * All graf Tests.
  */
 // @fmtOff
 @SuiteClasses({
 	TestBase64.class,
 	TestSVGFixer.class,
 	TestBasicFeatures.class,
-	TestMockGraph.class,
+	TestMockgraf.class,
 	TestRenderingToPng.class,
-	TestEGraph.class,
+	TestEgraf.class,
 	TestCircularByteBuffer.class,
 	TestRuleBasedFilterStream.class
 })
 // @fmtOn
 @RunWith(Suite.class)
-public class GraphTests {
+public class grafTests {
 }

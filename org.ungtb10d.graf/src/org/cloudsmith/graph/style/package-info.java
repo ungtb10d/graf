@@ -10,12 +10,12 @@
  * 
  */
 /**
- * This package contains an implementation that describes the style of {@link org.ungtb10d.graph.IGraph} graphs.
+ * This package contains an implementation that describes the style of {@link org.ungtb10d.graf.Igraf} grafs.
  * 
- * The main interface is the {@link org.ungtb10d.graph.style.IStyleFactory} which should be used to
- * obtain styles. The {@link org.ungtb10d.graph.style.StyleFactory} is a default implementation of 
+ * The main interface is the {@link org.ungtb10d.graf.style.IStyleFactory} which should be used to
+ * obtain styles. The {@link org.ungtb10d.graf.style.StyleFactory} is a default implementation of 
  * this interface. 
  * 
  * The classes in the package may be injected with Google Guice, but may also be instantiated manually.
  */
-package org.ungtb10d.graph.style;
+package org.ungtb10d.graf.style;

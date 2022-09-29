@@ -9,15 +9,15 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
 import java.util.Collection;
 
-import org.ungtb10d.graph.graphcss.Rule;
+import org.ungtb10d.graf.grafcss.Rule;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Interface for a provider of GraphStyleRules for EObject labels.
+ * Interface for a provider of grafStyleRules for EObject labels.
  * 
  */
 public interface IELabelStyleProvider {

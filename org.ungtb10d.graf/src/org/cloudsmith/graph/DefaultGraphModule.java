@@ -9,44 +9,44 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
-import org.ungtb10d.graph.dot.DotRenderer;
-import org.ungtb10d.graph.graphcss.FunctionFactory;
-import org.ungtb10d.graph.graphcss.IFunctionFactory;
-import org.ungtb10d.graph.graphviz.DefaultGraphvizConfig;
-import org.ungtb10d.graph.graphviz.Graphviz;
-import org.ungtb10d.graph.graphviz.IGraphviz;
-import org.ungtb10d.graph.graphviz.IGraphvizConfig;
-import org.ungtb10d.graph.style.IStyleFactory;
-import org.ungtb10d.graph.style.StyleFactory;
-import org.ungtb10d.graph.style.themes.DefaultStyleTheme;
-import org.ungtb10d.graph.style.themes.IStyleTheme;
-import org.ungtb10d.graph.utils.IOutputStreamFilterFactory;
-import org.ungtb10d.graph.utils.TransparentOutputStreamFilterFactory;
+import org.ungtb10d.graf.dot.DotRenderer;
+import org.ungtb10d.graf.grafcss.FunctionFactory;
+import org.ungtb10d.graf.grafcss.IFunctionFactory;
+import org.ungtb10d.graf.grafviz.DefaultgrafvizConfig;
+import org.ungtb10d.graf.grafviz.grafviz;
+import org.ungtb10d.graf.grafviz.Igrafviz;
+import org.ungtb10d.graf.grafviz.IgrafvizConfig;
+import org.ungtb10d.graf.style.IStyleFactory;
+import org.ungtb10d.graf.style.StyleFactory;
+import org.ungtb10d.graf.style.themes.DefaultStyleTheme;
+import org.ungtb10d.graf.style.themes.IStyleTheme;
+import org.ungtb10d.graf.utils.IOutputStreamFilterFactory;
+import org.ungtb10d.graf.utils.TransparentOutputStreamFilterFactory;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 
 /**
- * A default graph runtime module.
+ * A default graf runtime module.
  * 
  */
-public class DefaultGraphModule extends AbstractModule {
+public class DefaultgrafModule extends AbstractModule {
 
 	/**
-	 * Binds the main Dot Renderer, and the utility DotLabelRenderer and a DotGraphElementRenderer.
+	 * Binds the main Dot Renderer, and the utility DotLabelRenderer and a DotgrafElementRenderer.
 	 * Other renderers may require a different configuration.
 	 */
 	protected void bindDotRenderer() {
 		// bind(DotRenderer.class).to(DotRenderer.class); // default, but make it explicit
 		// bind(DotLabelRenderer.class).to(DotLabelRenderer.class); // default made explicit
-		// bind(DotGraphElementRenderer.class).to(DotGraphElementRenderer.class); // default made explicit.
+		// bind(DotgrafElementRenderer.class).to(DotgrafElementRenderer.class); // default made explicit.
 	}
 
 	/**
 	 * Binds a normal empty string (i.e. "") for dot output.
-	 * For SVG output, the {@link org.ungtb10d.graph.graphviz.SVGFixerOutputStreamSVGFixerOutputStream#EMPTY_STRING_BUG} can be bound in combination
+	 * For SVG output, the {@link org.ungtb10d.graf.grafviz.SVGFixerOutputStreamSVGFixerOutputStream#EMPTY_STRING_BUG} can be bound in combination
 	 * with overriding {@link #bindSVGOutputFilterProvider()}.
 	 */
 	protected void bindEmptyStringConstant() {
@@ -61,17 +61,17 @@ public class DefaultGraphModule extends AbstractModule {
 	}
 
 	/**
-	 * Binds implementation of graphviz runner.
+	 * Binds implementation of grafviz runner.
 	 */
-	protected void bindIGraphviz() {
-		bind(IGraphviz.class).to(Graphviz.class);
+	protected void bindIgrafviz() {
+		bind(Igrafviz.class).to(grafviz.class);
 	}
 
 	/**
-	 * Binds the standard graphviz configuration to use. This binding is environment dependent.
+	 * Binds the standard grafviz configuration to use. This binding is environment dependent.
 	 */
-	protected void bindIGraphvizConfig() {
-		bind(IGraphvizConfig.class).to(DefaultGraphvizConfig.class);
+	protected void bindIgrafvizConfig() {
+		bind(IgrafvizConfig.class).to(DefaultgrafvizConfig.class);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class DefaultGraphModule extends AbstractModule {
 	 */
 	protected void bindSVGOutputFilterProvider() {
 
-		bind(IOutputStreamFilterFactory.class).annotatedWith(IGraphviz.SVGOutputFilter.class).to(
+		bind(IOutputStreamFilterFactory.class).annotatedWith(Igrafviz.SVGOutputFilter.class).to(
 			TransparentOutputStreamFilterFactory.class).in(Singleton.class);
 	}
 
@@ -101,8 +101,8 @@ public class DefaultGraphModule extends AbstractModule {
 	 */
 	@Override
 	protected void configure() {
-		bindIGraphviz();
-		bindIGraphvizConfig();
+		bindIgrafviz();
+		bindIgrafvizConfig();
 		bindIFunctionFactory();
 		bindIStyleFactory();
 		bindDotRenderer();

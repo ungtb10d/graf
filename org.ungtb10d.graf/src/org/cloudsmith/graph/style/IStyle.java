@@ -9,12 +9,12 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style;
+package org.ungtb10d.graf.style;
 
 import java.util.Set;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.IGraphElement;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.IgrafElement;
 
 /**
  * Interface for a style.
@@ -27,19 +27,19 @@ public interface IStyle<T> {
 	public StyleType getStyleType();
 
 	/**
-	 * Gets the value of the style. A graph element must be provided as the style may be dynamic
-	 * and produce its value as a function of the given graph element. If a style returns false
+	 * Gets the value of the style. A graf element must be provided as the style may be dynamic
+	 * and produce its value as a function of the given graf element. If a style returns false
 	 * from {@link #isFunction()}, the parameter ge may be null. At all other times must ge be a valid
-	 * graph element.
+	 * graf element.
 	 * 
 	 * @param ge
 	 * @return
 	 */
-	public T getValue(IGraphElement ge);
+	public T getValue(IgrafElement ge);
 
 	/**
-	 * A style with a value determined as a function of a graphic element returns true. A style that
-	 * returns false allows null being passed as the graph element in a call to {@link #getValue(IGraphElement)}.
+	 * A style with a value determined as a function of a grafic element returns true. A style that
+	 * returns false allows null being passed as the graf element in a call to {@link #getValue(IgrafElement)}.
 	 * 
 	 * @return
 	 */
@@ -65,10 +65,10 @@ public interface IStyle<T> {
 	 * Visiting this IStyle means it will call back to the given visitor method named after the style type.
 	 * 
 	 * @param ge
-	 *            The visited graph element
+	 *            The visited graf element
 	 * @param visitor
 	 *            The visitor that will be called
 	 */
-	public void visit(IGraphElement ge, IStyleVisitor visitor);
+	public void visit(IgrafElement ge, IStyleVisitor visitor);
 
 }

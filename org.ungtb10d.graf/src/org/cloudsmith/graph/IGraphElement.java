@@ -9,19 +9,19 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.ungtb10d.graph.graphcss.StyleSet;
+import org.ungtb10d.graf.grafcss.StyleSet;
 
 /**
- * The base interface for graph elements (graph, vertex, and edge).
+ * The base interface for graf elements (graf, vertex, and edge).
  * 
  */
-public interface IGraphElement {
+public interface IgrafElement {
 	/**
 	 * Adds all style classes in the given collection to the set of style classes for the element.
 	 * 
@@ -46,16 +46,16 @@ public interface IGraphElement {
 	public String getAllStyleClasses();
 
 	/**
-	 * Returns all containing graph elements, the immediate parent first.
+	 * Returns all containing graf elements, the immediate parent first.
 	 * The returned iterator does not support the {@link Iterator#remove()} operation.
 	 * 
 	 * @return an iterator over ancestor containers
 	 */
-	public Iterator<IGraphElement> getContext();
+	public Iterator<IgrafElement> getContext();
 
 	/**
-	 * Returns the graph element type. This is needed as the inheritance of graph elements reflects
-	 * behavior (a graph is a vertex) when it represents a subgraph/cluster and functionality that only
+	 * Returns the graf element type. This is needed as the inheritance of graf elements reflects
+	 * behavior (a graf is a vertex) when it represents a subgraf/cluster and functionality that only
 	 * applies to a true vertex have nothing to check against as both are instances of IVertex (and the implementation
 	 * details may not be known).
 	 * 
@@ -71,15 +71,15 @@ public interface IGraphElement {
 	public String getId();
 
 	/**
-	 * Returns the immediate containing graph element.
+	 * Returns the immediate containing graf element.
 	 * 
-	 * @return parent graph element
+	 * @return parent graf element
 	 */
-	public IGraphElement getParentElement();
+	public IgrafElement getParentElement();
 
 	/**
 	 * The style classes of the element.
-	 * Examples; for a graph it can be the name of the depicted type (e.g. "Dependency graph", a file etc.),
+	 * Examples; for a graf it can be the name of the depicted type (e.g. "Dependency graf", a file etc.),
 	 * for an vertex it can be the vertex type (i.e. what the vertex represents), and for an edge
 	 * it can be the type name of the edge (e.g. "dependency"). If style class is omitted a default style
 	 * is used.

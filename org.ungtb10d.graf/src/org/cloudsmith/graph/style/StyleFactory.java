@@ -9,37 +9,37 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style;
+package org.ungtb10d.graf.style;
 
-import static org.ungtb10d.graph.ElementType.ANY;
-import static org.ungtb10d.graph.ElementType.CELL;
-import static org.ungtb10d.graph.ElementType.CELL_AND_TABLE_AND_VERTEX;
-import static org.ungtb10d.graph.ElementType.CLUSTER_AND_GRAPH_AND_CELL_AND_TABLE;
-import static org.ungtb10d.graph.ElementType.CLUSTER_AND_GRAPH_AND_CELL_AND_TABLE_AND_VERTEX;
-import static org.ungtb10d.graph.ElementType.CLUSTER_AND_VERTEX;
-import static org.ungtb10d.graph.ElementType.EDGE;
-import static org.ungtb10d.graph.ElementType.EDGE_AND_GRAPH_AND_VERTEX;
-import static org.ungtb10d.graph.ElementType.GRAPH;
-import static org.ungtb10d.graph.ElementType.GRAPH_AND_VERTEX;
-import static org.ungtb10d.graph.ElementType.NOT_GRAPH;
-import static org.ungtb10d.graph.ElementType.NOT_SUBGRAPH;
-import static org.ungtb10d.graph.ElementType.TABLE;
-import static org.ungtb10d.graph.ElementType.TABLE_AND_CELL;
-import static org.ungtb10d.graph.ElementType.VERTEX;
+import static org.ungtb10d.graf.ElementType.ANY;
+import static org.ungtb10d.graf.ElementType.CELL;
+import static org.ungtb10d.graf.ElementType.CELL_AND_TABLE_AND_VERTEX;
+import static org.ungtb10d.graf.ElementType.CLUSTER_AND_graf_AND_CELL_AND_TABLE;
+import static org.ungtb10d.graf.ElementType.CLUSTER_AND_graf_AND_CELL_AND_TABLE_AND_VERTEX;
+import static org.ungtb10d.graf.ElementType.CLUSTER_AND_VERTEX;
+import static org.ungtb10d.graf.ElementType.EDGE;
+import static org.ungtb10d.graf.ElementType.EDGE_AND_graf_AND_VERTEX;
+import static org.ungtb10d.graf.ElementType.graf;
+import static org.ungtb10d.graf.ElementType.graf_AND_VERTEX;
+import static org.ungtb10d.graf.ElementType.NOT_graf;
+import static org.ungtb10d.graf.ElementType.NOT_SUBgraf;
+import static org.ungtb10d.graf.ElementType.TABLE;
+import static org.ungtb10d.graf.ElementType.TABLE_AND_CELL;
+import static org.ungtb10d.graf.ElementType.VERTEX;
 
 import java.util.Collection;
 import java.util.Set;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.IClusterGraph;
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.graphcss.IFunctionFactory;
-import org.ungtb10d.graph.style.labels.DynamicLabelTemplate;
-import org.ungtb10d.graph.style.labels.ILabelTemplate;
-import org.ungtb10d.graph.style.labels.LabelCell;
-import org.ungtb10d.graph.style.labels.LabelRow;
-import org.ungtb10d.graph.style.labels.LabelStringTemplate;
-import org.ungtb10d.graph.style.labels.LabelTable;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.IClustergraf;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.grafcss.IFunctionFactory;
+import org.ungtb10d.graf.style.labels.DynamicLabelTemplate;
+import org.ungtb10d.graf.style.labels.ILabelTemplate;
+import org.ungtb10d.graf.style.labels.LabelCell;
+import org.ungtb10d.graf.style.labels.LabelRow;
+import org.ungtb10d.graf.style.labels.LabelStringTemplate;
+import org.ungtb10d.graf.style.labels.LabelTable;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
@@ -47,13 +47,13 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 /**
- * An IStyleFacory implementation for graphviz dot language.
+ * An IStyleFacory implementation for grafviz dot language.
  * 
  */
 @Singleton
 public class StyleFactory implements IStyleFactory {
 	protected static abstract class AbstractStyle<T> implements IStyle<T> {
-		private Function<IGraphElement, T> function;
+		private Function<IgrafElement, T> function;
 
 		private StyleType style;
 
@@ -61,7 +61,7 @@ public class StyleFactory implements IStyleFactory {
 
 		private T value;
 
-		public AbstractStyle(StyleType style, Function<IGraphElement, T> function) {
+		public AbstractStyle(StyleType style, Function<IgrafElement, T> function) {
 			this.style = style;
 			this.function = function;
 		}
@@ -77,7 +77,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public T getValue(IGraphElement ge) {
+		public T getValue(IgrafElement ge) {
 			return function != null
 					? function.apply(ge)
 					: value;
@@ -106,11 +106,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class Align extends AbstractStyle<Alignment> {
 		public Align(Alignment align) {
 			super(StyleType.align, align);
-			setTypes(CLUSTER_AND_GRAPH_AND_CELL_AND_TABLE);
+			setTypes(CLUSTER_AND_graf_AND_CELL_AND_TABLE);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.align(getValue(ge));
 		}
 	}
@@ -122,7 +122,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.arrowHead(getValue(ge));
 		}
 	}
@@ -134,7 +134,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.arrows(getValue(ge));
 		}
 
@@ -147,7 +147,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.arrowScale(getValue(ge));
 		}
 
@@ -160,7 +160,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.arrowTail(getValue(ge));
 		}
 
@@ -169,11 +169,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class BackgroundColor extends StringStyle {
 		public BackgroundColor(String colorString) {
 			super(StyleType.backgroundColor, colorString);
-			setTypes(CLUSTER_AND_GRAPH_AND_CELL_AND_TABLE);
+			setTypes(CLUSTER_AND_graf_AND_CELL_AND_TABLE);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.backgroundColor(getValue(ge));
 		}
 
@@ -184,7 +184,7 @@ public class StyleFactory implements IStyleFactory {
 			super(style, value);
 		}
 
-		public BooleanStyle(StyleType style, Function<IGraphElement, Boolean> value) {
+		public BooleanStyle(StyleType style, Function<IgrafElement, Boolean> value) {
 			super(style, value);
 		}
 	}
@@ -196,7 +196,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.borderWidth(getValue(ge));
 		}
 
@@ -209,7 +209,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.cellBorderWidth(getValue(ge));
 		}
 
@@ -222,7 +222,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.cellPadding(getValue(ge));
 		}
 
@@ -235,7 +235,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.cellSpacing(getValue(ge));
 		}
 
@@ -248,7 +248,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.color(getValue(ge));
 		}
 
@@ -261,7 +261,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.colSpan(getValue(ge));
 		}
 
@@ -270,11 +270,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class Compound extends BooleanStyle {
 		public Compound(Boolean flag) {
 			super(StyleType.compound, flag);
-			setTypes(GRAPH);
+			setTypes(graf);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.compound(getValue(ge));
 		}
 
@@ -283,11 +283,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class Concentrate extends BooleanStyle {
 		public Concentrate(Boolean flag) {
 			super(StyleType.concentrate, flag);
-			setTypes(GRAPH);
+			setTypes(graf);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.concentrate(getValue(ge));
 		}
 	}
@@ -299,7 +299,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.decorate(getValue(ge));
 		}
 
@@ -312,7 +312,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.direction(getValue(ge));
 		}
 
@@ -332,7 +332,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.lineBrush(getValue(ge));
 		}
 
@@ -366,7 +366,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.fillColor(getValue(ge));
 		}
 
@@ -379,7 +379,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.fixedSize(getValue(ge));
 		}
 
@@ -392,7 +392,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.fontFamily(getValue(ge));
 		}
 
@@ -405,20 +405,20 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.fontSize(getValue(ge));
 		}
 
 	}
 
-	public static class HeadCluster extends AbstractStyle<IClusterGraph> {
-		public HeadCluster(IClusterGraph graph) {
-			super(StyleType.toCluster, graph);
+	public static class HeadCluster extends AbstractStyle<IClustergraf> {
+		public HeadCluster(IClustergraf graf) {
+			super(StyleType.toCluster, graf);
 			setTypes(EDGE);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.toCluster(getValue(ge));
 		}
 	}
@@ -442,7 +442,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.headPort(getValue(ge));
 		}
 
@@ -455,7 +455,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.height(getValue(ge));
 		}
 
@@ -464,24 +464,24 @@ public class StyleFactory implements IStyleFactory {
 	public static class Href extends StringStyle {
 		public Href(String urlString) {
 			super(StyleType.href, urlString);
-			setTypes(NOT_SUBGRAPH);
+			setTypes(NOT_SUBgraf);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.href(getValue(ge));
 		}
 
 	}
 
 	public static class Id extends StringStyle {
-		public Id(Function<IGraphElement, String> text) {
+		public Id(Function<IgrafElement, String> text) {
 			super(StyleType.id, text);
-			setTypes(EDGE_AND_GRAPH_AND_VERTEX); // TODO: can clusters have id in SVG?
+			setTypes(EDGE_AND_graf_AND_VERTEX); // TODO: can clusters have id in SVG?
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.id(getValue(ge));
 		}
 
@@ -501,11 +501,11 @@ public class StyleFactory implements IStyleFactory {
 		 */
 		public LabelFormat(ILabelTemplate t) {
 			super(StyleType.labelFormat, t);
-			setTypes(EDGE_AND_GRAPH_AND_VERTEX);
+			setTypes(EDGE_AND_graf_AND_VERTEX);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.labelFormat(getValue(ge));
 		}
 
@@ -514,11 +514,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class LineColor extends StringStyle {
 		public LineColor(String colorString) {
 			super(StyleType.lineColor, colorString);
-			setTypes(EDGE_AND_GRAPH_AND_VERTEX);
+			setTypes(EDGE_AND_graf_AND_VERTEX);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.lineColor(getValue(ge));
 		}
 
@@ -527,11 +527,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class McLimit extends DoubleStyle {
 		public McLimit(Double value) {
 			super(StyleType.width, value);
-			setTypes(GRAPH);
+			setTypes(graf);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.mclimit(getValue(ge));
 		}
 
@@ -540,12 +540,12 @@ public class StyleFactory implements IStyleFactory {
 	public static class NodeBrush extends AbstractStyle<ShapeBrush> {
 		public NodeBrush(LineType lineType, Double lineWidth, boolean filled, boolean rounded) {
 			super(StyleType.shapeBrush, new ShapeBrush(lineType, lineWidth, filled, rounded));
-			// does not apply to root graph - this must be checked when rendering
-			setTypes(GRAPH_AND_VERTEX);
+			// does not apply to root graf - this must be checked when rendering
+			setTypes(graf_AND_VERTEX);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.shapeBrush(getValue(ge));
 		}
 
@@ -557,7 +557,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.port(getValue(ge));
 		}
 
@@ -566,11 +566,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class RankDirectionStyle extends AbstractStyle<RankDirection> {
 		public RankDirectionStyle(RankDirection direction) {
 			super(StyleType.rankDirection, direction);
-			setTypes(GRAPH);
+			setTypes(graf);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.rankDirection(getValue(ge));
 		}
 
@@ -579,11 +579,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class RankSeparation extends DoubleStyle {
 		public RankSeparation(Double inches) {
 			super(StyleType.rankSeparation, inches);
-			setTypes(GRAPH);
+			setTypes(graf);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.rankSeparation(getValue(ge));
 		}
 
@@ -592,11 +592,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class ReMinCross extends BooleanStyle {
 		public ReMinCross(Boolean flag) {
 			super(StyleType.remincross, flag);
-			setTypes(GRAPH);
+			setTypes(graf);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.remincross(getValue(ge));
 		}
 
@@ -613,13 +613,13 @@ public class StyleFactory implements IStyleFactory {
 			setTypes(TABLE_AND_CELL);
 		}
 
-		public Rendered(Function<IGraphElement, Boolean> value) {
+		public Rendered(Function<IgrafElement, Boolean> value) {
 			super(StyleType.rendered, value);
 			setTypes(TABLE_AND_CELL);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.rendered(getValue(ge));
 		}
 
@@ -628,11 +628,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class Routing extends AbstractStyle<EdgeRouting> {
 		public Routing(EdgeRouting routing) {
 			super(StyleType.edgeRouting, routing);
-			setTypes(GRAPH);
+			setTypes(graf);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.routing(getValue(ge));
 		}
 
@@ -645,7 +645,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.rowSpan(getValue(ge));
 		}
 
@@ -658,14 +658,14 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.shape(getValue(ge));
 		}
 
 	}
 
 	protected abstract static class StringStyle extends AbstractStyle<String> {
-		public StringStyle(StyleType style, Function<IGraphElement, String> value) {
+		public StringStyle(StyleType style, Function<IgrafElement, String> value) {
 			super(style, value);
 		}
 
@@ -675,14 +675,14 @@ public class StyleFactory implements IStyleFactory {
 
 	}
 
-	public static class TailCluster extends AbstractStyle<IClusterGraph> {
-		public TailCluster(IClusterGraph graph) {
-			super(StyleType.fromCluster, graph);
+	public static class TailCluster extends AbstractStyle<IClustergraf> {
+		public TailCluster(IClustergraf graf) {
+			super(StyleType.fromCluster, graf);
 			setTypes(EDGE);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.fromCluster(getValue(ge));
 		}
 	}
@@ -707,7 +707,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.tailPort(getValue(ge));
 		}
 
@@ -720,59 +720,59 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.target(getValue(ge));
 		}
 
 	}
 
 	public static class Tooltip extends StringStyle {
-		public Tooltip(Function<IGraphElement, String> text) {
+		public Tooltip(Function<IgrafElement, String> text) {
 			super(StyleType.tooltip, text);
-			setTypes(NOT_GRAPH);
+			setTypes(NOT_graf);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.tooltip(getValue(ge));
 		}
 
 	}
 
 	public static class TooltipForHead extends StringStyle {
-		public TooltipForHead(Function<IGraphElement, String> text) {
+		public TooltipForHead(Function<IgrafElement, String> text) {
 			super(StyleType.tooltipForTail, text);
 			setTypes(EDGE);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.tooltipForHead(getValue(ge));
 		}
 
 	}
 
 	public static class TooltipForLabel extends StringStyle {
-		public TooltipForLabel(Function<IGraphElement, String> text) {
+		public TooltipForLabel(Function<IgrafElement, String> text) {
 			super(StyleType.tooltipForLabel, text);
 			setTypes(EDGE);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.tooltipForLabel(getValue(ge));
 		}
 
 	}
 
 	public static class TooltipForTail extends StringStyle {
-		public TooltipForTail(Function<IGraphElement, String> text) {
+		public TooltipForTail(Function<IgrafElement, String> text) {
 			super(StyleType.tooltipForTail, text);
 			setTypes(EDGE);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.tooltipForTail(getValue(ge));
 		}
 
@@ -781,11 +781,11 @@ public class StyleFactory implements IStyleFactory {
 	public static class VerticalAlign extends AbstractStyle<VerticalAlignment> {
 		public VerticalAlign(VerticalAlignment valign) {
 			super(StyleType.valign, valign);
-			setTypes(CLUSTER_AND_GRAPH_AND_CELL_AND_TABLE_AND_VERTEX);
+			setTypes(CLUSTER_AND_graf_AND_CELL_AND_TABLE_AND_VERTEX);
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.verticalAlign(getValue(ge));
 		}
 
@@ -798,7 +798,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.weight(getValue(ge));
 		}
 
@@ -811,7 +811,7 @@ public class StyleFactory implements IStyleFactory {
 		}
 
 		@Override
-		public void visit(IGraphElement ge, IStyleVisitor visitor) {
+		public void visit(IgrafElement ge, IStyleVisitor visitor) {
 			visitor.width(getValue(ge));
 		}
 	}
@@ -929,7 +929,7 @@ public class StyleFactory implements IStyleFactory {
 	}
 
 	@Override
-	public IStyle<IClusterGraph> headCluster(IClusterGraph x) {
+	public IStyle<IClustergraf> headCluster(IClustergraf x) {
 		return new HeadCluster(x);
 	}
 
@@ -959,7 +959,7 @@ public class StyleFactory implements IStyleFactory {
 	}
 
 	@Override
-	public IStyle<String> id(Function<IGraphElement, String> f) {
+	public IStyle<String> id(Function<IgrafElement, String> f) {
 		return new Id(f);
 	}
 
@@ -969,13 +969,13 @@ public class StyleFactory implements IStyleFactory {
 	}
 
 	@Override
-	public LabelCell labelCell(Collection<String> styleClasses, Function<IGraphElement, ILabelTemplate> f) {
+	public LabelCell labelCell(Collection<String> styleClasses, Function<IgrafElement, ILabelTemplate> f) {
 
 		return new LabelCell(functions.literalStringSet(styleClasses), f, Span.SPAN_1x1);
 	}
 
 	@Override
-	public LabelCell labelCell(Collection<String> styleClasses, Function<IGraphElement, ILabelTemplate> f, Span span) {
+	public LabelCell labelCell(Collection<String> styleClasses, Function<IgrafElement, ILabelTemplate> f, Span span) {
 
 		return new LabelCell(functions.literalStringSet(styleClasses), f, span);
 	}
@@ -992,18 +992,18 @@ public class StyleFactory implements IStyleFactory {
 	}
 
 	@Override
-	public LabelCell labelCell(Function<IGraphElement, Set<String>> styleClass,
-			Function<IGraphElement, ILabelTemplate> f, Span span) {
+	public LabelCell labelCell(Function<IgrafElement, Set<String>> styleClass,
+			Function<IgrafElement, ILabelTemplate> f, Span span) {
 		return new LabelCell(styleClass, f, span);
 	}
 
 	@Override
-	public LabelCell labelCell(String styleClass, Function<IGraphElement, ILabelTemplate> f) {
+	public LabelCell labelCell(String styleClass, Function<IgrafElement, ILabelTemplate> f) {
 		return new LabelCell(functions.literalStringSet(styleClass), f);
 	}
 
 	@Override
-	public LabelCell labelCell(String styleClass, Function<IGraphElement, ILabelTemplate> f, Span span) {
+	public LabelCell labelCell(String styleClass, Function<IgrafElement, ILabelTemplate> f, Span span) {
 		return new LabelCell(functions.literalStringSet(styleClass), f, span);
 	}
 
@@ -1048,7 +1048,7 @@ public class StyleFactory implements IStyleFactory {
 	}
 
 	@Override
-	public LabelStringTemplate labelStringTemplate(Function<IGraphElement, String> f) {
+	public LabelStringTemplate labelStringTemplate(Function<IgrafElement, String> f) {
 		return new LabelStringTemplate(f);
 	}
 
@@ -1058,7 +1058,7 @@ public class StyleFactory implements IStyleFactory {
 	}
 
 	@Override
-	public ILabelTemplate labelTemplate(Function<IGraphElement, ILabelTemplate> f) {
+	public ILabelTemplate labelTemplate(Function<IgrafElement, ILabelTemplate> f) {
 		return new DynamicLabelTemplate(f);
 	}
 
@@ -1108,7 +1108,7 @@ public class StyleFactory implements IStyleFactory {
 	}
 
 	@Override
-	public IStyle<Boolean> rendered(Function<IGraphElement, Boolean> f) {
+	public IStyle<Boolean> rendered(Function<IgrafElement, Boolean> f) {
 		return new Rendered(f);
 	}
 
@@ -1138,7 +1138,7 @@ public class StyleFactory implements IStyleFactory {
 	}
 
 	@Override
-	public IStyle<IClusterGraph> tailCluster(IClusterGraph x) {
+	public IStyle<IClustergraf> tailCluster(IClustergraf x) {
 		return new TailCluster(x);
 	}
 
@@ -1163,7 +1163,7 @@ public class StyleFactory implements IStyleFactory {
 	}
 
 	@Override
-	public Tooltip tooltip(Function<IGraphElement, String> f) {
+	public Tooltip tooltip(Function<IgrafElement, String> f) {
 		return new Tooltip(f);
 	}
 

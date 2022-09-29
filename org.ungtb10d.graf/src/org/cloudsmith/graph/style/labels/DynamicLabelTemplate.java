@@ -9,9 +9,9 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style.labels;
+package org.ungtb10d.graf.style.labels;
 
-import org.ungtb10d.graph.IGraphElement;
+import org.ungtb10d.graf.IgrafElement;
 
 import com.google.common.base.Function;
 
@@ -21,13 +21,13 @@ import com.google.common.base.Function;
  * 
  */
 public class DynamicLabelTemplate implements ILabelTemplate {
-	private Function<IGraphElement, ILabelTemplate> templateFunc;
+	private Function<IgrafElement, ILabelTemplate> templateFunc;
 
-	public DynamicLabelTemplate(Function<IGraphElement, ILabelTemplate> templateString) {
+	public DynamicLabelTemplate(Function<IgrafElement, ILabelTemplate> templateString) {
 		this.templateFunc = templateString;
 	}
 
-	public ILabelTemplate getTemplate(IGraphElement ge) {
+	public ILabelTemplate getTemplate(IgrafElement ge) {
 		return templateFunc.apply(ge);
 	}
 }

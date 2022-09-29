@@ -9,14 +9,14 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style.labels;
+package org.ungtb10d.graf.style.labels;
 
 import java.util.Set;
 
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.graphcss.StyleSet;
-import org.ungtb10d.graph.style.IStyle;
-import org.ungtb10d.graph.style.Span;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.grafcss.StyleSet;
+import org.ungtb10d.graf.style.IStyle;
+import org.ungtb10d.graf.style.Span;
 
 import com.google.common.base.Function;
 
@@ -25,7 +25,7 @@ import com.google.common.base.Function;
  */
 public class LabelCell {
 	public static class Separator extends LabelCell {
-		public Separator(Function<IGraphElement, Set<String>> styleClass, Function<IGraphElement, ILabelTemplate> value) {
+		public Separator(Function<IgrafElement, Set<String>> styleClass, Function<IgrafElement, ILabelTemplate> value) {
 			super(styleClass, value);
 		}
 
@@ -35,9 +35,9 @@ public class LabelCell {
 		}
 	}
 
-	private Function<IGraphElement, ILabelTemplate> valueFunc;
+	private Function<IgrafElement, ILabelTemplate> valueFunc;
 
-	private Function<IGraphElement, Set<String>> styleClassFunc;
+	private Function<IgrafElement, Set<String>> styleClassFunc;
 
 	private final Span span;
 
@@ -47,13 +47,13 @@ public class LabelCell {
 	 * @param styleClass2
 	 * @param f
 	 */
-	public LabelCell(Function<IGraphElement, Set<String>> styleClass, Function<IGraphElement, ILabelTemplate> value) {
+	public LabelCell(Function<IgrafElement, Set<String>> styleClass, Function<IgrafElement, ILabelTemplate> value) {
 		this.valueFunc = value;
 		this.styleClassFunc = styleClass;
 		this.span = Span.SPAN_1x1;
 	}
 
-	public LabelCell(Function<IGraphElement, Set<String>> styleClass, Function<IGraphElement, ILabelTemplate> value,
+	public LabelCell(Function<IgrafElement, Set<String>> styleClass, Function<IgrafElement, ILabelTemplate> value,
 			Span span) {
 		this.valueFunc = value;
 		this.styleClassFunc = styleClass;
@@ -64,7 +64,7 @@ public class LabelCell {
 		return span;
 	}
 
-	public Set<String> getStyleClass(IGraphElement ge) {
+	public Set<String> getStyleClass(IgrafElement ge) {
 		return styleClassFunc.apply(ge);
 	}
 
@@ -72,7 +72,7 @@ public class LabelCell {
 		return instanceStyles;
 	}
 
-	public ILabelTemplate getValue(IGraphElement ge) {
+	public ILabelTemplate getValue(IgrafElement ge) {
 		return valueFunc.apply(ge);
 	}
 

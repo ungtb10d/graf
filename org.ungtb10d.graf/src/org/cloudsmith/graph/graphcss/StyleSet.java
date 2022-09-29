@@ -9,16 +9,16 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphcss;
+package org.ungtb10d.graf.grafcss;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.style.IStyle;
-import org.ungtb10d.graph.style.StyleType;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.style.IStyle;
+import org.ungtb10d.graf.style.StyleType;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -96,7 +96,7 @@ public class StyleSet {
 	 * @param x
 	 * @return
 	 */
-	public Object getStyleValue(StyleType x, IGraphElement ge) {
+	public Object getStyleValue(StyleType x, IgrafElement ge) {
 		if(styleMap == null)
 			return null;
 		return styleMap.get(x).getValue(ge);

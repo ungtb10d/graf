@@ -9,9 +9,9 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style.labels;
+package org.ungtb10d.graf.style.labels;
 
-import org.ungtb10d.graph.IGraphElement;
+import org.ungtb10d.graf.IgrafElement;
 
 import com.google.common.base.Function;
 
@@ -26,21 +26,21 @@ import com.google.common.base.Function;
  */
 public class LabelMatrix implements ILabelTemplate {
 
-	private Function<IGraphElement, String> styleClass;
+	private Function<IgrafElement, String> styleClass;
 
 	private final int rows;
 
 	private final int columns;
 
-	public LabelMatrix(final Function<IGraphElement, String> styleClass, int rows, int columns) {
+	public LabelMatrix(final Function<IgrafElement, String> styleClass, int rows, int columns) {
 		this.styleClass = styleClass;
 		this.rows = rows;
 		this.columns = columns;
 	}
 
 	public LabelMatrix(final String styleClass, int rows, int columns) {
-		this.styleClass = new Function<IGraphElement, String>() {
-			public String apply(IGraphElement ge) {
+		this.styleClass = new Function<IgrafElement, String>() {
+			public String apply(IgrafElement ge) {
 				return styleClass;
 			}
 		};
@@ -48,7 +48,7 @@ public class LabelMatrix implements ILabelTemplate {
 		this.columns = columns;
 	}
 
-	public String getCellStyleClass(IGraphElement ge) {
+	public String getCellStyleClass(IgrafElement ge) {
 		return styleClass.apply(ge) + "c";
 	}
 
@@ -60,11 +60,11 @@ public class LabelMatrix implements ILabelTemplate {
 		return rows;
 	}
 
-	public String getRowStyleClass(IGraphElement ge) {
+	public String getRowStyleClass(IgrafElement ge) {
 		return styleClass.apply(ge) + "r";
 	}
 
-	public String getStyleClass(IGraphElement ge) {
+	public String getStyleClass(IgrafElement ge) {
 		return styleClass.apply(ge);
 	}
 

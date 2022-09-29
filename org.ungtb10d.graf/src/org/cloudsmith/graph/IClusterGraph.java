@@ -9,20 +9,20 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
 /**
- * Marker interface for a graph having a non root role and being clustered.
+ * Marker interface for a graf having a non root role and being clustered.
  * 
  */
-public interface IClusterGraph extends ISubGraph, ILabeledGraphElement {
+public interface IClustergraf extends ISubgraf, ILabeledgrafElement {
 
 	/**
-	 * Create a new RootGraph with the same content as this subgraph.
+	 * Create a new Rootgraf with the same content as this subgraf.
 	 * 
-	 * @return an IRootGraph being a copy of this cluster graph's content.
+	 * @return an IRootgraf being a copy of this cluster graf's content.
 	 */
 
-	public abstract IRootGraph asRootGraph();
+	public abstract IRootgraf asRootgraf();
 
 }

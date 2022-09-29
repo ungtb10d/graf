@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
  * Interface for a TableRow
  * 
  */
-public interface ITableRow extends IGraphElement {
+public interface ITableRow extends IgrafElement {
 	List<ITableCell> getCells();
 
 	boolean isSeparator();

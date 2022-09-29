@@ -9,14 +9,14 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphcss;
+package org.ungtb10d.graf.grafcss;
 
 import java.util.Collection;
 import java.util.Set;
 
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.style.labels.ILabelTemplate;
-import org.ungtb10d.graph.style.labels.LabelTable;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.style.labels.ILabelTemplate;
+import org.ungtb10d.graf.style.labels.LabelTable;
 
 import com.google.common.base.Function;
 
@@ -29,67 +29,67 @@ public interface IFunctionFactory {
 	public final static String ID_KEY = IFunctionFactory.class.getName() + "_Id";
 
 	/**
-	 * Returns a function returning true if the graph element has an empty label.
+	 * Returns a function returning true if the graf element has an empty label.
 	 * 
 	 * @return
 	 */
-	public Function<IGraphElement, Boolean> emptyLabel();
+	public Function<IgrafElement, Boolean> emptyLabel();
 
 	/**
-	 * Returns a function returning true if the graph element has an empty label data for the given key.
+	 * Returns a function returning true if the graf element has an empty label data for the given key.
 	 * 
 	 * @return
 	 */
-	public Function<IGraphElement, Boolean> emptyLabelData(Object key);
+	public Function<IgrafElement, Boolean> emptyLabelData(Object key);
 
 	/**
 	 * Returns a string with id="ID" class="CLASSES" based on an optional user data key (or the
-	 * fully qualified id if missing), and the combination of graph element type and graph element style class.
+	 * fully qualified id if missing), and the combination of graf element type and graf element style class.
 	 * 
 	 * @return
 	 */
-	Function<IGraphElement, String> idClassReplacer();
+	Function<IgrafElement, String> idClassReplacer();
 
 	/**
-	 * Returns the label string of the graph element.
+	 * Returns the label string of the graf element.
 	 * 
 	 * @return
 	 */
-	public Function<IGraphElement, ILabelTemplate> label();
+	public Function<IgrafElement, ILabelTemplate> label();
 
 	/**
-	 * Returns the label data of the given key from the graph element.
+	 * Returns the label data of the given key from the graf element.
 	 * 
 	 * @param key
 	 * @return
 	 */
-	public Function<IGraphElement, String> labelData(Object key);
+	public Function<IgrafElement, String> labelData(Object key);
 
-	public Function<IGraphElement, ILabelTemplate> labelTemplate(Function<IGraphElement, String> stringfunc);
+	public Function<IgrafElement, ILabelTemplate> labelTemplate(Function<IgrafElement, String> stringfunc);
 
-	public Function<IGraphElement, ILabelTemplate> literalLabelTemplate(LabelTable t);
+	public Function<IgrafElement, ILabelTemplate> literalLabelTemplate(LabelTable t);
 
-	public Function<IGraphElement, ILabelTemplate> literalLabelTemplate(String s);
+	public Function<IgrafElement, ILabelTemplate> literalLabelTemplate(String s);
 
-	public Function<IGraphElement, String> literalString(String s);
+	public Function<IgrafElement, String> literalString(String s);
 
-	public Function<IGraphElement, Set<String>> literalStringSet(Collection<String> s);
+	public Function<IgrafElement, Set<String>> literalStringSet(Collection<String> s);
 
-	public Function<IGraphElement, Set<String>> literalStringSet(String s);
+	public Function<IgrafElement, Set<String>> literalStringSet(String s);
 
 	/**
-	 * Returns true if the graph element's label is not empty.
+	 * Returns true if the graf element's label is not empty.
 	 * 
 	 * @return
 	 */
-	public Function<IGraphElement, Boolean> notEmptyLabel();
+	public Function<IgrafElement, Boolean> notEmptyLabel();
 
 	/**
-	 * Returns true if the graph element's label data with the given key is not empty.
+	 * Returns true if the graf element's label data with the given key is not empty.
 	 * 
 	 * @param key
 	 * @return
 	 */
-	public Function<IGraphElement, Boolean> notEmptyLabelData(Object key);
+	public Function<IgrafElement, Boolean> notEmptyLabelData(Object key);
 
 }

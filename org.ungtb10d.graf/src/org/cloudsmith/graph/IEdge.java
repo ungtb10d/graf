@@ -9,13 +9,13 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
 /**
  * Interface for an edge between two vertexes.
  * 
  */
-public interface IEdge extends ILabeledGraphElement {
+public interface IEdge extends ILabeledgrafElement {
 
 	/**
 	 * The "source" or "tail" end of the edge.

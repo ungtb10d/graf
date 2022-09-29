@@ -7,18 +7,18 @@
  * Contributors:
  * - ungtb10d Inc - initial API and implementation.
  */
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
-public class GraphElementAdapterFactory extends AdapterFactoryImpl {
-	public static GraphElementAdapterFactory eINSTANCE = new GraphElementAdapterFactory();
+public class grafElementAdapterFactory extends AdapterFactoryImpl {
+	public static grafElementAdapterFactory eINSTANCE = new grafElementAdapterFactory();
 
-	public GraphElementAdapter adapt(EObject target) {
-		return adapt(target, GraphElementAdapter.class);
+	public grafElementAdapter adapt(EObject target) {
+		return adapt(target, grafElementAdapter.class);
 	}
 
 	/**
@@ -35,11 +35,11 @@ public class GraphElementAdapterFactory extends AdapterFactoryImpl {
 
 	@Override
 	protected Adapter createAdapter(Notifier target, Object type) {
-		return new GraphElementAdapter();
+		return new grafElementAdapter();
 	}
 
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return type == GraphElementAdapter.class;
+		return type == grafElementAdapter.class;
 	}
 }

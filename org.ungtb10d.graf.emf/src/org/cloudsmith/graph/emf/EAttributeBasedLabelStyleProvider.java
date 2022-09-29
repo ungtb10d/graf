@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,17 +17,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.graphcss.IFunctionFactory;
-import org.ungtb10d.graph.graphcss.Rule;
-import org.ungtb10d.graph.graphcss.Select;
-import org.ungtb10d.graph.graphcss.StyleSet;
-import org.ungtb10d.graph.style.Alignment;
-import org.ungtb10d.graph.style.Compass;
-import org.ungtb10d.graph.style.IStyleFactory;
-import org.ungtb10d.graph.style.Span;
-import org.ungtb10d.graph.style.labels.ILabelTemplate;
-import org.ungtb10d.graph.style.labels.LabelStringTemplate;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.grafcss.IFunctionFactory;
+import org.ungtb10d.graf.grafcss.Rule;
+import org.ungtb10d.graf.grafcss.Select;
+import org.ungtb10d.graf.grafcss.StyleSet;
+import org.ungtb10d.graf.style.Alignment;
+import org.ungtb10d.graf.style.Compass;
+import org.ungtb10d.graf.style.IStyleFactory;
+import org.ungtb10d.graf.style.Span;
+import org.ungtb10d.graf.style.labels.ILabelTemplate;
+import org.ungtb10d.graf.style.labels.LabelStringTemplate;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -47,7 +47,7 @@ import com.google.inject.Inject;
  */
 public class EAttributeBasedLabelStyleProvider implements IELabelStyleProvider {
 
-	private static class AttributeFunction implements Function<IGraphElement, ILabelTemplate> {
+	private static class AttributeFunction implements Function<IgrafElement, ILabelTemplate> {
 		private EAttribute attribute;
 
 		public AttributeFunction(EAttribute attribute) {
@@ -60,7 +60,7 @@ public class EAttributeBasedLabelStyleProvider implements IELabelStyleProvider {
 		 * @see com.google.common.base.Function#apply(java.lang.Object)
 		 */
 		@Override
-		public ILabelTemplate apply(IGraphElement from) {
+		public ILabelTemplate apply(IgrafElement from) {
 			if(!(from instanceof EVertex))
 				return new LabelStringTemplate("ERROR: not an EVertex");
 			EObject obj = ((EVertex) from).getEObject();
@@ -151,7 +151,7 @@ public class EAttributeBasedLabelStyleProvider implements IELabelStyleProvider {
 			}
 		});
 
-		org.ungtb10d.graph.style.labels.LabelRow labelRows[] = new org.ungtb10d.graph.style.labels.LabelRow[attributes.size() + 1];
+		org.ungtb10d.graf.style.labels.LabelRow labelRows[] = new org.ungtb10d.graf.style.labels.LabelRow[attributes.size() + 1];
 
 		// First row contains an index cell that spans all rows
 		// Class-name cell spans two columns.

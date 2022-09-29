@@ -1,4 +1,4 @@
-package org.ungtb10d.graph.tests;
+package org.ungtb10d.graf.tests;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

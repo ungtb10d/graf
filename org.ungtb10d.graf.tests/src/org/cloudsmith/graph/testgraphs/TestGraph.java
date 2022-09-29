@@ -6,41 +6,41 @@
  * prior written consent or license from ungtb10d Inc.
  ******************************************************************/
 
-package org.ungtb10d.graph.testgraphs;
+package org.ungtb10d.graf.testgrafs;
 
 import java.util.Collection;
 import java.util.List;
 
-import org.ungtb10d.graph.IGraphProvider;
-import org.ungtb10d.graph.IRootGraph;
-import org.ungtb10d.graph.elements.ClusterGraph;
-import org.ungtb10d.graph.elements.Edge;
-import org.ungtb10d.graph.elements.RootGraph;
-import org.ungtb10d.graph.elements.Vertex;
-import org.ungtb10d.graph.graphcss.IFunctionFactory;
-import org.ungtb10d.graph.graphcss.Rule;
-import org.ungtb10d.graph.graphcss.Select;
-import org.ungtb10d.graph.graphcss.StyleSet;
-import org.ungtb10d.graph.style.Alignment;
-import org.ungtb10d.graph.style.Arrow;
-import org.ungtb10d.graph.style.Compass;
-import org.ungtb10d.graph.style.EdgeRouting;
-import org.ungtb10d.graph.style.IStyleFactory;
-import org.ungtb10d.graph.style.LineType;
-import org.ungtb10d.graph.style.NodeShape;
-import org.ungtb10d.graph.style.labels.LabelTable;
-import org.ungtb10d.graph.style.labels.LabelTableBuilder;
+import org.ungtb10d.graf.IgrafProvider;
+import org.ungtb10d.graf.IRootgraf;
+import org.ungtb10d.graf.elements.Clustergraf;
+import org.ungtb10d.graf.elements.Edge;
+import org.ungtb10d.graf.elements.Rootgraf;
+import org.ungtb10d.graf.elements.Vertex;
+import org.ungtb10d.graf.grafcss.IFunctionFactory;
+import org.ungtb10d.graf.grafcss.Rule;
+import org.ungtb10d.graf.grafcss.Select;
+import org.ungtb10d.graf.grafcss.StyleSet;
+import org.ungtb10d.graf.style.Alignment;
+import org.ungtb10d.graf.style.Arrow;
+import org.ungtb10d.graf.style.Compass;
+import org.ungtb10d.graf.style.EdgeRouting;
+import org.ungtb10d.graf.style.IStyleFactory;
+import org.ungtb10d.graf.style.LineType;
+import org.ungtb10d.graf.style.NodeShape;
+import org.ungtb10d.graf.style.labels.LabelTable;
+import org.ungtb10d.graf.style.labels.LabelTableBuilder;
 
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 /**
- * A test and demo of the graphviz graph layout and rendering support.
+ * A test and demo of the grafviz graf layout and rendering support.
  * TODO: UNFINISHED, AND HAS ISSUES...
  * 
  */
-public class TestGraph implements IGraphProvider {
+public class Testgraf implements IgrafProvider {
 
 	private Arrow m_headArrow = Arrow.vee;
 
@@ -69,7 +69,7 @@ public class TestGraph implements IGraphProvider {
 
 	private boolean m_edgeDecorate = false;
 
-	// private GraphvizRenderer m_renderer = GraphvizRenderer.gd;
+	// private grafvizRenderer m_renderer = grafvizRenderer.gd;
 	//
 	// private DotRenderer dotRenderer;
 
@@ -78,29 +78,29 @@ public class TestGraph implements IGraphProvider {
 	private IFunctionFactory functions;
 
 	@Inject
-	public TestGraph(IStyleFactory styleFactory, IFunctionFactory functions) {
+	public Testgraf(IStyleFactory styleFactory, IFunctionFactory functions) {
 		this.styleFactory = styleFactory;
 		this.functions = functions;
 	}
 
-	public IRootGraph computeGraph() {
-		return computeGraph(null, "a graph with subgraphs", "root");
+	public IRootgraf computegraf() {
+		return computegraf(null, "a graf with subgrafs", "root");
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.IGraphProvider#computeGraph()
+	 * @see org.ungtb10d.graf.IgrafProvider#computegraf()
 	 */
 	@Override
-	public IRootGraph computeGraph(Object modelObj) {
-		return computeGraph();
+	public IRootgraf computegraf(Object modelObj) {
+		return computegraf();
 	}
 
-	// public byte[] getGraph() {
-	// IGraph graph = getMockGraph();
-	// IGraphviz g = new Graphviz(new DefaultGraphvizConfig(), dotRenderer);
-	// byte[] img = g.getPngImage(m_layout, graph, getCGSS(), null);
+	// public byte[] getgraf() {
+	// Igraf graf = getMockgraf();
+	// Igrafviz g = new grafviz(new DefaultgrafvizConfig(), dotRenderer);
+	// byte[] img = g.getPngImage(m_layout, graf, getCGSS(), null);
 	// // TODO: get the bytes of the no_image.png under images folder
 	// return img == null
 	// ? ImageUtils.loadImage("/static/img/no_image.png")
@@ -109,15 +109,15 @@ public class TestGraph implements IGraphProvider {
 	// }
 
 	/**
-	 * @modelObj - ignored, returns same graph at all times.
+	 * @modelObj - ignored, returns same graf at all times.
 	 */
-	public IRootGraph computeGraph(Object modelObj, String title, String id) {
-		RootGraph g = new RootGraph(title, "RootGraph", id);
-		ClusterGraph sub1 = getMockGraph("x1");
-		g.addSubgraph(sub1);
-		ClusterGraph sub2 = getMockGraph("x2");
-		sub2.addSubgraph(getNestedMockGraph());
-		g.addSubgraph(sub2);
+	public IRootgraf computegraf(Object modelObj, String title, String id) {
+		Rootgraf g = new Rootgraf(title, "Rootgraf", id);
+		Clustergraf sub1 = getMockgraf("x1");
+		g.addSubgraf(sub1);
+		Clustergraf sub2 = getMockgraf("x2");
+		sub2.addSubgraf(getNestedMockgraf());
+		g.addSubgraf(sub2);
 		g.addEdge(new Edge("between", Iterators.get(sub1.getVertices().iterator(), 0), Iterators.get(
 			sub2.getVertices().iterator(), 0)));
 		g.addEdge(new Edge("between2", Iterators.get(sub1.getVertices().iterator(), 3), Iterators.get(
@@ -125,8 +125,8 @@ public class TestGraph implements IGraphProvider {
 		return g;
 	}
 
-	public ClusterGraph getMockGraph(String id) {
-		ClusterGraph g = new ClusterGraph(id, "", id);
+	public Clustergraf getMockgraf(String id) {
+		Clustergraf g = new Clustergraf(id, "", id);
 		Vertex[] vv = new Vertex[5];
 		for(int i = 0; i < vv.length; i++) {
 			vv[i] = new Vertex("label_" + Integer.toString(i) + "\nsome text", "");
@@ -156,12 +156,12 @@ public class TestGraph implements IGraphProvider {
 		return g;
 	}
 
-	private ClusterGraph getNestedMockGraph() {
-		ClusterGraph g = new ClusterGraph("x11", "a graph with subgraphs", "RootGraph");
-		ClusterGraph sub1 = getMockGraph("x12");
-		g.addSubgraph(sub1);
-		ClusterGraph sub2 = getMockGraph("x13");
-		g.addSubgraph(sub2);
+	private Clustergraf getNestedMockgraf() {
+		Clustergraf g = new Clustergraf("x11", "a graf with subgrafs", "Rootgraf");
+		Clustergraf sub1 = getMockgraf("x12");
+		g.addSubgraf(sub1);
+		Clustergraf sub2 = getMockgraf("x13");
+		g.addSubgraf(sub2);
 		g.addEdge(new Edge(Iterators.get(sub1.getVertices().iterator(), 0), Iterators.get(
 			sub2.getVertices().iterator(), 0)));
 		g.addEdge(new Edge(Iterators.get(sub1.getVertices().iterator(), 3), Iterators.get(
@@ -170,9 +170,9 @@ public class TestGraph implements IGraphProvider {
 	}
 
 	/**
-	 * Produces a CGSS (Cascading Graph Style Sheet) based on the user's input.
+	 * Produces a CGSS (Cascading graf Style Sheet) based on the user's input.
 	 * This is also a good demonstration of how to use the Styling capabilities of
-	 * the Graphviz support.
+	 * the grafviz support.
 	 * 
 	 * @return the rule set to use as CGSS
 	 */
@@ -181,8 +181,8 @@ public class TestGraph implements IGraphProvider {
 		// the rule set that contains all rules and styling
 		List<Rule> result = Lists.newArrayList();
 
-		// Styles for the graph
-		result.add(Select.graph().withStyles( //
+		// Styles for the graf
+		result.add(Select.graf().withStyles( //
 			styleFactory.concentrate(m_concentrate), //
 			styleFactory.routing(m_routing)));
 
@@ -240,12 +240,12 @@ public class TestGraph implements IGraphProvider {
 	}
 
 	// public String getUsemap() {
-	// IGraph graph = getMockGraph();
+	// Igraf graf = getMockgraf();
 	// // usemap does not support different renderers (?)
 	// // TODO: check if usemap is ok for cairo as well as gd
-	// // right now the Graphviz runner sets the renderer to null for usemap rendering.
+	// // right now the grafviz runner sets the renderer to null for usemap rendering.
 	// //
-	// IGraphviz g = new Graphviz(new DefaultGraphvizConfig(), dotRenderer);
-	// return g.getUsemap(m_layout, graph, getCGSS(), null);
+	// Igrafviz g = new grafviz(new DefaultgrafvizConfig(), dotRenderer);
+	// return g.getUsemap(m_layout, graf, getCGSS(), null);
 	// }
 }

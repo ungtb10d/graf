@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.utils;
+package org.ungtb10d.graf.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

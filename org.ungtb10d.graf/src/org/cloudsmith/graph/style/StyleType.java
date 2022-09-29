@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style;
+package org.ungtb10d.graf.style;
 
 public enum StyleType {
 	/** Sets the text color for labels. Value is a {@link String}. */
@@ -210,7 +210,7 @@ public enum StyleType {
 	weight,
 
 	/**
-	 * Multiplicative factor (default 1.0) used to alter the graphviz parameters MinQuit (8) and MaxIter (24)
+	 * Multiplicative factor (default 1.0) used to alter the grafviz parameters MinQuit (8) and MaxIter (24)
 	 * used during crossing minimization. The higher the number the more effort is used to avoid crossings.
 	 */
 	mclimit,

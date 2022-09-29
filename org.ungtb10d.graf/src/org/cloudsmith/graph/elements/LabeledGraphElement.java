@@ -9,75 +9,75 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.elements;
+package org.ungtb10d.graf.elements;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.ILabeledGraphElement;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.ILabeledgrafElement;
 
 /**
  * 
  *
  */
-public abstract class LabeledGraphElement extends GraphElement implements IGraphElement, ILabeledGraphElement {
+public abstract class LabeledgrafElement extends grafElement implements IgrafElement, ILabeledgrafElement {
 	private String label;
 
-	public LabeledGraphElement() {
+	public LabeledgrafElement() {
 		this(null, "", "", null);
 	}
 
-	public LabeledGraphElement(Collection<String> styleClasses) {
+	public LabeledgrafElement(Collection<String> styleClasses) {
 		this(null, "", styleClasses, null);
 	}
 
-	public LabeledGraphElement(Collection<String> styleClasses, String id) {
+	public LabeledgrafElement(Collection<String> styleClasses, String id) {
 		this(null, "", styleClasses, id);
 	}
 
-	protected LabeledGraphElement(LabeledGraphElement that) {
+	protected LabeledgrafElement(LabeledgrafElement that) {
 		super(that);
 		this.label = that.label;
 	}
 
-	public LabeledGraphElement(Map<String, String> data) {
+	public LabeledgrafElement(Map<String, String> data) {
 		this(data, "", "", null);
 	}
 
-	public LabeledGraphElement(Map<String, String> data, String styleClass) {
+	public LabeledgrafElement(Map<String, String> data, String styleClass) {
 		this(null, "", styleClass, null);
 	}
 
-	public LabeledGraphElement(Map<String, String> data, String label, Collection<String> styleClasses, String id) {
+	public LabeledgrafElement(Map<String, String> data, String label, Collection<String> styleClasses, String id) {
 		super(styleClasses, id);
 		this.label = label;
 		if(data != null)
 			getUserData().putAll(data);
 	}
 
-	public LabeledGraphElement(Map<String, String> data, String styleClass, String id) {
+	public LabeledgrafElement(Map<String, String> data, String styleClass, String id) {
 		this(null, "", styleClass, id);
 	}
 
-	public LabeledGraphElement(Map<String, String> data, String label, String styleClass, String id) {
+	public LabeledgrafElement(Map<String, String> data, String label, String styleClass, String id) {
 		this(data, label, Collections.singleton(styleClass), id);
 	}
 
-	public LabeledGraphElement(String styleClass) {
+	public LabeledgrafElement(String styleClass) {
 		this(null, "", styleClass, null);
 	}
 
-	public LabeledGraphElement(String label, Collection<String> styleClasses, String id) {
+	public LabeledgrafElement(String label, Collection<String> styleClasses, String id) {
 		this(null, label, styleClasses, id);
 	}
 
-	public LabeledGraphElement(String styleClass, String id) {
+	public LabeledgrafElement(String styleClass, String id) {
 		this(null, "", styleClass, id);
 	}
 
-	public LabeledGraphElement(String label, String styleClass, String id) {
+	public LabeledgrafElement(String label, String styleClass, String id) {
 		this(null, label, styleClass, id);
 	}
 

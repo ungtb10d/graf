@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphcss;
+package org.ungtb10d.graf.grafcss;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,14 +17,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.ungtb10d.graph.ICancel;
-import org.ungtb10d.graph.IGraphElement;
+import org.ungtb10d.graf.ICancel;
+import org.ungtb10d.graf.IgrafElement;
 
 /**
- * A Graph CSS consists of a set of {@link Rule} describing the styling of an {@link IGraph}.
+ * A graf CSS consists of a set of {@link Rule} describing the styling of an {@link Igraf}.
  * 
  */
-public class GraphCSS {
+public class grafCSS {
 	ArrayList<Rule> cssRules;
 
 	/**
@@ -42,8 +42,8 @@ public class GraphCSS {
 
 			// if they are equal - they should be ordered on their index in the ruleset
 			// the one with the lower index
-			r1s = r1.getGraphCSS().indexOf(r1);
-			r2s = r2.getGraphCSS().indexOf(r2);
+			r1s = r1.getgrafCSS().indexOf(r1);
+			r2s = r2.getgrafCSS().indexOf(r2);
 			if(r1s < r2s)
 				return -1;
 			if(r1s > r2s)
@@ -52,7 +52,7 @@ public class GraphCSS {
 		}
 	};
 
-	public GraphCSS() {
+	public grafCSS() {
 		cssRules = new ArrayList<Rule>();
 	}
 
@@ -61,7 +61,7 @@ public class GraphCSS {
 	 * 
 	 * @param ruleSet
 	 */
-	public void addAll(GraphCSS ruleSet) {
+	public void addAll(grafCSS ruleSet) {
 		// can't just add them using collection routines as the parent ruleSet must be set,
 		// and rule cloned.
 		//
@@ -84,10 +84,10 @@ public class GraphCSS {
 		if(rule == Rule.NULL_RULE)
 			return;
 
-		rule = rule.getGraphCSS() != null
+		rule = rule.getgrafCSS() != null
 				? (Rule) rule.clone()
 				: rule;
-		rule.setGraphCSS(this);
+		rule.setgrafCSS(this);
 		cssRules.add(rule);
 	}
 
@@ -126,7 +126,7 @@ public class GraphCSS {
 	 * 
 	 * @param ruleSet
 	 */
-	public void addUnique(GraphCSS ruleSet) {
+	public void addUnique(grafCSS ruleSet) {
 		addUnique(ruleSet.cssRules);
 	}
 
@@ -136,7 +136,7 @@ public class GraphCSS {
 	 * 
 	 * @return
 	 */
-	public List<Rule> collectRules(IGraphElement element) {
+	public List<Rule> collectRules(IgrafElement element) {
 		ArrayList<Rule> matches = new ArrayList<Rule>(cssRules.size() / 2); // guessing on size
 
 		// if element has a style map, add a (matched) rule for it
@@ -156,7 +156,7 @@ public class GraphCSS {
 	 * @param element
 	 * @return
 	 */
-	public StyleSet collectStyles(IGraphElement element, ICancel cancel) {
+	public StyleSet collectStyles(IgrafElement element, ICancel cancel) {
 		StyleSet result = new StyleSet();
 		for(Rule r : collectRules(element)) {
 			cancel.assertContinue();

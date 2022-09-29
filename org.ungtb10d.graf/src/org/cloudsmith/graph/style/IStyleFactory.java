@@ -9,17 +9,17 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style;
+package org.ungtb10d.graf.style;
 
 import java.util.Collection;
 import java.util.Set;
 
-import org.ungtb10d.graph.IClusterGraph;
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.style.labels.ILabelTemplate;
-import org.ungtb10d.graph.style.labels.LabelCell;
-import org.ungtb10d.graph.style.labels.LabelRow;
-import org.ungtb10d.graph.style.labels.LabelTable;
+import org.ungtb10d.graf.IClustergraf;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.style.labels.ILabelTemplate;
+import org.ungtb10d.graf.style.labels.LabelCell;
+import org.ungtb10d.graf.style.labels.LabelRow;
+import org.ungtb10d.graf.style.labels.LabelTable;
 
 import com.google.common.base.Function;
 
@@ -78,7 +78,7 @@ public interface IStyleFactory {
 
 	public IStyle<Integer> fontSize(int x);
 
-	public IStyle<IClusterGraph> headCluster(IClusterGraph x);
+	public IStyle<IClustergraf> headCluster(IClustergraf x);
 
 	public IStyle<String> headPort(Compass x);
 
@@ -90,13 +90,13 @@ public interface IStyleFactory {
 
 	public IStyle<String> href(String x);
 
-	public IStyle<String> id(Function<IGraphElement, String> idClassReplacer);
+	public IStyle<String> id(Function<IgrafElement, String> idClassReplacer);
 
 	public IStyle<String> id(String s);
 
-	public LabelCell labelCell(Collection<String> styleClasses, Function<IGraphElement, ILabelTemplate> f);
+	public LabelCell labelCell(Collection<String> styleClasses, Function<IgrafElement, ILabelTemplate> f);
 
-	public LabelCell labelCell(Collection<String> styleClasses, Function<IGraphElement, ILabelTemplate> f, Span span);
+	public LabelCell labelCell(Collection<String> styleClasses, Function<IgrafElement, ILabelTemplate> f, Span span);
 
 	public LabelCell labelCell(Collection<String> styleClasses, LabelTable value);
 
@@ -106,12 +106,12 @@ public interface IStyleFactory {
 
 	public LabelCell labelCell(Collection<String> styleClasses, String value, Span span);
 
-	public LabelCell labelCell(Function<IGraphElement, Set<String>> styleClass,
-			Function<IGraphElement, ILabelTemplate> f, Span span);
+	public LabelCell labelCell(Function<IgrafElement, Set<String>> styleClass,
+			Function<IgrafElement, ILabelTemplate> f, Span span);
 
-	public LabelCell labelCell(String styleClass, Function<IGraphElement, ILabelTemplate> f);
+	public LabelCell labelCell(String styleClass, Function<IgrafElement, ILabelTemplate> f);
 
-	public LabelCell labelCell(String styleClass, Function<IGraphElement, ILabelTemplate> f, Span span);
+	public LabelCell labelCell(String styleClass, Function<IgrafElement, ILabelTemplate> f, Span span);
 
 	public LabelCell labelCell(String styleClasse, LabelTable value);
 
@@ -125,13 +125,13 @@ public interface IStyleFactory {
 
 	public LabelRow labelRow(String styleClass, LabelCell... cells);
 
-	public ILabelTemplate labelStringTemplate(Function<IGraphElement, String> f);
+	public ILabelTemplate labelStringTemplate(Function<IgrafElement, String> f);
 
 	public ILabelTemplate labelStringTemplate(String x);
 
 	public LabelTable labelTable(String styleClass, LabelRow... rows);
 
-	public ILabelTemplate labelTemplate(Function<IGraphElement, ILabelTemplate> f);
+	public ILabelTemplate labelTemplate(Function<IgrafElement, ILabelTemplate> f);
 
 	public IStyle<LineBrush> lineBrush(LineType lineType, double lineWidth);
 
@@ -149,7 +149,7 @@ public interface IStyleFactory {
 
 	public IStyle<Boolean> rendered(boolean x);
 
-	public IStyle<Boolean> rendered(Function<IGraphElement, Boolean> f);
+	public IStyle<Boolean> rendered(Function<IgrafElement, Boolean> f);
 
 	public IStyle<EdgeRouting> routing(EdgeRouting x);
 
@@ -161,7 +161,7 @@ public interface IStyleFactory {
 
 	public IStyle<ShapeBrush> shapeBrush(LineType lineType, double lineWidth, boolean filled, boolean rounded);
 
-	public IStyle<IClusterGraph> tailCluster(IClusterGraph x);
+	public IStyle<IClustergraf> tailCluster(IClustergraf x);
 
 	public IStyle<String> tailPort(Compass x);
 
@@ -171,7 +171,7 @@ public interface IStyleFactory {
 
 	public IStyle<String> target(String x);
 
-	public IStyle<String> tooltip(Function<IGraphElement, String> f);
+	public IStyle<String> tooltip(Function<IgrafElement, String> f);
 
 	public IStyle<String> tooltip(String x);
 

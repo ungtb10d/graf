@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests
-Bundle-SymbolicName: org.ungtb10d.graph.tests
+Bundle-SymbolicName: org.ungtb10d.graf.tests
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.ungtb10d.graph.tests.Activator
-Require-Bundle: org.ungtb10d.graph,
+Bundle-Activator: org.ungtb10d.graf.tests.Activator
+Require-Bundle: org.ungtb10d.graf,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  com.google.guava,
@@ -12,8 +12,8 @@ Require-Bundle: org.ungtb10d.graph,
  org.junit,
  org.ungtb10d.geppetto.pp,
  org.ungtb10d.geppetto.common,
- org.ungtb10d.graph.emf
+ org.ungtb10d.graf.emf
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6,
  J2SE-1.5
-Export-Package: org.ungtb10d.graph.tests
+Export-Package: org.ungtb10d.graf.tests

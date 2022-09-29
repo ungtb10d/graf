@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.utils;
+package org.ungtb10d.graf.utils;
 
 /**
  * Simple Base64 encoder/decoder as specified by RFC2045 - using standard base64 encoding (letters, digits

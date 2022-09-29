@@ -9,11 +9,11 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.graphviz;
+package org.ungtb10d.graf.grafviz;
 
 import java.io.OutputStream;
 
-import org.ungtb10d.graph.utils.IOutputStreamFilterFactory;
+import org.ungtb10d.graf.utils.IOutputStreamFilterFactory;
 
 /**
  * Factory that wraps the given output stream with a SVGFixerOutputStream.
@@ -24,7 +24,7 @@ public class SVGFixerOutputStreamFilterFactory implements IOutputStreamFilterFac
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.utils.IOutputStreamFilterProvider#configureFilterFor(java.io.OutputStream)
+	 * @see org.ungtb10d.graf.utils.IOutputStreamFilterProvider#configureFilterFor(java.io.OutputStream)
 	 */
 	@Override
 	public OutputStream configureFilterFor(OutputStream out) {

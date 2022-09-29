@@ -9,16 +9,16 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
 
 /**
- * A graph element that supports a label.
+ * A graf element that supports a label.
  * A label is either a simple string label, or is built from keyed label parts in a data map.
  * A label may also through the use of EL and reflection get implementation specific properties.
  * 
  */
-public interface ILabeledGraphElement extends IGraphElement {
+public interface ILabeledgrafElement extends IgrafElement {
 
 	/**
 	 * Return a simple string label. The label may contain new lines on the form '\' 'n'.

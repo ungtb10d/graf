@@ -9,10 +9,10 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.style;
+package org.ungtb10d.graf.style;
 
-import org.ungtb10d.graph.IClusterGraph;
-import org.ungtb10d.graph.style.labels.ILabelTemplate;
+import org.ungtb10d.graf.IClustergraf;
+import org.ungtb10d.graf.style.labels.ILabelTemplate;
 
 /**
  * A visitor for IStyle
@@ -60,7 +60,7 @@ public interface IStyleVisitor {
 
 	public void fontSize(int x);
 
-	public void fromCluster(IClusterGraph value);
+	public void fromCluster(IClustergraf value);
 
 	public void headPort(String x);
 
@@ -100,7 +100,7 @@ public interface IStyleVisitor {
 
 	public void target(String x);
 
-	public void toCluster(IClusterGraph value);
+	public void toCluster(IClustergraf value);
 
 	public void tooltip(String x);
 

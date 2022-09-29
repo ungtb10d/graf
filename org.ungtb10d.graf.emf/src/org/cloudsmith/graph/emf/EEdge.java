@@ -9,15 +9,15 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.emf;
+package org.ungtb10d.graf.emf;
 
-import org.ungtb10d.graph.IVertex;
-import org.ungtb10d.graph.elements.Edge;
-import org.ungtb10d.graph.style.themes.DefaultStyleTheme;
+import org.ungtb10d.graf.IVertex;
+import org.ungtb10d.graf.elements.Edge;
+import org.ungtb10d.graf.style.themes.DefaultStyleTheme;
 import org.eclipse.emf.ecore.EReference;
 
 /**
- * An implementation of Graph Edge that sets information from an EMF EReference and remembers the
+ * An implementation of graf Edge that sets information from an EMF EReference and remembers the
  * EReference. The styleClass is by default set to "Containment" or "Reference" depending on the type of reference.
  * The label is by default set to the reference name.
  * 

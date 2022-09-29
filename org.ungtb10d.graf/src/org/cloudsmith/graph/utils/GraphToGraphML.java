@@ -9,18 +9,18 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.utils;
+package org.ungtb10d.graf.utils;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import org.ungtb10d.graph.IEdge;
-import org.ungtb10d.graph.IGraph;
-import org.ungtb10d.graph.IVertex;
-import org.ungtb10d.graph.style.StyleType;
+import org.ungtb10d.graf.IEdge;
+import org.ungtb10d.graf.Igraf;
+import org.ungtb10d.graf.IVertex;
+import org.ungtb10d.graf.style.StyleType;
 
 /**
- * Produces GraphML output from a Graph instance.
+ * Produces grafML output from a graf instance.
  * Uses yFiles extensions for labels and formatting as this allows the file to be opened
  * directly in yEd.
  * 
@@ -29,7 +29,7 @@ import org.ungtb10d.graph.style.StyleType;
  * TODO:This implementation is not production quality.
  * TODO: This implementation uses old style m_ and s_ field names...
  */
-public class GraphToGraphML {
+public class grafTografML {
 	private static String s_labelColor = "#2180c7";
 
 	private static String s_borderColor = "#b3b3b2";
@@ -42,7 +42,7 @@ public class GraphToGraphML {
 
 	private PrintStream m_out;
 
-	public GraphToGraphML(OutputStream stream) {
+	public grafTografML(OutputStream stream) {
 		if(!(stream instanceof PrintStream))
 			m_out = new PrintStream(stream, true);
 		else
@@ -91,30 +91,30 @@ public class GraphToGraphML {
 	}
 
 	private void printEndNameSpace() {
-		m_out.print("</graphml>\n");
+		m_out.print("</grafml>\n");
 	}
 
 	private void printEndNodeData() {
 		m_out.print("</y:ShapeNode></data>\n");
 	}
 
-	private void printGraph(IGraph graph) {
-		m_out.printf("<graph id=\"%s\" edgedefault=\"directed\">\n", graph.getId());
-		printVerticesAndEdges(graph);
-		m_out.print("</graph>\n");
+	private void printgraf(Igraf graf) {
+		m_out.printf("<graf id=\"%s\" edgedefault=\"directed\">\n", graf.getId());
+		printVerticesAndEdges(graf);
+		m_out.print("</graf>\n");
 	}
 
 	private void printHeading() {
 		m_out.print("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-				+ "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\"\n"
+				+ "<grafml xmlns=\"http://grafml.grafdrawing.org/xmlns\"\n"
 				+ "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
-				+ "xmlns:y=\"http://www.yworks.com/xml/graphml\"\n"
-				+ "xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns\n"
-				+ "http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n");
+				+ "xmlns:y=\"http://www.yworks.com/xml/grafml\"\n"
+				+ "xsi:schemaLocation=\"http://grafml.grafdrawing.org/xmlns\n"
+				+ "http://grafml.grafdrawing.org/xmlns/1.0/grafml.xsd\">\n");
 
 		// declare the data types for the yFiles extensions
-		m_out.print("<key id=\"d0\" for=\"node\" yfiles.type=\"nodegraphics\"/>\n");
-		m_out.print("<key id=\"d1\" for=\"edge\" yfiles.type=\"edgegraphics\"/>\n");
+		m_out.print("<key id=\"d0\" for=\"node\" yfiles.type=\"nodegrafics\"/>\n");
+		m_out.print("<key id=\"d1\" for=\"edge\" yfiles.type=\"edgegrafics\"/>\n");
 		m_out.print("<key id=\"d2\" for=\"node\" attr.name=\"url\" attr.type=\"string\"/>\n");
 	}
 
@@ -155,11 +155,11 @@ public class GraphToGraphML {
 		m_out.print("</node>\n");
 	}
 
-	private void printVerticesAndEdges(IGraph graph) {
+	private void printVerticesAndEdges(Igraf graf) {
 		// Print all the vertices
-		for(IVertex v : graph.getVertices())
+		for(IVertex v : graf.getVertices())
 			printVertex(v);
-		for(IEdge e : graph.getEdges())
+		for(IEdge e : graf.getEdges())
 			printEdge(e);
 	}
 
@@ -168,10 +168,10 @@ public class GraphToGraphML {
 		return s.replace("\n", "&#xA;");
 	}
 
-	public void write(IGraph graph) {
+	public void write(Igraf graf) {
 		printHeading();
 
-		printGraph(graph);
+		printgraf(graf);
 
 		printEndNameSpace();
 	}

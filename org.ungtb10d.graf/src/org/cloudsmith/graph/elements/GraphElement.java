@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.elements;
+package org.ungtb10d.graf.elements;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,24 +17,24 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.ungtb10d.graph.ElementType;
-import org.ungtb10d.graph.IGraphElement;
-import org.ungtb10d.graph.graphcss.StyleSet;
-import org.ungtb10d.graph.style.IStyle;
+import org.ungtb10d.graf.ElementType;
+import org.ungtb10d.graf.IgrafElement;
+import org.ungtb10d.graf.grafcss.StyleSet;
+import org.ungtb10d.graf.style.IStyle;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 /**
- * Base implementation of an IGraphElement.
+ * Base implementation of an IgrafElement.
  * 
  */
-public abstract class GraphElement implements IGraphElement {
-	private static class ParentIterator implements Iterator<IGraphElement> {
+public abstract class grafElement implements IgrafElement {
+	private static class ParentIterator implements Iterator<IgrafElement> {
 
-		private IGraphElement current;
+		private IgrafElement current;
 
-		public ParentIterator(IGraphElement ge) {
+		public ParentIterator(IgrafElement ge) {
 			this.current = ge;
 		}
 
@@ -44,7 +44,7 @@ public abstract class GraphElement implements IGraphElement {
 		}
 
 		@Override
-		public IGraphElement next() {
+		public IgrafElement next() {
 			current = current.getParentElement();
 			return current;
 		}
@@ -64,26 +64,26 @@ public abstract class GraphElement implements IGraphElement {
 
 	private String urlString;
 
-	private IGraphElement parentElement;
+	private IgrafElement parentElement;
 
 	private StyleSet instanceStyleMap;
 
 	private Map<String, String> data;
 
 	/**
-	 * If a graph element is created without an id, it must either be set explicitly
-	 * by user code - or set by the graph where it is added. (The default implementation
-	 * of Graph does this).
+	 * If a graf element is created without an id, it must either be set explicitly
+	 * by user code - or set by the graf where it is added. (The default implementation
+	 * of graf does this).
 	 */
-	public GraphElement() {
+	public grafElement() {
 		this("", null);
 	}
 
-	public GraphElement(Collection<String> styleClasses) {
+	public grafElement(Collection<String> styleClasses) {
 		this(styleClasses, null);
 	}
 
-	public GraphElement(Collection<String> styleClasses, String id) {
+	public grafElement(Collection<String> styleClasses, String id) {
 		this.id = id;
 		this.styleClasses = Sets.newHashSet();
 		// do this to handle null and "" styleClass
@@ -97,7 +97,7 @@ public abstract class GraphElement implements IGraphElement {
 	 * 
 	 * @param that
 	 */
-	protected GraphElement(IGraphElement that) {
+	protected grafElement(IgrafElement that) {
 		this.id = that.getId();
 		this.styleClasses = Sets.newHashSet(that.getStyleClasses());
 		this.unmodifiableStyleClasses = Collections.unmodifiableSet(this.styleClasses);
@@ -109,11 +109,11 @@ public abstract class GraphElement implements IGraphElement {
 		}
 	}
 
-	public GraphElement(String styleClass) {
+	public grafElement(String styleClass) {
 		this(styleClass, null);
 	}
 
-	public GraphElement(String styleClass, String id) {
+	public grafElement(String styleClass, String id) {
 		this(Collections.singleton(styleClass), id);
 	}
 
@@ -150,17 +150,17 @@ public abstract class GraphElement implements IGraphElement {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.IGraphElement#getContext()
+	 * @see org.ungtb10d.graf.IgrafElement#getContext()
 	 */
 	@Override
-	public Iterator<IGraphElement> getContext() {
+	public Iterator<IgrafElement> getContext() {
 		return new ParentIterator(this);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graph.IGraphElement#getElementType()
+	 * @see org.ungtb10d.graf.IgrafElement#getElementType()
 	 */
 	@Override
 	public abstract ElementType getElementType();
@@ -170,7 +170,7 @@ public abstract class GraphElement implements IGraphElement {
 	}
 
 	@Override
-	public IGraphElement getParentElement() {
+	public IgrafElement getParentElement() {
 		return parentElement;
 	}
 
@@ -228,7 +228,7 @@ public abstract class GraphElement implements IGraphElement {
 		this.id = id;
 	}
 
-	public void setParentElement(IGraphElement parent) {
+	public void setParentElement(IgrafElement parent) {
 		this.parentElement = parent;
 	}
 

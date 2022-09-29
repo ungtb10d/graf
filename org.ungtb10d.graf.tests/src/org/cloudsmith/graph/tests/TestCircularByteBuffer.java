@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph.tests;
+package org.ungtb10d.graf.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.ByteArrayOutputStream;
 import java.util.NoSuchElementException;
 
-import org.ungtb10d.graph.utils.CircularByteQueue;
+import org.ungtb10d.graf.utils.CircularByteQueue;
 import org.junit.Test;
 
 /**

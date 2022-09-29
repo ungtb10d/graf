@@ -9,53 +9,53 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graph;
+package org.ungtb10d.graf;
 
-import org.ungtb10d.graph.graphcss.Rule;
+import org.ungtb10d.graf.grafcss.Rule;
 
 /**
- * Interface for a provider of a an optionally styled graph.
- * An implementation of a graph provider should strive to provide all methods, but
- * may throw {@link UnsupportedOperationException} if not capable of producing a graph without
+ * Interface for a provider of a an optionally styled graf.
+ * An implementation of a graf provider should strive to provide all methods, but
+ * may throw {@link UnsupportedOperationException} if not capable of producing a graf without
  * an input model.
  */
-public interface IGraphProvider {
+public interface IgrafProvider {
 
 	/**
-	 * Method that computes/provides a graph.
+	 * Method that computes/provides a graf.
 	 * An implementation may throw {@link UnsupportedOperationException} if not capable of producing
-	 * a graph without a model, but should consider returning an empty graph (with some message).
+	 * a graf without a model, but should consider returning an empty graf (with some message).
 	 * 
 	 * @return
 	 */
-	public IRootGraph computeGraph();
+	public IRootgraf computegraf();
 
 	/**
-	 * Method that transforms/computes the given model to a graph, using a label and id determined
+	 * Method that transforms/computes the given model to a graf, using a label and id determined
 	 * by the producer.
-	 * This method should also compute any graph specific styling rules (returned by {@link #getRules()}).
+	 * This method should also compute any graf specific styling rules (returned by {@link #getRules()}).
 	 * 
 	 * @param model
 	 * @param label
 	 * @param id
 	 * @return
 	 */
-	public IRootGraph computeGraph(Object model);
+	public IRootgraf computegraf(Object model);
 
 	/**
-	 * Method that transforms/computes the given model to a graph, using the given label and id as graph label/id.
-	 * This method should also compute any graph specific styling rules (returned by {@link #getRules()}).
+	 * Method that transforms/computes the given model to a graf, using the given label and id as graf label/id.
+	 * This method should also compute any graf specific styling rules (returned by {@link #getRules()}).
 	 * 
 	 * @param model
 	 * @param label
 	 * @param id
 	 * @return
 	 */
-	public IGraph computeGraph(Object model, String label, String id);
+	public Igraf computegraf(Object model, String label, String id);
 
 	/**
-	 * Returns a collection of Rule containing styling rules for the specific graph.
-	 * Never returns null. The list is only valid after {@link #computeGraph(Object, String, String)} has
+	 * Returns a collection of Rule containing styling rules for the specific graf.
+	 * Never returns null. The list is only valid after {@link #computegraf(Object, String, String)} has
 	 * been called. The returned collection is not modifiable.
 	 * 
 	 * @return
