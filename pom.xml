@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.ungtb10d.graph</groupId>
+	<artifactId>parent</artifactId>
+	<version>1.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Graph Site Project</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<guice.groupId>org.sonatype.sisu</guice.groupId>
+		<guice.artifactId>sisu-guice</guice.artifactId>
+	</properties>
+
+	<organization>
+		<name>ungtb10d Inc.</name>
+		<url>http://www.ungtb10d.com</url>
+	</organization>
+
+	<url>${parentSiteURL}</url>
+
+	<scm>
+		<connection>scm:git:git://github.com/ungtb10d/grahp.git</connection>
+		<url>https://github.com/ungtb10d/graph</url>
+		<developerConnection>scm:git:git@github.com:ungtb10d/graph.git</developerConnection>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>ungtb10d</id>
+			<name>ungtb10d Release Repository</name>
+			<url>https://am0.ungtb10d.com/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>ungtb10d-snapshots</id>
+			<name>ungtb10d Snapshot Repository</name>
+			<url>https://am0.ungtb10d.com/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>ungtb10d-snapshots</id>
+			<name>ungtb10d Snapshot Repository</name>
+			<url>https://am0.ungtb10d.com/nexus/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>ungtb10d-releases</id>
+			<name>ungtb10d Releases</name>
+			<url>https://am0.ungtb10d.com/nexus/content/repositories/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>ungtb10d-snapshots</id>
+			<name>ungtb10d Snapshot Repository</name>
+			<url>https://am0.ungtb10d.com/nexus/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/ungtb10d/graph/issues</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>13.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>${guice.groupId}</groupId>
+				<artifactId>${guice.artifactId}</artifactId>
+				<version>[3.1,)</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.15</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.sun.jdmk</groupId>
+						<artifactId>jmxtools</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>javax.jms</groupId>
+						<artifactId>jms</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.sun.jmx</groupId>
+						<artifactId>jmxri</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.5.1</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<debug>true</debug>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<modules>
+		<module>org.ungtb10d.graph</module>
+	</modules>
+</project>

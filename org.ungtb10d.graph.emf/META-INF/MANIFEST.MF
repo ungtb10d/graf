@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.ungtb10d.graph.emf
+Bundle-SymbolicName: org.ungtb10d.graph.emf
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.ungtb10d.graph.emf.Activator
+Bundle-Vendor: ungtb10d Inc.
+Require-Bundle: org.eclipse.core.runtime,
+ org.ungtb10d.graph,
+ com.google.inject,
+ com.google.guava,
+ org.eclipse.emf.ecore
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6,
+ J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: org.ungtb10d.graph.emf
