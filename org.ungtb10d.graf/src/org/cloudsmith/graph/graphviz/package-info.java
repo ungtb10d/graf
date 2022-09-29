@@ -11,7 +11,7 @@
  */
 /**
  * This package contains an implementation that produces output in image and SVG formats by running
- * the grafviz layout tool as a separate process. The classes in this package may be injected with
+ * the graphviz layout tool as a separate process. The classes in this package may be injected with
  * Google Guice but can also be instantiated manually.
  */
-package org.ungtb10d.graf.grafviz;
+package org.ungtb10d.graf.graphviz;

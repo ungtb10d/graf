@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 
-import org.ungtb10d.graf.grafviz.SVGFixerOutputStream;
+import org.ungtb10d.graf.graphviz.SVGFixerOutputStream;
 import org.ungtb10d.graf.utils.Base64;
 import org.junit.Test;
 

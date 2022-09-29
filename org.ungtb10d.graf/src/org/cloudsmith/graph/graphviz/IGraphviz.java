@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graf.grafviz;
+package org.ungtb10d.graf.graphviz;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,10 +25,10 @@ import org.ungtb10d.graf.grafcss.grafCSS;
 import com.google.inject.BindingAnnotation;
 
 /**
- * Interface for a grafviz runner.
+ * Interface for a graphviz runner.
  * 
  */
-public interface Igrafviz {
+public interface Igraphviz {
 
 	/**
 	 * Annotation to use for the Dot Output Empty string.
@@ -41,8 +41,8 @@ public interface Igrafviz {
 	}
 
 	/**
-	 * Returns a string with the generated dot output (which is normally fed to grafviz layout).
-	 * This method is useful for testing graf -> grafviz -> DotRenderer -> dot-text.
+	 * Returns a string with the generated dot output (which is normally fed to graphviz layout).
+	 * This method is useful for testing graf -> graphviz -> DotRenderer -> dot-text.
 	 * 
 	 * @param cancel
 	 *            An indicator of cancellation requested by user. Should be periodically checked and {@link CancellationException}
@@ -55,7 +55,7 @@ public interface Igrafviz {
 	 * @param styleSheets
 	 *            List of graf CSS to apply to dot instances - have no effect on the dot defaults.
 	 * 
-	 * @return the dot output as text before grafviz layout processing
+	 * @return the dot output as text before graphviz layout processing
 	 */
 	public String getDotText(ICancel cancel, IRootgraf graf, grafCSS defaultCSS, grafCSS... styleSheets);
 
@@ -68,7 +68,7 @@ public interface Igrafviz {
 	 *            thrown on detection
 	 *            of cancellation.
 	 * @param layout
-	 *            The grafviz layout algorithm to use.
+	 *            The graphviz layout algorithm to use.
 	 * @param graf
 	 *            The root graf to render.
 	 * @param defaultCSS
@@ -78,19 +78,19 @@ public interface Igrafviz {
 	 * 
 	 * @return an empty string if there where errors
 	 */
-	public String getUsemap(ICancel cancel, grafvizLayout layout, IRootgraf graf, grafCSS defaultStyle,
+	public String getUsemap(ICancel cancel, graphvizLayout layout, IRootgraf graf, grafCSS defaultStyle,
 			grafCSS... styleSheets);
 
 	/**
 	 * Returns the image as a JPG image. The image is quite heavily compressed and shows many compression
-	 * artifacts. This at least when using grafviz under windows - the result is quite ugly.
+	 * artifacts. This at least when using graphviz under windows - the result is quite ugly.
 	 * 
 	 * @param cancel
 	 *            An indicator of cancellation requested by user. Should be periodically checked and {@link CancellationException}
 	 *            thrown on detection
 	 *            of cancellation.
 	 * @param layout
-	 *            The grafviz layout algorithm to use.
+	 *            The graphviz layout algorithm to use.
 	 * @param graf
 	 *            The root graf to render.
 	 * @param defaultCSS
@@ -100,7 +100,7 @@ public interface Igrafviz {
 	 * 
 	 * @return null if there where errors (this image may not be in jpg format!)
 	 */
-	public byte[] toJPG(ICancel cancel, grafvizLayout layout, IRootgraf graf, grafCSS defaultStyleSheet,
+	public byte[] toJPG(ICancel cancel, graphvizLayout layout, IRootgraf graf, grafCSS defaultStyleSheet,
 			grafCSS... styleSheets);
 
 	/**
@@ -111,7 +111,7 @@ public interface Igrafviz {
 	 *            thrown on detection
 	 *            of cancellation.
 	 * @param layout
-	 *            The grafviz layout algorithm to use.
+	 *            The graphviz layout algorithm to use.
 	 * @param graf
 	 *            The root graf to render.
 	 * @param defaultCSS
@@ -121,7 +121,7 @@ public interface Igrafviz {
 	 * 
 	 * @return a "noImage" image if there where errors
 	 */
-	public byte[] toPNG(ICancel cancel, grafvizLayout layout, IRootgraf graf, grafCSS defaultStyle,
+	public byte[] toPNG(ICancel cancel, graphvizLayout layout, IRootgraf graf, grafCSS defaultStyle,
 			grafCSS... styleSheets);
 
 	/**
@@ -136,7 +136,7 @@ public interface Igrafviz {
 	 *            thrown on detection
 	 *            of cancellation.
 	 * @param layout
-	 *            The grafviz layout algorithm to use.
+	 *            The graphviz layout algorithm to use.
 	 * @param graf
 	 *            The root graf to render.
 	 * @param defaultCSS
@@ -146,14 +146,14 @@ public interface Igrafviz {
 	 * 
 	 * @return null if there where errors
 	 */
-	public String toSVG(ICancel cancel, grafvizLayout layout, IRootgraf graf, grafCSS defaultStyle,
+	public String toSVG(ICancel cancel, graphvizLayout layout, IRootgraf graf, grafCSS defaultStyle,
 			grafCSS... styleSheets);
 
 	/**
-	 * Generic routine to produce output from grafviz.
+	 * Generic routine to produce output from graphviz.
 	 * Input data (dot text notation) is passed in a buffer.
-	 * This is fed to grafviz stdin, and the data from stdout is returned.
-	 * grafviz will print output on stderr if there are errors, but will not exit unless the input stream
+	 * This is fed to graphviz stdin, and the data from stdout is returned.
+	 * graphviz will print output on stderr if there are errors, but will not exit unless the input stream
 	 * is closed. This routine handles the needed multi-threading to handle these cases.
 	 * 
 	 * @param cancel
@@ -163,25 +163,25 @@ public interface Igrafviz {
 	 * @param format
 	 *            the wanted output format (PNG, JPG, SVG, etc.)
 	 * @param renderer
-	 *            the renderer to use (or null for default and non raster formats) - e.g. {@link grafvizRenderer#quartz}
+	 *            the renderer to use (or null for default and non raster formats) - e.g. {@link graphvizRenderer#quartz}
 	 * @param layout
-	 *            the layout algorithm to use - e.g. {@link grafvizLayout#dot}.
+	 *            the layout algorithm to use - e.g. {@link graphvizLayout#dot}.
 	 * @param dotData
 	 *            the dot text input
 	 * 
 	 * @return the output stream with the data, or null if there was an error
 	 */
-	OutputStream writegrafvizOutput(ICancel cancel, OutputStream output, grafvizFormat format,
-			grafvizRenderer renderer, grafvizLayout layout, InputStream dotData);
+	OutputStream writegraphvizOutput(ICancel cancel, OutputStream output, graphvizFormat format,
+			graphvizRenderer renderer, graphvizLayout layout, InputStream dotData);
 
 	// byte[] dotData);
 
 	/**
-	 * Generic routine to produce output from grafviz.
+	 * Generic routine to produce output from graphviz.
 	 * Input data is collected in a buffer (as the routines called to generate the output must run on
 	 * the main thread (seam does not find contexts for EL evaluation otherwise).
-	 * This is fed to grafviz stdin, and the data from stdout is returned.
-	 * grafviz will print output on stderr if there are errors, but will not exit unless the input stream
+	 * This is fed to graphviz stdin, and the data from stdout is returned.
+	 * graphviz will print output on stderr if there are errors, but will not exit unless the input stream
 	 * is closed. This routine handles the needed multithreading to handle these cases.
 	 * 
 	 * @param cancel
@@ -191,9 +191,9 @@ public interface Igrafviz {
 	 * @param format
 	 *            the wanted output format (PNG, JPG, SVG, etc.)
 	 * @param renderer
-	 *            the renderer to use (or null for default and non raster formats) - e.g. {@link grafvizRenderer#quartz}
+	 *            the renderer to use (or null for default and non raster formats) - e.g. {@link graphvizRenderer#quartz}
 	 * @param layout
-	 *            the layout algorithm to use - e.g. {@link grafvizLayout#dot}.
+	 *            the layout algorithm to use - e.g. {@link graphvizLayout#dot}.
 	 * @param graf
 	 *            the graf to render
 	 * @param defaultStyleSheet
@@ -203,8 +203,8 @@ public interface Igrafviz {
 	 * 
 	 * @return the output stream with the data, or null if there was an error
 	 */
-	public OutputStream writegrafvizOutput(ICancel cancel, OutputStream output, grafvizFormat format,
-			grafvizRenderer renderer, grafvizLayout layout, IRootgraf graf, grafCSS defaultStyleSheet,
+	public OutputStream writegraphvizOutput(ICancel cancel, OutputStream output, graphvizFormat format,
+			graphvizRenderer renderer, graphvizLayout layout, IRootgraf graf, grafCSS defaultStyleSheet,
 			grafCSS... styleSheets);
 
 	/**
@@ -217,7 +217,7 @@ public interface Igrafviz {
 	 * @param output
 	 *            the output stream where the PNG output should be written
 	 * @param layout
-	 *            the layout algorithm to use - e.g. {@link grafvizLayout#dot}.
+	 *            the layout algorithm to use - e.g. {@link graphvizLayout#dot}.
 	 * @param graf
 	 *            the graf to render
 	 * @param defaultStyleSheet
@@ -227,7 +227,7 @@ public interface Igrafviz {
 	 * 
 	 * @return false if there where errors, true on success
 	 */
-	public boolean writePNG(ICancel cancel, OutputStream output, grafvizLayout layout, IRootgraf graf,
+	public boolean writePNG(ICancel cancel, OutputStream output, graphvizLayout layout, IRootgraf graf,
 			grafCSS defaultStyle, grafCSS... styleSheets);
 
 	/**
@@ -240,7 +240,7 @@ public interface Igrafviz {
 	 * @param output
 	 *            the output stream where the GZIP output should be written
 	 * @param layout
-	 *            the layout algorithm to use - e.g. {@link grafvizLayout#dot}.
+	 *            the layout algorithm to use - e.g. {@link graphvizLayout#dot}.
 	 * @param graf
 	 *            the graf to render
 	 * @param defaultStyle
@@ -250,14 +250,14 @@ public interface Igrafviz {
 	 * 
 	 * @return false if there where errors, true on success
 	 */
-	public boolean writeSVG(ICancel cancel, OutputStream output, grafvizLayout layout, IRootgraf graf,
+	public boolean writeSVG(ICancel cancel, OutputStream output, graphvizLayout layout, IRootgraf graf,
 			grafCSS defaultStyle, grafCSS... styleSheets);
 
 	/**
 	 * Writes output as SVGZ text to the given stream.
-	 * Despite the fact that this method exists and is very convenient, the grafviz SVG output is not
-	 * really UTF-8 even if the header claims it to be. grafviz reads the user name and includes that in
-	 * a comment, and this name is in the encoding used on the platform where grafviz is running.
+	 * Despite the fact that this method exists and is very convenient, the graphviz SVG output is not
+	 * really UTF-8 even if the header claims it to be. graphviz reads the user name and includes that in
+	 * a comment, and this name is in the encoding used on the platform where graphviz is running.
 	 * It is a bad idea to GZIP that as it is not possible to convert it to UTF-8 once the data is
 	 * deflated. Instead, get the regular SVG output and ensure it is in UTF-8 before deflating.
 	 * 
@@ -268,7 +268,7 @@ public interface Igrafviz {
 	 * @param output
 	 *            the output stream where the GZIP output should be written
 	 * @param layout
-	 *            the layout algorithm to use - e.g. {@link grafvizLayout#dot}.
+	 *            the layout algorithm to use - e.g. {@link graphvizLayout#dot}.
 	 * @param graf
 	 *            the graf to render
 	 * @param defaultStyle
@@ -278,7 +278,7 @@ public interface Igrafviz {
 	 * 
 	 * @return false if there where errors, true on success
 	 */
-	public boolean writeSVGZ(ICancel cancel, OutputStream output, grafvizLayout layout, IRootgraf graf,
+	public boolean writeSVGZ(ICancel cancel, OutputStream output, graphvizLayout layout, IRootgraf graf,
 			grafCSS defaultStyle, grafCSS... styleSheets);
 
 }

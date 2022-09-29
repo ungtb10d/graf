@@ -9,31 +9,31 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graf.grafviz;
+package org.ungtb10d.graf.graphviz;
 
 import com.google.inject.Singleton;
 
 /**
- * A default grafviz configration for Mac, Linux using {@link grafvizRenderer#cairo} on all platforms
- * except OSx where {@link grafvizRenderer#quartz} produces better looking results.
+ * A default graphviz configration for Mac, Linux using {@link graphvizRenderer#cairo} on all platforms
+ * except OSx where {@link graphvizRenderer#quartz} produces better looking results.
  * 
  */
 @Singleton
-public class DefaultgrafvizConfig implements IgrafvizConfig {
+public class DefaultgraphvizConfig implements IgraphvizConfig {
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.ungtb10d.graf.impl.dot.IgrafvizConfig#getRenderer()
+	 * @see org.ungtb10d.graf.impl.dot.IgraphvizConfig#getRenderer()
 	 */
 	@Override
-	public grafvizRenderer getRenderer() {
+	public graphvizRenderer getRenderer() {
 		String osName = System.getProperty("os.name", "");
 		osName = osName.toLowerCase();
 		osName = osName.replace(" ", "");
 		if(osName.contains("macosx"))
-			return grafvizRenderer.quartz;
-		return grafvizRenderer.cairo;
+			return graphvizRenderer.quartz;
+		return graphvizRenderer.cairo;
 	}
 
 }

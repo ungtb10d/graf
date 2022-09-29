@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 
-import org.ungtb10d.graf.grafviz.SVGFixerOutputStream;
+import org.ungtb10d.graf.graphviz.SVGFixerOutputStream;
 import org.ungtb10d.graf.utils.RuleFilteredOutputStream;
 import org.ungtb10d.graf.utils.RuleFilteredOutputStream.ReplaceRule;
 import org.junit.Test;

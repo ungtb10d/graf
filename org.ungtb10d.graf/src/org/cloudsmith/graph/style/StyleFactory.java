@@ -47,7 +47,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 /**
- * An IStyleFacory implementation for grafviz dot language.
+ * An IStyleFacory implementation for graphviz dot language.
  * 
  */
 @Singleton

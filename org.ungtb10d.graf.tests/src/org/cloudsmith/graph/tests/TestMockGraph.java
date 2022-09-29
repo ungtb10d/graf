@@ -64,7 +64,7 @@ public class TestMockgraf extends AbstractgrafTests {
 
 	@Test
 	public void testSmokeTest() {
-		// Igrafviz grafviz = get(Igrafviz.class);
+		// Igraphviz graphviz = get(Igraphviz.class);
 
 		IStyleTheme theme = get(IStyleTheme.class);
 		grafCSS themeSheet = get(grafCSS.class);
@@ -76,7 +76,7 @@ public class TestMockgraf extends AbstractgrafTests {
 
 		DotRenderer dotRenderer = get(DotRenderer.class);
 		dotRenderer.write(ICancel.NullIndicator, System.err, testgraf, theme.getDefaultRules(), themeSheet);
-		// String dotText = grafviz.getDotText(testgraf, theme.getDefaultRules(), themeSheet);
+		// String dotText = graphviz.getDotText(testgraf, theme.getDefaultRules(), themeSheet);
 		// System.err.println(dotText);
 	}
 }

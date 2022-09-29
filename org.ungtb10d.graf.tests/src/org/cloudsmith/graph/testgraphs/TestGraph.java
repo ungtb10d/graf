@@ -36,7 +36,7 @@ import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 /**
- * A test and demo of the grafviz graf layout and rendering support.
+ * A test and demo of the graphviz graf layout and rendering support.
  * TODO: UNFINISHED, AND HAS ISSUES...
  * 
  */
@@ -69,7 +69,7 @@ public class Testgraf implements IgrafProvider {
 
 	private boolean m_edgeDecorate = false;
 
-	// private grafvizRenderer m_renderer = grafvizRenderer.gd;
+	// private graphvizRenderer m_renderer = graphvizRenderer.gd;
 	//
 	// private DotRenderer dotRenderer;
 
@@ -99,7 +99,7 @@ public class Testgraf implements IgrafProvider {
 
 	// public byte[] getgraf() {
 	// Igraf graf = getMockgraf();
-	// Igrafviz g = new grafviz(new DefaultgrafvizConfig(), dotRenderer);
+	// Igraphviz g = new graphviz(new DefaultgraphvizConfig(), dotRenderer);
 	// byte[] img = g.getPngImage(m_layout, graf, getCGSS(), null);
 	// // TODO: get the bytes of the no_image.png under images folder
 	// return img == null
@@ -172,7 +172,7 @@ public class Testgraf implements IgrafProvider {
 	/**
 	 * Produces a CGSS (Cascading graf Style Sheet) based on the user's input.
 	 * This is also a good demonstration of how to use the Styling capabilities of
-	 * the grafviz support.
+	 * the graphviz support.
 	 * 
 	 * @return the rule set to use as CGSS
 	 */
@@ -243,9 +243,9 @@ public class Testgraf implements IgrafProvider {
 	// Igraf graf = getMockgraf();
 	// // usemap does not support different renderers (?)
 	// // TODO: check if usemap is ok for cairo as well as gd
-	// // right now the grafviz runner sets the renderer to null for usemap rendering.
+	// // right now the graphviz runner sets the renderer to null for usemap rendering.
 	// //
-	// Igrafviz g = new grafviz(new DefaultgrafvizConfig(), dotRenderer);
+	// Igraphviz g = new graphviz(new DefaultgraphvizConfig(), dotRenderer);
 	// return g.getUsemap(m_layout, graf, getCGSS(), null);
 	// }
 }

@@ -26,10 +26,10 @@ import org.ungtb10d.graf.elements.Rootgraf;
 import org.ungtb10d.graf.elements.Vertex;
 import org.ungtb10d.graf.grafcss.grafCSS;
 import org.ungtb10d.graf.grafcss.IFunctionFactory;
-import org.ungtb10d.graf.grafviz.grafvizFormat;
-import org.ungtb10d.graf.grafviz.grafvizLayout;
-import org.ungtb10d.graf.grafviz.grafvizRenderer;
-import org.ungtb10d.graf.grafviz.Igrafviz;
+import org.ungtb10d.graf.graphviz.graphvizFormat;
+import org.ungtb10d.graf.graphviz.graphvizLayout;
+import org.ungtb10d.graf.graphviz.graphvizRenderer;
+import org.ungtb10d.graf.graphviz.Igraphviz;
 import org.ungtb10d.graf.style.IStyleFactory;
 import org.ungtb10d.graf.testgrafs.AbstractTestgraf;
 import org.junit.Test;
@@ -37,9 +37,9 @@ import org.junit.Test;
 import com.google.inject.Inject;
 
 /**
- * Tests basic production of grafviz output:
+ * Tests basic production of graphviz output:
  * - that the DotRenderer is producing expected dot output
- * - that the grafviz renderer can be called, and that it produces different types of output
+ * - that the graphviz renderer can be called, and that it produces different types of output
  */
 public class TestBasicFeatures extends AbstractgrafTests {
 
@@ -167,14 +167,14 @@ public class TestBasicFeatures extends AbstractgrafTests {
 	}
 
 	/**
-	 * Tests running grafviz to produce output. The test is performed by producing output in svg format
+	 * Tests running graphviz to produce output. The test is performed by producing output in svg format
 	 * (this format is textual) and checks that text is in svg tags, that there are calls to path and polygon
 	 * (to ensure there is some drawing information, and not just empty svg), and that the end tag is present
 	 * (i.e. that output is not truncated).
 	 */
 	@Test
-	public void testgraf_rungrafviz_svg() {
-		Igrafviz grafviz = get(Igrafviz.class);
+	public void testgraf_rungraphviz_svg() {
+		Igraphviz graphviz = get(Igraphviz.class);
 		grafCSS themeSheet = get(grafCSS.class);
 
 		IgrafProvider grafProvider = get(IdentityTestgraf.class);
@@ -182,8 +182,8 @@ public class TestBasicFeatures extends AbstractgrafTests {
 		themeSheet.addAll(grafProvider.getRules());
 
 		ByteArrayOutputStream tmp = new ByteArrayOutputStream();
-		grafviz.writegrafvizOutput(
-			ICancel.NullIndicator, tmp, grafvizFormat.svg, grafvizRenderer.standard, grafvizLayout.dot, testgraf,
+		graphviz.writegraphvizOutput(
+			ICancel.NullIndicator, tmp, graphvizFormat.svg, graphvizRenderer.standard, graphvizLayout.dot, testgraf,
 			get(grafCSS.class), themeSheet);
 		String output = tmp.toString();
 		assertTrue("Should contain <svg", output.contains("<svg"));
@@ -193,12 +193,12 @@ public class TestBasicFeatures extends AbstractgrafTests {
 	}
 
 	/**
-	 * Tests running grafviz to produce output. The test is performed by producing output in xdot format
+	 * Tests running graphviz to produce output. The test is performed by producing output in xdot format
 	 * (as this format is textual) and checks that text contains calls to "_draw_".
 	 */
 	@Test
-	public void testgraf_rungrafviz_xdot() {
-		Igrafviz grafviz = get(Igrafviz.class);
+	public void testgraf_rungraphviz_xdot() {
+		Igraphviz graphviz = get(Igraphviz.class);
 		grafCSS themeSheet = get(grafCSS.class);
 
 		IgrafProvider grafProvider = get(IdentityTestgraf.class);
@@ -206,8 +206,8 @@ public class TestBasicFeatures extends AbstractgrafTests {
 		themeSheet.addAll(grafProvider.getRules());
 
 		ByteArrayOutputStream tmp = new ByteArrayOutputStream();
-		grafviz.writegrafvizOutput(
-			ICancel.NullIndicator, tmp, grafvizFormat.xdot, grafvizRenderer.standard, grafvizLayout.dot, testgraf,
+		graphviz.writegraphvizOutput(
+			ICancel.NullIndicator, tmp, graphvizFormat.xdot, graphvizRenderer.standard, graphvizLayout.dot, testgraf,
 			get(grafCSS.class), themeSheet);
 		String output = tmp.toString();
 		assertTrue("Should contain _draw_ calls", output.contains("_draw_"));

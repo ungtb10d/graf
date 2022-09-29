@@ -5,7 +5,7 @@ import org.ungtb10d.graf.grafcss.grafCSS;
 import org.ungtb10d.graf.grafcss.Rule;
 import org.ungtb10d.graf.grafcss.Select;
 import org.ungtb10d.graf.grafcss.StyleSet;
-import org.ungtb10d.graf.grafviz.grafvizLayout;
+import org.ungtb10d.graf.graphviz.graphvizLayout;
 import org.ungtb10d.graf.style.Arrow;
 import org.ungtb10d.graf.style.Compass;
 import org.ungtb10d.graf.style.EdgeRouting;
@@ -22,7 +22,7 @@ import org.ungtb10d.graf.style.StyleFactory;
  */
 public class AbstractgrafStyleRuleSetProvider implements IgrafStyleRuleSetProvider {
 
-	protected grafvizLayout m_layout = org.ungtb10d.graf.grafviz.grafvizLayout.dot;
+	protected graphvizLayout m_layout = org.ungtb10d.graf.graphviz.graphvizLayout.dot;
 
 	protected Arrow m_headArrow = Arrow.vee;
 
@@ -71,7 +71,7 @@ public class AbstractgrafStyleRuleSetProvider implements IgrafStyleRuleSetProvid
 	protected Rule getDefaultEdgeStyle() {
 
 		// There is no need to set the value below as they are default when rendering with
-		// grafviz. Setting these values will just cause bloat in the generated graf.
+		// graphviz. Setting these values will just cause bloat in the generated graf.
 
 		// StyleMap edgeStyle = new StyleMap();
 		// edgeStyle.put(new grafStyle.EdgeBrush(m_edgeLineType, new Double(0.5))); // DEFAULT
@@ -115,7 +115,7 @@ public class AbstractgrafStyleRuleSetProvider implements IgrafStyleRuleSetProvid
 	 */
 	protected Rule getDefaultVertexStyle() {
 		// There is no need to set the value below as they are default when rendering with
-		// grafviz. Setting these values will just cause bloat in the generated graf.
+		// graphviz. Setting these values will just cause bloat in the generated graf.
 
 		// StyleMap nodeStyle = new StyleMap();
 		// nodeStyle.put(new grafStyle.Shape(m_nodeShape));

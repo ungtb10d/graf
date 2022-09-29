@@ -9,7 +9,7 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graf.grafviz;
+package org.ungtb10d.graf.graphviz;
 
 import java.io.OutputStream;
 

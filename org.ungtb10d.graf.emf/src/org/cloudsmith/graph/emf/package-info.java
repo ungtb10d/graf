@@ -10,7 +10,7 @@
  * 
  */
 /**
- * This package contains classes that translates an EMF ecore model instance into grafviz dot 
+ * This package contains classes that translates an EMF ecore model instance into graphviz dot 
  * notation under control
  * of a {@link org.ungtb10d.graf.grafcss.grafCSS}. The classes in this package can be injected with 
  * Google Guice, but can also be instantiated manually.

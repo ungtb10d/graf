@@ -30,8 +30,8 @@ import org.ungtb10d.graf.dot.DotRenderer;
 import org.ungtb10d.graf.emf.DefaultEgrafModule;
 import org.ungtb10d.graf.emf.HorizontalArrayListEgrafProvider;
 import org.ungtb10d.graf.grafcss.grafCSS;
-import org.ungtb10d.graf.grafviz.grafvizLayout;
-import org.ungtb10d.graf.grafviz.Igrafviz;
+import org.ungtb10d.graf.graphviz.graphvizLayout;
+import org.ungtb10d.graf.graphviz.Igraphviz;
 import org.ungtb10d.graf.style.themes.IStyleTheme;
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
@@ -81,7 +81,7 @@ public class TestEgraf extends AbstractgrafTests {
 		statements.add(assign2);
 
 		// Render it
-		Igrafviz grafviz = get(Igrafviz.class);
+		Igraphviz graphviz = get(Igraphviz.class);
 		grafCSS themeSheet = get(grafCSS.class);
 
 		IgrafProvider grafProvider = get(IgrafProvider.class);
@@ -104,8 +104,8 @@ public class TestEgraf extends AbstractgrafTests {
 		dotRenderer.write(ICancel.NullIndicator, dot, testgraf, theme.getDefaultRules(), themeSheet);
 
 		// Render without the default styles. Use styles from Simplegraf1
-		assertTrue("Writing PNG", grafviz.writePNG(
-			ICancel.NullIndicator, tmp, grafvizLayout.dot, testgraf, theme.getDefaultRules(), themeSheet));
+		assertTrue("Writing PNG", graphviz.writePNG(
+			ICancel.NullIndicator, tmp, graphvizLayout.dot, testgraf, theme.getDefaultRules(), themeSheet));
 
 	}
 
@@ -122,7 +122,7 @@ public class TestEgraf extends AbstractgrafTests {
 		statements.add(assign2);
 
 		// Render it
-		Igrafviz grafviz = get(Igrafviz.class);
+		Igraphviz graphviz = get(Igraphviz.class);
 		grafCSS themeSheet = get(grafCSS.class);
 
 		IgrafProvider grafProvider = get(HorizontalArrayListEgrafProvider.class);
@@ -145,8 +145,8 @@ public class TestEgraf extends AbstractgrafTests {
 		dotRenderer.write(ICancel.NullIndicator, dot, testgraf, theme.getDefaultRules(), themeSheet);
 
 		// Render without the default styles. Use styles from Simplegraf1
-		assertTrue("Writing PNG", grafviz.writePNG(
-			ICancel.NullIndicator, tmp, grafvizLayout.dot, testgraf, theme.getDefaultRules(), themeSheet));
+		assertTrue("Writing PNG", graphviz.writePNG(
+			ICancel.NullIndicator, tmp, graphvizLayout.dot, testgraf, theme.getDefaultRules(), themeSheet));
 
 	}
 }

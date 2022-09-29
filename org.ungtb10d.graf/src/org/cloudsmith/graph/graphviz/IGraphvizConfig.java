@@ -9,17 +9,17 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graf.grafviz;
+package org.ungtb10d.graf.graphviz;
 
 
 import com.google.inject.ImplementedBy;
 
 /**
- * A configuration of grafviz.
+ * A configuration of graphviz.
  * 
  */
-@ImplementedBy(DefaultgrafvizConfig.class)
-public interface IgrafvizConfig {
+@ImplementedBy(DefaultgraphvizConfig.class)
+public interface IgraphvizConfig {
 
-	public grafvizRenderer getRenderer();
+	public graphvizRenderer getRenderer();
 }

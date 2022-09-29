@@ -120,7 +120,7 @@ public class DefaultStyleTheme implements IStyleTheme {
 			styles.shape(NodeShape.rectangle), //
 			styles.shapeBrush(LineType.solid, 0.5, true, true), //
 
-			// Tooltip handling in grafviz is not good, if empty, the label is used, and if it is a <TABLE>
+			// Tooltip handling in graphviz is not good, if empty, the label is used, and if it is a <TABLE>
 			// then the text "<TABLE>" is displayed !!, setting it to "" means it is "unset" and the default
 			// is used. Nodes with table based labels, must set something meaningful as tooltip.
 			// There is support for translation of empty strings to distinct text that can be postprocessed
@@ -136,7 +136,7 @@ public class DefaultStyleTheme implements IStyleTheme {
 			styles.fontSize(7), //
 			styles.lineBrush(LineType.solid, 0.5), //
 
-			// the automatic tooltip handling in grafviz is wacky, and does not work as stated in documentation
+			// the automatic tooltip handling in graphviz is wacky, and does not work as stated in documentation
 			styles.tooltip("\\L"), // use the label (if it exists) as tooltip for the edge's "line"
 			styles.tooltipForLabel("\\L"), // use the label of the edge as the tooltip for the edge label !!
 

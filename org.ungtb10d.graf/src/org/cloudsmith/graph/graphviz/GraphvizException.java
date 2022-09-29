@@ -9,21 +9,21 @@
  *   ungtb10d
  * 
  */
-package org.ungtb10d.graf.grafviz;
+package org.ungtb10d.graf.graphviz;
 
 /**
- * An exception indicating that the external (grafviz) executable reported problems indicating
+ * An exception indicating that the external (graphviz) executable reported problems indicating
  * failure.
  */
-public class grafvizException extends IllegalStateException {
+public class graphvizException extends IllegalStateException {
 
 	private static final long serialVersionUID = 1L;
 
-	public grafvizException(String message) {
+	public graphvizException(String message) {
 		super(message);
 	}
 
-	public grafvizException(String message, Throwable cause) {
+	public graphvizException(String message, Throwable cause) {
 		super(message, cause);
 	}
 }

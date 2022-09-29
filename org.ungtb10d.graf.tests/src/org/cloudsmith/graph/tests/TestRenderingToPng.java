@@ -23,8 +23,8 @@ import org.ungtb10d.graf.IRootgraf;
 import org.ungtb10d.graf.dot.DotRenderer;
 import org.ungtb10d.graf.grafcss.grafCSS;
 import org.ungtb10d.graf.grafcss.Select;
-import org.ungtb10d.graf.grafviz.grafvizLayout;
-import org.ungtb10d.graf.grafviz.Igrafviz;
+import org.ungtb10d.graf.graphviz.graphvizLayout;
+import org.ungtb10d.graf.graphviz.Igraphviz;
 import org.ungtb10d.graf.style.IStyleFactory;
 import org.ungtb10d.graf.style.RankDirection;
 import org.ungtb10d.graf.style.themes.IStyleTheme;
@@ -40,7 +40,7 @@ public class TestRenderingToPng extends AbstractgrafTests {
 
 	@Test
 	public void testPNG_abc_abc_vertical_default() throws IOException {
-		Igrafviz grafviz = get(Igrafviz.class);
+		Igraphviz graphviz = get(Igraphviz.class);
 		grafCSS themeSheet = get(grafCSS.class);
 
 		IgrafProvider grafProvider = get(Simplegraf2.class);
@@ -63,14 +63,14 @@ public class TestRenderingToPng extends AbstractgrafTests {
 		dotRenderer.write(ICancel.NullIndicator, dot, testgraf, theme.getDefaultRules(), themeSheet);
 
 		// Render without the default styles. Use styles from Simplegraf1
-		assertTrue("Writing PNG", grafviz.writePNG(
-			ICancel.NullIndicator, tmp, grafvizLayout.dot, testgraf, theme.getDefaultRules(), themeSheet));
+		assertTrue("Writing PNG", graphviz.writePNG(
+			ICancel.NullIndicator, tmp, graphvizLayout.dot, testgraf, theme.getDefaultRules(), themeSheet));
 
 	}
 
 	@Test
 	public void testPNG_abc_horizontal_default() throws IOException {
-		Igrafviz grafviz = get(Igrafviz.class);
+		Igraphviz graphviz = get(Igraphviz.class);
 		grafCSS themeSheet = get(grafCSS.class);
 
 		IgrafProvider grafProvider = get(Simplegraf1.class);
@@ -92,14 +92,14 @@ public class TestRenderingToPng extends AbstractgrafTests {
 		dotRenderer.write(ICancel.NullIndicator, dot, testgraf, theme.getDefaultRules(), themeSheet);
 
 		// Render without the default styles. Use styles from Simplegraf1
-		assertTrue("Wriging PNG", grafviz.writePNG(
-			ICancel.NullIndicator, png, grafvizLayout.dot, testgraf, theme.getDefaultRules(), themeSheet));
+		assertTrue("Wriging PNG", graphviz.writePNG(
+			ICancel.NullIndicator, png, graphvizLayout.dot, testgraf, theme.getDefaultRules(), themeSheet));
 
 	}
 
 	@Test
 	public void testPNG_abc_vertical_default() throws IOException {
-		Igrafviz grafviz = get(Igrafviz.class);
+		Igraphviz graphviz = get(Igraphviz.class);
 		grafCSS themeSheet = get(grafCSS.class);
 
 		IgrafProvider grafProvider = get(Simplegraf1.class);
@@ -119,13 +119,13 @@ public class TestRenderingToPng extends AbstractgrafTests {
 		dotRenderer.write(ICancel.NullIndicator, dot, testgraf, theme.getDefaultRules(), themeSheet);
 
 		// Render without the default styles. Use styles from Simplegraf1
-		assertTrue("Writing PNG", grafviz.writePNG(
-			ICancel.NullIndicator, tmp, grafvizLayout.dot, testgraf, theme.getDefaultRules(), themeSheet));
+		assertTrue("Writing PNG", graphviz.writePNG(
+			ICancel.NullIndicator, tmp, graphvizLayout.dot, testgraf, theme.getDefaultRules(), themeSheet));
 	}
 
 	@Test
 	public void testPNG_abc_vertical_unstyled() throws IOException {
-		Igrafviz grafviz = get(Igrafviz.class);
+		Igraphviz graphviz = get(Igraphviz.class);
 		grafCSS themeSheet = get(grafCSS.class);
 
 		IgrafProvider grafProvider = get(Simplegraf1.class);
@@ -136,8 +136,8 @@ public class TestRenderingToPng extends AbstractgrafTests {
 		FileOutputStream tmp = new FileOutputStream(new File(output, "abc_vertical_unstyled.png"));
 
 		// Render without the default styles. Use styles from Simplegraf1
-		assertTrue("Writing PNG", grafviz.writePNG(
-			ICancel.NullIndicator, tmp, grafvizLayout.dot, testgraf, get(grafCSS.class), themeSheet));
+		assertTrue("Writing PNG", graphviz.writePNG(
+			ICancel.NullIndicator, tmp, graphvizLayout.dot, testgraf, get(grafCSS.class), themeSheet));
 	}
 
 }

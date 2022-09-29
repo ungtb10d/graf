@@ -14,10 +14,10 @@ package org.ungtb10d.graf;
 import org.ungtb10d.graf.dot.DotRenderer;
 import org.ungtb10d.graf.grafcss.FunctionFactory;
 import org.ungtb10d.graf.grafcss.IFunctionFactory;
-import org.ungtb10d.graf.grafviz.DefaultgrafvizConfig;
-import org.ungtb10d.graf.grafviz.grafviz;
-import org.ungtb10d.graf.grafviz.Igrafviz;
-import org.ungtb10d.graf.grafviz.IgrafvizConfig;
+import org.ungtb10d.graf.graphviz.DefaultgraphvizConfig;
+import org.ungtb10d.graf.graphviz.graphviz;
+import org.ungtb10d.graf.graphviz.Igraphviz;
+import org.ungtb10d.graf.graphviz.IgraphvizConfig;
 import org.ungtb10d.graf.style.IStyleFactory;
 import org.ungtb10d.graf.style.StyleFactory;
 import org.ungtb10d.graf.style.themes.DefaultStyleTheme;
@@ -46,7 +46,7 @@ public class DefaultgrafModule extends AbstractModule {
 
 	/**
 	 * Binds a normal empty string (i.e. "") for dot output.
-	 * For SVG output, the {@link org.ungtb10d.graf.grafviz.SVGFixerOutputStreamSVGFixerOutputStream#EMPTY_STRING_BUG} can be bound in combination
+	 * For SVG output, the {@link org.ungtb10d.graf.graphviz.SVGFixerOutputStreamSVGFixerOutputStream#EMPTY_STRING_BUG} can be bound in combination
 	 * with overriding {@link #bindSVGOutputFilterProvider()}.
 	 */
 	protected void bindEmptyStringConstant() {
@@ -61,17 +61,17 @@ public class DefaultgrafModule extends AbstractModule {
 	}
 
 	/**
-	 * Binds implementation of grafviz runner.
+	 * Binds implementation of graphviz runner.
 	 */
-	protected void bindIgrafviz() {
-		bind(Igrafviz.class).to(grafviz.class);
+	protected void bindIgraphviz() {
+		bind(Igraphviz.class).to(graphviz.class);
 	}
 
 	/**
-	 * Binds the standard grafviz configuration to use. This binding is environment dependent.
+	 * Binds the standard graphviz configuration to use. This binding is environment dependent.
 	 */
-	protected void bindIgrafvizConfig() {
-		bind(IgrafvizConfig.class).to(DefaultgrafvizConfig.class);
+	protected void bindIgraphvizConfig() {
+		bind(IgraphvizConfig.class).to(DefaultgraphvizConfig.class);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class DefaultgrafModule extends AbstractModule {
 	 */
 	protected void bindSVGOutputFilterProvider() {
 
-		bind(IOutputStreamFilterFactory.class).annotatedWith(Igrafviz.SVGOutputFilter.class).to(
+		bind(IOutputStreamFilterFactory.class).annotatedWith(Igraphviz.SVGOutputFilter.class).to(
 			TransparentOutputStreamFilterFactory.class).in(Singleton.class);
 	}
 
@@ -101,8 +101,8 @@ public class DefaultgrafModule extends AbstractModule {
 	 */
 	@Override
 	protected void configure() {
-		bindIgrafviz();
-		bindIgrafvizConfig();
+		bindIgraphviz();
+		bindIgraphvizConfig();
 		bindIFunctionFactory();
 		bindIStyleFactory();
 		bindDotRenderer();

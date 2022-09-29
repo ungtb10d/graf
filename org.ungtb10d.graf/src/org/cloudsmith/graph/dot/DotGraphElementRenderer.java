@@ -43,7 +43,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 /**
- * Renders IgrafElements in grafviz dot notation.
+ * Renders IgrafElements in graphviz dot notation.
  * 
  */
 @Singleton

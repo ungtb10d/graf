@@ -267,7 +267,7 @@ public class DotLabelRenderer {
 			 * The right thing to do would be to have just one measuring system and actually transform
 			 * printers points 1/72" to "pixels" - but this requires resolution of the output device to be accurate
 			 * and is just too much bother - simply specify integral numbers in the stylesheet and know that it is
-			 * interpreted as "pixels" (or whatever grafviz things the integral number means.
+			 * interpreted as "pixels" (or whatever graphviz things the integral number means.
 			 */
 			@Override
 			public void height(double x) {
@@ -386,7 +386,7 @@ public class DotLabelRenderer {
 		String cellText = gc.getValue();
 
 		// if there are font attributes - output that around the text in the cell
-		// (unless text is empty string = grafviz error).
+		// (unless text is empty string = graphviz error).
 		boolean withFontData = gt == null && p[1] != null && p[1].length() > 0 && cellText.length() > 0;
 		out.printf("<TD %s>", p[0]);
 		if(withFontData)
